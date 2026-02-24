@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Rafał Salamon — Senior PHP Developer / Fullstack Developer. Terminal-style portfolio." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <title>Kontakt</title>
+</head>
+<body data-page-title="Kontakt">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img src="assets/img/logo.svg" alt="RS logo" />
+        <div class="title">
+          <strong>Rafał Salamon</strong>
+          <span data-i18n="home_title">Senior PHP Developer / Fullstack Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav_home">Start</a>
+        <a href="about.html" data-i18n="nav_about">O mnie</a>
+        <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+        <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+      </nav>
+
+      <div class="actions">
+        <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
+        <div class="chip" title="Language / Język">
+          <span data-i18n="chip_lang">Język</span>
+          <button type="button" data-action="toggle-lang">PL</button>
+        </div>
+        <div class="chip" title="Theme / Motyw">
+          <span data-i18n="chip_theme">Motyw</span>
+          <button type="button" data-action="toggle-theme">🌙</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" role="dialog" aria-label="Mobile menu">
+    <a href="index.html" data-i18n="nav_home">Start</a>
+    <a href="about.html" data-i18n="nav_about">O mnie</a>
+    <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+    <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+    <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+  </div>
+
+  <main class="container">
+    
+<section class="section">
+  <div class="card">
+    <div class="card-header">
+      <span class="pill" data-i18n="contact_h2">Kontakt</span>
+      <span class="pill">$ ping rafal.salamon@salamonrafal.pl</span>
+    </div>
+    <div class="list">
+      <p data-i18n="contact_p"></p>
+      <div class="tags" style="margin-top:14px;">
+        <a class="btn primary" href="mailto:rafal.salamon@salamonrafal.pl">rafal.salamon@salamonrafal.pl</a>
+        <a class="btn" href="tel:+48792087824">+48 792 087 824</a>
+        <a class="btn" href="https://github.com/salamonrafal" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/rafalsalamon/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <button class="btn" type="button" data-action="copy-email" data-email="rafal.salamon@salamonrafal.pl" data-i18n="contact_copy">Kopiuj adres</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <div class="card-header">
+      <span class="pill">$ mail</span>
+      <span class="pill">(mailto:)</span>
+    </div>
+    <form id="contact-form" class="form" data-to="rafal.salamon@salamonrafal.pl">
+      <div class="field">
+        <label for="c_name" data-i18n="contact_name">Imię i nazwisko</label>
+        <input id="c_name" type="text" placeholder="Rafał Salamon" />
+      </div>
+      <div class="field">
+        <label for="c_email" data-i18n="contact_email">E‑mail</label>
+        <input id="c_email" type="email" placeholder="name@example.com" />
+      </div>
+      <div class="field">
+        <label for="c_msg" data-i18n="contact_msg">Wiadomość</label>
+        <textarea id="c_msg" data-i18n-placeholder="contact_msg" placeholder="W czym mogę pomóc?"></textarea>
+      </div>
+      <div class="project-actions">
+        <button class="btn primary" type="submit" data-i18n="contact_send">Utwórz e‑mail</button>
+        <a class="btn" href="index.html"><span data-lang="pl">← Wróć</span><span data-lang="en" style="display:none">← Back</span></a>
+      </div>
+    </form>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-text">© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

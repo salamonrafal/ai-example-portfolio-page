@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Rafał Salamon — Senior PHP Developer / Fullstack Developer. Terminal-style portfolio." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <title>O mnie</title>
+</head>
+<body data-page-title="O mnie">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img src="assets/img/logo.svg" alt="RS logo" />
+        <div class="title">
+          <strong>Rafał Salamon</strong>
+          <span data-i18n="home_title">Senior PHP Developer / Fullstack Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav_home">Start</a>
+        <a href="about.html" data-i18n="nav_about">O mnie</a>
+        <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+        <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+      </nav>
+
+      <div class="actions">
+        <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
+        <div class="chip" title="Language / Język">
+          <span data-i18n="chip_lang">Język</span>
+          <button type="button" data-action="toggle-lang">PL</button>
+        </div>
+        <div class="chip" title="Theme / Motyw">
+          <span data-i18n="chip_theme">Motyw</span>
+          <button type="button" data-action="toggle-theme">🌙</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" role="dialog" aria-label="Mobile menu">
+    <a href="index.html" data-i18n="nav_home">Start</a>
+    <a href="about.html" data-i18n="nav_about">O mnie</a>
+    <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+    <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+    <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+  </div>
+
+  <main class="container">
+    
+<section class="section">
+  <div class="card">
+    <div class="card-header">
+      <span class="pill" data-i18n="about_h2">O mnie</span>
+      <span class="pill">$ cat about.md</span>
+    </div>
+    <div class="list">
+
+      <div class="card profile-card" style="margin: 4px 0 12px;">
+        <div class="card-header">
+          <span class="pill">about://summary</span>
+          <span class="pill">$ whoami --card</span>
+        </div>
+        <div class="profile-combo">
+          <div class="profile-media">
+            <picture>
+              <source srcset="assets/img/profile_320.webp" type="image/webp" />
+              <img src="assets/img/profile_320.jpg" class="profile-img profile-img--sm" alt="Profile photo" loading="lazy" />
+            </picture>
+          </div>
+          <div class="profile-summary">
+            <ul>
+              <li><strong><span data-lang="pl">Rola:</span><span data-lang="en" style="display:none">Role:</span></strong>
+                <span data-lang="pl"> Senior PHP Developer / Fullstack Developer</span><span data-lang="en" style="display:none"> Senior PHP Developer / Fullstack Developer</span></li>
+              <li><strong><span data-lang="pl">Doświadczenie:</span><span data-lang="en" style="display:none">Experience:</span></strong>
+                <span data-lang="pl"> 20+ lat w międzynarodowym środowisku</span><span data-lang="en" style="display:none"> 20+ years in an international environment</span></li>
+              <li><strong><span data-lang="pl">Kontakt:</span><span data-lang="en" style="display:none">Contact:</span></strong>
+                <a href="mailto:rafal.salamon@salamonrafal.pl">rafal.salamon@salamonrafal.pl</a></li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/salamonrafal" target="_blank" rel="noreferrer">github.com/salamonrafal</a></li>
+              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/rafalsalamon/" target="_blank" rel="noreferrer">linkedin.com/in/rafalsalamon</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p data-i18n="about_p1"></p>
+
+      <p data-i18n="about_p2"></p>
+
+<div data-lang="pl">
+      <div class="grid-2">
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_special">Obszary specjalizacji</span></div>
+          <div class="list">
+            <ul>
+              <li>Senior PHP Developer — analiza biznesowa i techniczna, utrzymanie i rozwój aplikacji</li>
+              <li>Software Engineer — wytwarzanie aplikacji webowych, refactoring, code review</li>
+              <li>Full Stack Developer — komponenty UI (React), integracje, REST API</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_skills">Technologie (wybrane)</span></div>
+          <div class="list">
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">Symfony</span><span class="tag">REST API</span><span class="tag">SQL</span>
+              <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Angular</span>
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span><span class="tag">Bootstrap</span>
+              <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">Docker</span><span class="tag">Jenkins</span>
+              <span class="tag">Scrum</span><span class="tag">SOLID</span>
+            </div>
+            <p style="color:var(--muted); margin:0;">(+ podstawy: Git, MongoDB, MS SQL/MySQL, Jira, Confluence, Bitbucket/Bamboo, Webpack, Gulp)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin:12px 0;">
+        <div class="card-header"><span class="pill" data-i18n="about_exp">Doświadczenie</span></div>
+        <div class="list">
+          <ul>
+            <li><strong>Senior PHP Developer</strong> — Rubix / Rubix Application Center (od 01.2022)
+              <ul>
+                <li>Analiza biznesowa i techniczna zgłoszeń, estymacje i planowanie</li>
+                <li>Zapewnienie zgodności ze standardami technicznymi i metodykami PM</li>
+                <li>Wsparcie programistyczne zespołu, komunikacja z biznesem</li>
+              </ul>
+            </li>
+            <li><strong>Software Engineer</strong> — StepStone Services (04.2008 – 02.2022)
+              <ul>
+                <li>Nowe funkcjonalności, utrzymanie aplikacji</li>
+                <li>Migracja do mikroserwisów (PHP, C#/.NET Core), code review</li>
+              </ul>
+            </li>
+            <li><strong>Web Developer</strong> — Software Business Group (02.2007 – 04.2008)
+              <ul>
+                <li>Dedykowane kanały wyszukiwania ofert pracy, rozwój aplikacji</li>
+                <li>API dla integracji i eksportów</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_edu">Wykształcenie</span></div>
+          <div class="list">
+            <ul>
+              <li><strong>Policealne Studium Informatyczne</strong> — Informatyka (09.2004 – 06.2006)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_train">Szkolenia / certyfikaty</span></div>
+          <div class="list">
+            <ul>
+              <li>Event Storming Training — 04.2021 (Bottega)</li>
+              <li>Training .NET Core Microservices — 10.2020 (Bottega)</li>
+              <li>Introduction to .NET Core workshop — 10.2020 (Bottega)</li>
+              <li>Javascript Deeper — 12.2018 (Bottega)</li>
+              <li>Szkolenie Expert z Bottegą — 06.2018 (Bottega)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_lang">Języki</span></div>
+          <div class="list">
+            <ul>
+              <li>Polski — ojczysty</li>
+              <li>Angielski — B1</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_interests">Zainteresowania</span></div>
+          <div class="list">
+            <ul>
+              <li>Akwarystyka</li>
+              <li>Podróże</li>
+              <li>Rękodzieła</li>
+              <li>Arduino i domowej roboty elektronika</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+</div>
+<div data-lang="en" style="display:none">
+      <div class="grid-2">
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_special">Focus areas</span></div>
+          <div class="list">
+            <ul>
+              <li>Senior PHP Developer — business & technical analysis, maintenance and development</li>
+              <li>Software Engineer — web applications, refactoring, code reviews</li>
+              <li>Full Stack Developer — UI components (React), integrations, REST APIs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_skills">Technologies (selected)</span></div>
+          <div class="list">
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">Symfony</span><span class="tag">REST API</span><span class="tag">SQL</span>
+              <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Angular</span>
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span><span class="tag">Bootstrap</span>
+              <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">Docker</span><span class="tag">Jenkins</span>
+              <span class="tag">Scrum</span><span class="tag">SOLID</span>
+            </div>
+            <p style="color:var(--muted); margin:0;">(+ basics: Git, MongoDB, MS SQL/MySQL, Jira, Confluence, Bitbucket/Bamboo, Webpack, Gulp)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin:12px 0;">
+        <div class="card-header"><span class="pill" data-i18n="about_exp">Experience</span></div>
+        <div class="list">
+          <ul>
+            <li><strong>Senior PHP Developer</strong> — Rubix / Rubix Application Center (since 01.2022)
+              <ul>
+                <li>Business & technical analysis of requests, estimation and planning</li>
+                <li>Ensuring compliance with PM methods and engineering standards</li>
+                <li>Hands-on development support and stakeholder communication</li>
+              </ul>
+            </li>
+            <li><strong>Software Engineer</strong> — StepStone Services (04.2008 – 02.2022)
+              <ul>
+                <li>New features and maintenance</li>
+                <li>Migration to microservices (PHP, C#/.NET Core), code reviews</li>
+              </ul>
+            </li>
+            <li><strong>Web Developer</strong> — Software Business Group (02.2007 – 04.2008)
+              <ul>
+                <li>Custom job-search channels and application development</li>
+                <li>APIs for integrations and exports</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_edu">Education</span></div>
+          <div class="list">
+            <ul>
+              <li><strong>Post-secondary IT School</strong> — Computer Science (09.2004 – 06.2006)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_train">Training / certificates</span></div>
+          <div class="list">
+            <ul>
+              <li>Event Storming Training — 04.2021 (Bottega)</li>
+              <li>.NET Core Microservices Training — 10.2020 (Bottega)</li>
+              <li>Introduction to .NET Core workshop — 10.2020 (Bottega)</li>
+              <li>JavaScript Deeper — 12.2018 (Bottega)</li>
+              <li>Expert training (Bottega) — 06.2018</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_lang">Languages</span></div>
+          <div class="list">
+            <ul>
+              <li>Polish — native</li>
+              <li>English — B1</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin:12px 0;">
+          <div class="card-header"><span class="pill" data-i18n="about_interests">Interests</span></div>
+          <div class="list">
+            <ul>
+              <li>Aquariums</li>
+              <li>Travel</li>
+              <li>Handicraft</li>
+              <li>Arduino & DIY electronics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-text">© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

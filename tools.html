@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Rafał Salamon — Senior PHP Developer / Fullstack Developer. Terminal-style portfolio." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <title>Moje narzędzia</title>
+</head>
+<body data-page-title="Moje narzędzia">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img src="assets/img/logo.svg" alt="RS logo" />
+        <div class="title">
+          <strong>Rafał Salamon</strong>
+          <span data-i18n="home_title">Senior PHP Developer / Fullstack Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav_home">Start</a>
+        <a href="about.html" data-i18n="nav_about">O mnie</a>
+        <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+        <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+      </nav>
+
+      <div class="actions">
+        <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
+        <div class="chip" title="Language / Język">
+          <span data-i18n="chip_lang">Język</span>
+          <button type="button" data-action="toggle-lang">PL</button>
+        </div>
+        <div class="chip" title="Theme / Motyw">
+          <span data-i18n="chip_theme">Motyw</span>
+          <button type="button" data-action="toggle-theme">🌙</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" role="dialog" aria-label="Mobile menu">
+    <a href="index.html" data-i18n="nav_home">Start</a>
+    <a href="about.html" data-i18n="nav_about">O mnie</a>
+    <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+    <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+    <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+  </div>
+
+  <main class="container">
+    
+<section class="section">
+  <div class="card">
+    <div class="card-header">
+      <span class="pill" data-i18n="tools_h2">Moje narzędzia</span>
+      <span class="pill">$ cat stack.json</span>
+    </div>
+    <div class="list">
+      <p data-i18n="tools_p"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid-3">
+    <div class="card project-card">
+      <h3>Backend</h3>
+      <div class="tags">
+        <span class="tag">PHP</span><span class="tag">Symfony</span><span class="tag">REST</span><span class="tag">SQL</span>
+        <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">Microservices</span>
+      </div>
+      <p style="color:var(--muted);"><span data-lang="pl">Projektowanie API, utrzymanie i rozwój aplikacji, refactoring, code review, standardy.</span><span data-lang="en" style="display:none">API design, application maintenance and development, refactoring, code reviews, standards.</span></p>
+    </div>
+
+    <div class="card project-card">
+      <h3>Frontend</h3>
+      <div class="tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">TypeScript</span>
+        <span class="tag">React</span><span class="tag">Angular</span><span class="tag">Bootstrap</span>
+      </div>
+      <p style="color:var(--muted);"><span data-lang="pl">Komponenty UI, integracje, poprawa UX, wydajność i dostępność.</span><span data-lang="en" style="display:none">UI components, integrations, UX improvements, performance and accessibility.</span></p>
+    </div>
+
+    <div class="card project-card">
+      <h3>DevOps / CI/CD</h3>
+      <div class="tags">
+        <span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Git</span>
+        <span class="tag">Bamboo</span><span class="tag">Webpack</span><span class="tag">Gulp</span>
+      </div>
+      <p style="color:var(--muted);"><span data-lang="pl">Automatyzacja buildów i wdrożeń, środowiska developerskie, utrzymanie pipeline’ów.</span><span data-lang="en" style="display:none">Build & deployment automation, developer environments, pipeline maintenance.</span></p>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-text">© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

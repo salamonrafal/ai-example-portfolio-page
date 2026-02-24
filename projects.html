@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Rafał Salamon — Senior PHP Developer / Fullstack Developer. Terminal-style portfolio." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <title>Moje projekty</title>
+</head>
+<body data-page-title="Moje projekty">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img src="assets/img/logo.svg" alt="RS logo" />
+        <div class="title">
+          <strong>Rafał Salamon</strong>
+          <span data-i18n="home_title">Senior PHP Developer / Fullstack Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav_home">Start</a>
+        <a href="about.html" data-i18n="nav_about">O mnie</a>
+        <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+        <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+      </nav>
+
+      <div class="actions">
+        <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
+        <div class="chip" title="Language / Język">
+          <span data-i18n="chip_lang">Język</span>
+          <button type="button" data-action="toggle-lang">PL</button>
+        </div>
+        <div class="chip" title="Theme / Motyw">
+          <span data-i18n="chip_theme">Motyw</span>
+          <button type="button" data-action="toggle-theme">🌙</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" role="dialog" aria-label="Mobile menu">
+    <a href="index.html" data-i18n="nav_home">Start</a>
+    <a href="about.html" data-i18n="nav_about">O mnie</a>
+    <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+    <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+    <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+  </div>
+
+  <main class="container">
+    
+<section class="section">
+  <div class="card">
+    <div class="card-header">
+      <span class="pill" data-i18n="projects_h2">Moje projekty</span>
+      <span class="pill">$ ls projects/</span>
+    </div>
+    <div class="list">
+      <p data-lang="pl" data-i18n="projects_note">Część projektów realizowałem w środowisku komercyjnym — z oczywistych powodów bez linków do kodu. Poniżej podaję zakres i mój wkład.</p>
+      <p data-lang="en" style="display:none" data-i18n="projects_note">Some work was delivered in commercial environments — understandably without code links. Below is scope and my contribution.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 data-i18n="projects_public">Publiczne (GitHub)</h2>
+  <div class="grid-3">
+
+    <div class="card project-card">
+      <h3>hotdesk-planner</h3>
+      <div class="tags"><span class="tag">C#</span><span class="tag">Web API</span><span class="tag">CQRS</span></div>
+      <p style="color:var(--muted); margin-top:0;">Web API based on CQRS pattern for managing hotdesking in the office.</p>
+      <div class="project-actions">
+        <a class="btn primary" href="https://github.com/salamonrafal/hotdesk-planner" target="_blank" rel="noreferrer">Repo</a>
+      </div>
+    </div>
+
+    <div class="card project-card">
+      <h3>crontab-registry</h3>
+      <div class="tags"><span class="tag">C#</span><span class="tag">Tooling</span><span class="tag">Automation</span></div>
+      <p style="color:var(--muted); margin-top:0;">Pinned repository on GitHub profile.</p>
+      <div class="project-actions">
+        <a class="btn primary" href="https://github.com/salamonrafal/crontab-registry" target="_blank" rel="noreferrer">Repo</a>
+      </div>
+    </div>
+
+    <div class="card project-card">
+      <h3>iadp-code</h3>
+      <div class="tags"><span class="tag">C++</span><span class="tag">Arduino</span><span class="tag">Electronics</span></div>
+      <p style="color:var(--muted); margin-top:0;">Home-made electronics: automatic liquid feeder for aquarium.</p>
+      <div class="project-actions">
+        <a class="btn primary" href="https://github.com/salamonrafal/iadp-code" target="_blank" rel="noreferrer">Repo</a>
+      </div>
+    </div>
+
+    <div class="card project-card">
+      <h3>ctTimeClass</h3>
+      <div class="tags"><span class="tag">JavaScript</span><span class="tag">Utility</span></div>
+      <p style="color:var(--muted); margin-top:0;">Calculating time from seconds and time to seconds.</p>
+      <div class="project-actions">
+        <a class="btn primary" href="https://github.com/salamonrafal/ctTimeClass" target="_blank" rel="noreferrer">Repo</a>
+      </div>
+    </div>
+
+    <div class="card project-card">
+      <h3>PHPFramework</h3>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">Framework</span></div>
+      <p style="color:var(--muted); margin-top:0;">My PHP framework (educational / experimental).</p>
+      <div class="project-actions">
+        <a class="btn primary" href="https://github.com/salamonrafal/PHPFramework" target="_blank" rel="noreferrer">Repo</a>
+      </div>
+    </div>
+
+    <div class="card project-card">
+      <h3>knowledge-base</h3>
+      <div class="tags"><span class="tag">Docs</span><span class="tag">Web</span><span class="tag">C#</span><span class="tag">PHP</span></div>
+      <p style="color:var(--muted); margin-top:0;">Knowledge base for web developers, full stack developers and C# developers.</p>
+      <div class="project-actions">
+        <a class="btn primary" href="https://github.com/salamonrafal/knowledge-base" target="_blank" rel="noreferrer">Repo</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <h2 data-i18n="projects_commercial">Komercyjne (opisowe)</h2>
+  <div class="grid-2">
+
+    <div class="card project-card">
+      <h3>Rubix — Data Consistency Management System</h3>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">Frontend UI</span><span class="tag">Product</span></div>
+      <p style="color:var(--muted); margin-top:0;">
+        <span data-lang="pl">Wdrożenie nowego wyglądu dla nowych funkcjonalności oraz uspójnienie procesu budowania (jednolity plan buildów). Dodatkowo: analiza zgłoszeń, estymacje i praca z interesariuszami.</span>
+        <span data-lang="en" style="display:none">Implemented a refreshed UI for new features and unified the build process (single build plan). Also: request analysis, estimation and stakeholder collaboration.</span>
+      </p>
+    </div>
+
+    <div class="card project-card">
+      <h3>StepStone — Job Platform Modernization</h3>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">.NET Core</span><span class="tag">Microservices</span><span class="tag">API</span></div>
+      <p style="color:var(--muted); margin-top:0;">
+        <span data-lang="pl">Modernizacja aplikacji i przepisanie elementów do architektury mikroserwisów. Wybrane wdrożenia: wizualizacja wewnętrznych statystyk działań użytkownika, refactoring wyników wyszukiwania, nowe podejście do wyświetlania ofert oraz API do personalizacji.</span>
+        <span data-lang="en" style="display:none">Modernized the platform and migrated parts to a microservices architecture. Selected deliveries: internal user-activity stats visualization, search results refactor, new job-offer rendering approach, and an API for job personalization.</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-text">© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -27,6 +27,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: "List files"
+      run: ls -lh
     # Runs a single command using the runners shell
     - name: SSH Deployment
       uses: saranraj3195/sparkout-deployment@v2

@@ -51,3 +51,14 @@ python -m http.server 8080
   - Dodano wybór koloru akcentu.
   - Połączono motyw + kolor w jednym chipie.
   - Na mobile przeniesiono opcje język/motyw/kolor do rozwijanego menu i scalono je w jedną sekcję `Preferencje`.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-04)
+  - `contact.html` / `assets/js/app.js`
+    - Naprawiono kopiowanie e-maila z ikony: usunięto otwieranie klienta poczty jako fallback i dodano bezpieczny fallback kopiowania do schowka.
+  - `about.html`
+    - Uporządkowano strukturę sekcji, usunięto zagnieżdżenia `blok w bloku` i usunięto pusty blok.
+    - Dalsze korekty odstępów w sekcji `summary`.
+  - `index.html` / `assets/css/styles.css`
+    - Poprawiono panel `Szybki skrót`: wskazówkę przeniesiono pod nagłówek i ostylowano jako hint w stylu konsolowym.
+  - `tools.html`
+    - Zmniejszono odstęp w sekcji `Moje narzędzia`, aby był bardziej jednolity względem innych podstron.

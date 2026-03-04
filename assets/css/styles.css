@@ -197,6 +197,18 @@ a:hover{ text-decoration:underline; }
   border-bottom:1px solid var(--border);
   background: linear-gradient(90deg, color-mix(in oklab, var(--panel-2) 85%, transparent), color-mix(in oklab, var(--panel) 85%, transparent));
 }
+.shortcut-hint{
+  margin:10px 16px 0;
+  padding:10px 12px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+  border:1px solid color-mix(in oklab, var(--accent-2) 35%, var(--border));
+  border-left:3px solid color-mix(in oklab, var(--accent) 65%, var(--border));
+  border-radius:10px;
+  background: color-mix(in oklab, var(--panel-2) 92%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
 .window-dots{display:flex; gap:8px;}
 .dot{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.15);}
 .dot.red{background:rgba(255,77,77,.65);} .dot.yellow{background:rgba(255,196,77,.65);} .dot.green{background:rgba(57,255,20,.65);}

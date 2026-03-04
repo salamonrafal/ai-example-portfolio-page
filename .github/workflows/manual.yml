@@ -27,12 +27,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - uses: actions/checkout@v4
     - name: "Current path"
       run: pwd
-    - name: "List files: /home/runner/work/ai-example-portfolio-page"
-      run: ls -lh /home/runner/work/ai-example-portfolio-page
-    - name: "List files: /github/workspace/"
-      run: ls -lh /github/workspace/
+    - name: "List files: pwd"
+      run: ls -lh pwd
     # Runs a single command using the runners shell
     - name: SSH Deployment
       uses: saranraj3195/sparkout-deployment@v2
@@ -48,6 +47,6 @@ jobs:
         # Destination directory on the server
         SERVER_DESTINATION: ${{ secrets.DEPLOY_SALAMON_SERVER_DESTINATION }}
         ARGS: "--progress -avzPh"
-        FOLDER: "src/*"
+        FOLDER: ""
 
       

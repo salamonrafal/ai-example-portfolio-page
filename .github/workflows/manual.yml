@@ -41,7 +41,7 @@ jobs:
         SERVER_PORT: ${{ secrets.DEPLOY_SALAMON_SERVER_PORT }}
         # Destination directory on the server
         SERVER_DESTINATION: ${{ secrets.DEPLOY_SALAMON_SERVER_DESTINATION }}
-        ARGS: "--progress --delete -avzPh"
+        ARGS: "--progress -avzPh"
         FOLDER: "./"
 
       

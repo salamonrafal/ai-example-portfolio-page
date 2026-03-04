@@ -239,6 +239,29 @@ function applyI18n(lang){
 
 function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
 
+function copyTextToClipboard(text){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(text).then(()=>true).catch(()=>false);
+  }
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.top = '-9999px';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, ta.value.length);
+  let ok = false;
+  try{
+    ok = document.execCommand('copy');
+  }catch(err){
+    ok = false;
+  }
+  document.body.removeChild(ta);
+  return Promise.resolve(ok);
+}
+
 async function typeTerminal(root, lines, renderId){
   for(const line of lines){
     if(renderId !== terminalRenderId) return;
@@ -311,16 +334,17 @@ function setupActions(){
   if(copyBtn){
     copyBtn.addEventListener('click', async ()=>{
       const email = copyBtn.getAttribute('data-email');
-      try{
-        await navigator.clipboard.writeText(email);
+      const copied = await copyTextToClipboard(email);
+      if(copied){
         const lang = getLang();
         copyBtn.setAttribute('data-tooltip', i18n[lang].contact_copied);
         setTimeout(()=>{
           const hint = i18n[getLang()].contact_copy_hint;
           copyBtn.setAttribute('data-tooltip', hint);
         }, 1200);
-      }catch(err){
-        window.location.href = `mailto:${email}`;
+      }else{
+        const lang = getLang();
+        copyBtn.setAttribute('data-tooltip', i18n[lang].contact_copy_hint);
       }
     });
   }

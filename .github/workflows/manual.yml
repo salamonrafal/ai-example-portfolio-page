@@ -30,7 +30,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: SSH Deployment
       uses: saranraj3195/sparkout-deployment@v2
-      with:
+      env:
         # SSH private key for authentication
         DEPLOY_KEY: ${{ secrets.DEPLOY_SALAMON_SERVER_SSH_KEY }}
         # SSH username

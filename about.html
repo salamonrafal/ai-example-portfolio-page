@@ -36,6 +36,7 @@
         <div class="chip" title="Theme / Motyw">
           <span data-i18n="chip_theme">Motyw</span>
           <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
         </div>
       </div>
     </div>
@@ -47,6 +48,16 @@
     <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
     <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
     <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+    <div class="mobile-controls">
+      <div class="chip mobile-preferences" title="User preferences / Preferencje użytkownika">
+        <span data-i18n="chip_prefs">Preferencje</span>
+        <div class="prefs-actions">
+          <button type="button" data-action="toggle-lang">PL</button>
+          <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        </div>
+      </div>
+    </div>
   </div>
 
   <main class="container">
@@ -72,6 +83,7 @@
             </picture>
           </div>
           <div class="profile-summary">
+
             <ul>
               <li><strong><span data-lang="pl">Rola:</span><span data-lang="en" style="display:none">Role:</span></strong>
                 <span data-lang="pl"> Senior PHP Developer / Fullstack Developer</span><span data-lang="en" style="display:none"> Senior PHP Developer / Fullstack Developer</span></li>
@@ -84,11 +96,14 @@
             </ul>
           </div>
         </div>
+
+        <div class="list" style="margin:0; padding:0 16px 12px;">
+          <p data-i18n="about_p1"></p>
+          <p data-i18n="about_p2"></p>
+        </div>
       </div>
 
-      <p data-i18n="about_p1"></p>
-
-      <p data-i18n="about_p2"></p>
+      
 
 <div data-lang="pl">
       <div class="grid-2">
@@ -189,6 +204,14 @@
           </div>
         </div>
       </div>
+
+      <div class="card" style="margin:12px 0;">
+        <div class="card-header"><span class="pill">Hobby</span></div>
+        <div class="list">
+          <p>Po godzinach najczęściej łączę relaks z kreatywnym działaniem. Lubię rozwijać akwaria roślinne, planować podróże i tworzyć drobne projekty DIY.</p>
+          <p>Hobby traktuję jako sposób na ładowanie baterii oraz źródło inspiracji, które często przekłada się na cierpliwość, dokładność i systematyczność w pracy projektowej.</p>
+        </div>
+      </div>
 </div>
 <div data-lang="en" style="display:none">
       <div class="grid-2">
@@ -287,6 +310,14 @@
               <li>Arduino & DIY electronics</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin:12px 0;">
+        <div class="card-header"><span class="pill">Hobby</span></div>
+        <div class="list">
+          <p>Outside of work, I usually combine relaxation with hands-on creativity. I enjoy maintaining planted aquariums, planning trips, and building small DIY projects.</p>
+          <p>I treat hobbies as a way to recharge and as a source of inspiration that often improves patience, precision, and consistency in project work.</p>
         </div>
       </div>
 </div>

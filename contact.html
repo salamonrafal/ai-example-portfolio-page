@@ -36,6 +36,7 @@
         <div class="chip" title="Theme / Motyw">
           <span data-i18n="chip_theme">Motyw</span>
           <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
         </div>
       </div>
     </div>
@@ -47,12 +48,22 @@
     <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
     <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
     <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+    <div class="mobile-controls">
+      <div class="chip mobile-preferences" title="User preferences / Preferencje użytkownika">
+        <span data-i18n="chip_prefs">Preferencje</span>
+        <div class="prefs-actions">
+          <button type="button" data-action="toggle-lang">PL</button>
+          <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        </div>
+      </div>
+    </div>
   </div>
 
   <main class="container">
     
 <section class="section">
-  <div class="card">
+  <div class="card contact-card">
     <div class="card-header">
       <span class="pill" data-i18n="contact_h2">Kontakt</span>
       <span class="pill">$ ping rafal.salamon@salamonrafal.pl</span>
@@ -60,11 +71,14 @@
     <div class="list">
       <p data-i18n="contact_p"></p>
       <div class="tags" style="margin-top:14px;">
-        <a class="btn primary" href="mailto:rafal.salamon@salamonrafal.pl">rafal.salamon@salamonrafal.pl</a>
-        <a class="btn" href="tel:+48792087824">+48 792 087 824</a>
-        <a class="btn" href="https://github.com/salamonrafal" target="_blank" rel="noreferrer">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/rafalsalamon/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <button class="btn" type="button" data-action="copy-email" data-email="rafal.salamon@salamonrafal.pl" data-i18n="contact_copy">Kopiuj adres</button>
+        <div class="button-group" role="group" aria-label="E-mail actions">
+          <a class="btn primary" href="mailto:rafal.salamon@salamonrafal.pl"><span class="method-icon" aria-hidden="true">@</span>rafal.salamon@salamonrafal.pl</a>
+          <button class="btn copy-icon-btn" type="button" data-action="copy-email" data-email="rafal.salamon@salamonrafal.pl" data-i18n-aria="contact_copy" data-i18n-tooltip="contact_copy_hint" aria-label="Kopiuj adres" data-tooltip="Kopiuj adres">
+            <span aria-hidden="true">&#128203;</span>
+          </button>
+        </div>
+        <a class="btn" href="https://github.com/salamonrafal" target="_blank" rel="noreferrer"><span class="method-icon" aria-hidden="true">GH</span>GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/rafalsalamon/" target="_blank" rel="noreferrer"><span class="method-icon" aria-hidden="true">IN</span>LinkedIn</a>
       </div>
     </div>
   </div>

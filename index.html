@@ -36,6 +36,7 @@
         <div class="chip" title="Theme / Motyw">
           <span data-i18n="chip_theme">Motyw</span>
           <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
         </div>
       </div>
     </div>
@@ -47,6 +48,16 @@
     <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
     <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
     <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+    <div class="mobile-controls">
+      <div class="chip mobile-preferences" title="User preferences / Preferencje użytkownika">
+        <span data-i18n="chip_prefs">Preferencje</span>
+        <div class="prefs-actions">
+          <button type="button" data-action="toggle-lang">PL</button>
+          <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        </div>
+      </div>
+    </div>
   </div>
 
   <main class="container">

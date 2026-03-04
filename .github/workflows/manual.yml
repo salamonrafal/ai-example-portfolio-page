@@ -29,8 +29,10 @@ jobs:
     steps:
     - name: "Current path"
       run: pwd
-    - name: "List files"
-      run: ls -lh
+    - name: "List files: /home/runner/work/ai-example-portfolio-page"
+      run: ls -lh /home/runner/work/ai-example-portfolio-page
+    - name: "List files: /github/workspace/"
+      run: ls -lh /github/workspace/
     # Runs a single command using the runners shell
     - name: SSH Deployment
       uses: saranraj3195/sparkout-deployment@v2

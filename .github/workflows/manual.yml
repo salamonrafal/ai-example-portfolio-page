@@ -42,6 +42,6 @@ jobs:
         # Destination directory on the server
         SERVER_DESTINATION: ${{ secrets.DEPLOY_SALAMON_SERVER_DESTINATION }}
         ARGS: "--progress -avzPh"
-        FOLDER: ""
+        FOLDER: "./assets"
 
       

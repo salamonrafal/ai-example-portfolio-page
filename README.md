@@ -84,4 +84,8 @@ python -m http.server 8080
     - dostosowano wcięcia sekcji Google tag do stylu pozostałej części kodu.
   - Uzupełniono atrybuty SEO w znaczniku `body`:
     - dodano `data-page-title` na wszystkich podstronach (`index/about/projects/tools/contact`) zgodnie z zawartością tagu `<title>`.
+- Konfiguracja Apache (`.htaccess`)
+  - Dodano plik `.htaccess` w katalogu głównym z regułą `RewriteEngine` wymuszającą przekierowanie `non-www` -> `www` (301).
+- Wszystkie strony (`index/about/projects/tools/contact`)
+  - Ujednolicono zakończenia plików `.html`: po końcowym tagu `</html>` pozostawiono dokładnie jedną nową linię.
 

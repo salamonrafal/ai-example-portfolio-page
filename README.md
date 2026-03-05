@@ -71,7 +71,7 @@ python -m http.server 8080
     - dodano `meta robots`, `author`, `theme-color`,
     - dodano `canonical`, Open Graph (`og:*`) i Twitter Cards (`twitter:*`),
     - dodano dane strukturalne `JSON-LD` (Schema.org) dopasowane do typu strony.
-  - Ustawiono docelową domenę `https://salamonrafal.pl` w metadanych:
+  - Ustawiono docelową domenę `https://www.salamonrafal.pl` w metadanych:
     - `canonical` i `og:url` jako URL absolutne,
     - `og:image` i `twitter:image` jako URL absolutne,
     - `url` (oraz `image`, gdzie dotyczy) w `JSON-LD` jako URL absolutne.
@@ -89,3 +89,16 @@ python -m http.server 8080
 - Wszystkie strony (`index/about/projects/tools/contact`)
   - Ujednolicono zakończenia plików `.html`: po końcowym tagu `</html>` pozostawiono dokładnie jedną nową linię.
 
+- Dodatkowe zmiany (uzupełnienie, 2026-03-05)
+  - `sitemap.xml`
+    - Wygenerowano mapę strony dla: `/`, `/about.html`, `/projects.html`, `/tools.html`, `/contact.html`.
+    - Zaktualizowano wszystkie adresy `loc` do domeny `https://www.salamonrafal.pl`.
+    - Ujednolicono zakończenie pliku: po `</urlset>` pozostawiono dokładnie jedną nową linię.
+  - `robots.txt`
+    - Dodano plik `robots.txt` z regułami:
+      - `User-agent: *`
+      - `Allow: /`
+      - `Sitemap: https://www.salamonrafal.pl/sitemap.xml`
+  - Wszystkie strony (`index/about/projects/tools/contact`)
+    - Ujednolicono domenę w metadanych SEO do `https://www.salamonrafal.pl`:
+      - `canonical`, `og:url`, `og:image`, `twitter:image`, `JSON-LD` (`url` / `image`).

@@ -62,3 +62,20 @@ python -m http.server 8080
     - Poprawiono panel `Szybki skrót`: wskazówkę przeniesiono pod nagłówek i ostylowano jako hint w stylu konsolowym.
   - `tools.html`
     - Zmniejszono odstęp w sekcji `Moje narzędzia`, aby był bardziej jednolity względem innych podstron.
+
+## 2026-03-05
+
+- Wszystkie strony (`index/about/projects/tools/contact`)
+  - Rozszerzono SEO on-page:
+    - unikalne `title` i `meta description` dla każdej podstrony,
+    - dodano `meta robots`, `author`, `theme-color`,
+    - dodano `canonical`, Open Graph (`og:*`) i Twitter Cards (`twitter:*`),
+    - dodano dane strukturalne `JSON-LD` (Schema.org) dopasowane do typu strony.
+  - Ustawiono docelową domenę `https://salamonrafal.pl` w metadanych:
+    - `canonical` i `og:url` jako URL absolutne,
+    - `og:image` i `twitter:image` jako URL absolutne,
+    - `url` (oraz `image`, gdzie dotyczy) w `JSON-LD` jako URL absolutne.
+  - Dodano Google Tag Manager (`GTM-WWMDSD3Q`) na wszystkich podstronach:
+    - skrypt GTM najwyżej w sekcji `<head>`,
+    - fragment `noscript` GTM bezpośrednio po otwierającym tagu `<body>`.
+

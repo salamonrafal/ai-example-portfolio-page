@@ -75,7 +75,13 @@ python -m http.server 8080
     - `canonical` i `og:url` jako URL absolutne,
     - `og:image` i `twitter:image` jako URL absolutne,
     - `url` (oraz `image`, gdzie dotyczy) w `JSON-LD` jako URL absolutne.
-  - Dodano Google Tag Manager (`GTM-WWMDSD3Q`) na wszystkich podstronach:
-    - skrypt GTM najwyżej w sekcji `<head>`,
-    - fragment `noscript` GTM bezpośrednio po otwierającym tagu `<body>`.
+  - Zastąpiono Google Tag Manager (`GTM-WWMDSD3Q`) przez Google Analytics 4 (`G-Z0D63QZ7HP`) na wszystkich podstronach:
+    - dodano kod `gtag.js` bezpośrednio po otwierającym tagu `<head>`,
+    - usunięto fragment `noscript` GTM, aby na każdej stronie był tylko jeden tag Google.
+  - Naprawiono strukturę HTML po zmianach analityki:
+    - przywrócono brakujący otwierający tag `<body>` we wszystkich podstronach.
+  - Ujednolicono formatowanie:
+    - dostosowano wcięcia sekcji Google tag do stylu pozostałej części kodu.
+  - Uzupełniono atrybuty SEO w znaczniku `body`:
+    - dodano `data-page-title` na wszystkich podstronach (`index/about/projects/tools/contact`) zgodnie z zawartością tagu `<title>`.
 

@@ -62,6 +62,7 @@ const i18n = {
     contact_copy: "Kopiuj adres",
     contact_copy_hint: "Kopiuj adres e‑mail",
     contact_copied: "Skopiowano!",
+    back_to_top: "Przenieś do Góry",
 
     footer: "© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)"
   },
@@ -126,6 +127,7 @@ const i18n = {
     contact_copy: "Copy address",
     contact_copy_hint: "Copy e-mail address",
     contact_copied: "Copied!",
+    back_to_top: "Back to Top",
 
     footer: "© Rafal Salamon • Built with HTML/CSS/JS (no frameworks)"
   }
@@ -368,8 +370,51 @@ function setupActions(){
   }
 }
 
+function fastScrollToTop(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  const startY = window.scrollY || window.pageYOffset;
+  if(startY <= 0) return;
+
+  const duration = 220;
+  const start = performance.now();
+
+  function step(now){
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, Math.round(startY * (1 - eased)));
+    if(progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function setupBackToTop(){
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('data-i18n-aria', 'back_to_top');
+  btn.innerHTML = '<span class="back-to-top-icon" aria-hidden="true"></span><span data-i18n="back_to_top"></span>';
+  document.body.appendChild(btn);
+
+  const toggleVisibility = ()=>{
+    const shouldShow = (window.scrollY || window.pageYOffset) > 600;
+    btn.classList.toggle('is-visible', shouldShow);
+  };
+
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
+  window.addEventListener('resize', toggleVisibility);
+  btn.addEventListener('click', fastScrollToTop);
+  toggleVisibility();
+}
+
 function init(){
   setupNav();
+  setupBackToTop();
   setTheme(getTheme());
   setAccent(getAccent());
   const lang = getLang();

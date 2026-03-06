@@ -184,7 +184,7 @@ a:hover{ text-decoration:underline; }
 .mobile-drawer a{display:block; padding:12px 12px; border-radius:12px; border:1px solid var(--border); margin:8px 0; color:var(--text); background: color-mix(in oklab, var(--panel-2) 90%, transparent);} 
 
 /* Main */
-.hero{padding: 10px 0 18px;}
+.hero{padding:0;}
 .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:stretch;}
 
 .card{
@@ -195,6 +195,10 @@ a:hover{ text-decoration:underline; }
   overflow:hidden;
 }
 .contact-card{overflow:visible;}
+.contact-card .card-header{
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
 .card-header{
   display:flex; align-items:center; justify-content:space-between;
   padding:14px 16px;
@@ -241,9 +245,31 @@ a:hover{ text-decoration:underline; }
 .big-link:hover{box-shadow: 0 14px 34px rgba(0,0,0,.25);}
 .big-link::after{content: '↗'; position:absolute; top:12px; right:14px; color:var(--accent-2);}
 
-.section{padding: 10px 0 46px;}
-.section.section-compact{padding-bottom:18px;}
+.section{padding:0;}
+.section.section-compact{padding:0;}
+.container > .hero,
+.container > .section{
+  margin:0;
+}
+.container > .hero + .section,
+.container > .section + .section,
+.container > .section + .hero{
+  margin-top:20px;
+}
 .section h2{margin:0 0 12px; font-size:16px; letter-spacing:.4px;}
+.projects-subsection-title{
+  margin: 4px 0 14px;
+  padding:10px 12px;
+  font-size:16px;
+  letter-spacing:.5px;
+  border:1px solid color-mix(in oklab, var(--accent-2) 30%, var(--border));
+  border-left:3px solid color-mix(in oklab, var(--accent) 65%, var(--border));
+  border-radius:12px;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--panel-2) 92%, transparent), color-mix(in oklab, var(--panel) 90%, transparent));
+}
+.projects-subsection-title + .grid-3{
+  margin-bottom:20px;
+}
 
 .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
 .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px;}
@@ -436,7 +462,7 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 }
 
 @media (max-width: 768px){
-  .hero{padding:10px 0 14px;}
+  .hero{padding:0;}
   .topbar-inner{
     flex-wrap:nowrap;
     gap:8px;
@@ -485,8 +511,8 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 }
 
 @media (max-width: 480px){
-  .container{padding:12px;}
-  .hero{padding:10px 0 12px;}
+  .container{padding:20px 12px 12px;}
+  .hero{padding:0;}
   .topbar-inner{
     flex-wrap:nowrap;
     gap:8px;

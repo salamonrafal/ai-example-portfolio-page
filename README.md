@@ -120,3 +120,23 @@ python -m http.server 8080
     - ustawiono ograniczenie wysokości przez `bottom: 16px`.
 - `.htaccess`
   - Dodano obsługę dokumentu błędu: `ErrorDocument 404 /404.html`.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-06)
+  - `contact.html` / `assets/css/styles.css`
+    - Naprawiono górne zaokrąglenia bloku metod kontaktu:
+      - dodano promienie rogów dla `.contact-card .card-header`,
+      - pozostawiono `overflow: visible` dla poprawnego działania tooltipa.
+  - `projects.html` / `assets/css/styles.css`
+    - Scalono sekcje `Publiczne` i `Komercyjne` w jeden wspólny blok (`card`).
+    - Obie części pozostawiono jako podsekcje wewnątrz bloku.
+    - Zwiększono odstęp między podsekcjami do `20px`.
+    - Wyróżniono nagłówki podsekcji (tło, obramowanie i akcent), aby wyraźnie oznaczyć start nowej części.
+  - `assets/css/styles.css`
+    - Ujednolicono pionowe odstępy między głównymi blokami na wszystkich stronach:
+      - stały odstęp `20px` między sąsiednimi sekcjami w `main.container`,
+      - usunięto niespójne pionowe paddings z `.hero` oraz `.section`.
+    - Ujednolicono odstęp pierwszej sekcji od górnego menu:
+      - `padding-top: 20px` dla `main.container` również na małych ekranach (`<=480px`).
+  - `about.html`
+    - Poprawiono odstęp pierwszego bloku od menu:
+      - zmieniono inline margin pierwszej karty profilu z `12px 0` na `0`, aby zachowywała się spójnie jak na `tools.html`.

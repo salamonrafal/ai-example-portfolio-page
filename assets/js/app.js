@@ -62,6 +62,10 @@ const i18n = {
     contact_copy: "Kopiuj adres",
     contact_copy_hint: "Kopiuj adres e‑mail",
     contact_copied: "Skopiowano!",
+    privacy_title: "Prywatność",
+    privacy_text: "Ta strona używa cookies i podobnych technologii do działania serwisu oraz analityki.",
+    privacy_accept: "Akceptuję",
+    privacy_decline: "Odrzuć",
     back_to_top: "Przenieś do Góry",
 
     footer: "© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)"
@@ -127,6 +131,10 @@ const i18n = {
     contact_copy: "Copy address",
     contact_copy_hint: "Copy e-mail address",
     contact_copied: "Copied!",
+    privacy_title: "Privacy",
+    privacy_text: "This website uses cookies and similar technologies for site operation and analytics.",
+    privacy_accept: "Accept",
+    privacy_decline: "Decline",
     back_to_top: "Back to Top",
 
     footer: "© Rafal Salamon • Built with HTML/CSS/JS (no frameworks)"
@@ -412,6 +420,41 @@ function setupBackToTop(){
   toggleVisibility();
 }
 
+function setupPrivacyNotice(){
+  const storageKey = 'privacy-consent';
+  const existingConsent = localStorage.getItem(storageKey);
+  if(existingConsent === 'accepted' || existingConsent === 'declined') return;
+
+  const popup = document.createElement('aside');
+  popup.className = 'privacy-popup';
+  popup.setAttribute('role', 'dialog');
+  popup.setAttribute('aria-live', 'polite');
+
+  popup.innerHTML = `
+    <h2 class="privacy-popup-title" data-i18n="privacy_title">Prywatność</h2>
+    <p class="privacy-popup-text" data-i18n="privacy_text">Ta strona używa cookies i podobnych technologii do działania serwisu oraz analityki.</p>
+    <div class="privacy-popup-actions">
+      <button type="button" class="btn" data-action="privacy-decline" data-i18n="privacy_decline">Odrzuć</button>
+      <button type="button" class="btn primary" data-action="privacy-accept" data-i18n="privacy_accept">Akceptuję</button>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+  applyI18n(getLang());
+
+  const closePopup = (consentValue)=>{
+    localStorage.setItem(storageKey, consentValue);
+    popup.classList.add('is-hidden');
+    setTimeout(()=> popup.remove(), 180);
+  };
+
+  const acceptBtn = qs('[data-action="privacy-accept"]', popup);
+  if(acceptBtn) acceptBtn.addEventListener('click', ()=> closePopup('accepted'));
+
+  const declineBtn = qs('[data-action="privacy-decline"]', popup);
+  if(declineBtn) declineBtn.addEventListener('click', ()=> closePopup('declined'));
+}
+
 function init(){
   setupNav();
   setupBackToTop();
@@ -420,6 +463,7 @@ function init(){
   const lang = getLang();
   applyI18n(lang);
   setupActions();
+  setupPrivacyNotice();
 }
 
 document.addEventListener('DOMContentLoaded', init);

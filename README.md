@@ -147,3 +147,9 @@ python -m http.server 8080
     - W wersji desktopowej pozycję przycisku dopasowano do prawej krawędzi głównego bloku treści (`--maxw`), zamiast do krawędzi okna.
     - Dodano ikonę w stylu konsolowym przy etykiecie przycisku.
     - Dostosowano efekt `hover` przycisku do stylu z top menu.
+  - `assets/js/app.js` / `assets/css/styles.css`
+    - Dodano globalny `Privacy popup` (cookies/prywatność) wyświetlany przy pierwszej wizycie.
+    - Dodano obsługę akcji `Akceptuję` / `Odrzuć` z zapisem decyzji w `localStorage` (`privacy-consent`), aby popup nie pojawiał się ponownie.
+    - Dodano tłumaczenia PL/EN dla treści i przycisków popupu.
+    - Nadano tekstowi popupu styl konsolowy (prompty `>` i `$`, terminalowe tło i obramowanie).
+    - Nadano przyciskom popupu styl konsolowy (terminalowy prefiks `$`, dopasowane kolory, `hover` i `focus`).

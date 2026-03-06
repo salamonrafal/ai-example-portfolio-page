@@ -21,6 +21,7 @@ python -m http.server 8080
 
 # Ostatnie zmiany
 
+
 ## 2026-03-04
 
 - `about.html`
@@ -102,3 +103,20 @@ python -m http.server 8080
   - Wszystkie strony (`index/about/projects/tools/contact`)
     - Ujednolicono domenę w metadanych SEO do `https://www.salamonrafal.pl`:
       - `canonical`, `og:url`, `og:image`, `twitter:image`, `JSON-LD` (`url` / `image`).
+
+## 2026-03-06
+
+- `404.html`
+  - Dodano spersonalizowaną stronę błędu `404` w stylu konsoli.
+  - Zastosowano ten sam górny topbar i menu mobilne co na pozostałych podstronach.
+  - Dodano centralny, duży napis `404`, opis błędu (PL/EN) oraz przyciski nawigacyjne.
+- `assets/css/styles.css`
+  - Dodano sekcję stylów `404 page` (`.error-main`, `.error-card`, `.error-code`, `.error-actions` itd.) dla konsolowego wyglądu strony błędu.
+  - Poprawiono zachowanie menu mobilnego przy aktywnym hamburgerze (`<=900px`):
+    - ukrywane są boczne kontrolki w topbarze (`lang/theme/color`),
+    - kontrolki pozostają dostępne w sekcji `Preferencje` wewnątrz menu mobilnego.
+  - Usprawniono dostępność menu mobilnego na ekranach o małej wysokości (np. orientacja pozioma):
+    - dodano przewijanie wewnętrzne `mobile-drawer`,
+    - ustawiono ograniczenie wysokości przez `bottom: 16px`.
+- `.htaccess`
+  - Dodano obsługę dokumentu błędu: `ErrorDocument 404 /404.html`.

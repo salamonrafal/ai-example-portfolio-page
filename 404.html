@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0D63QZ7HP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z0D63QZ7HP');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Błąd 404: strona nie została znaleziona." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="author" content="Rafał Salamon" />
+  <meta name="theme-color" content="#0b0f12" />
+
+  <link rel="canonical" href="https://www.salamonrafal.pl/404.html" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rafał Salamon Portfolio" />
+  <meta property="og:title" content="404 | Strona nie istnieje" />
+  <meta property="og:description" content="Nie znaleziono strony, której szukasz." />
+  <meta property="og:url" content="https://www.salamonrafal.pl/404.html" />
+  <meta property="og:image" content="https://www.salamonrafal.pl/assets/img/profile.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="404 | Strona nie istnieje" />
+  <meta name="twitter:description" content="Nie znaleziono strony, której szukasz." />
+  <meta name="twitter:image" content="https://www.salamonrafal.pl/assets/img/profile.jpg" />
+
+  <title>404 | Strona nie istnieje</title>
+</head>
+
+<body data-page-title="404 | Strona nie istnieje">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img src="assets/img/logo.svg" alt="RS logo" />
+        <div class="title">
+          <strong>Rafał Salamon</strong>
+          <span data-i18n="home_title">Senior PHP Developer / Fullstack Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav_home">Start</a>
+        <a href="about.html" data-i18n="nav_about">O mnie</a>
+        <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+        <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+      </nav>
+
+      <div class="actions">
+        <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
+        <div class="chip" title="Language / Język">
+          <span data-i18n="chip_lang">Język</span>
+          <button type="button" data-action="toggle-lang">PL</button>
+        </div>
+        <div class="chip" title="Theme / Motyw">
+          <span data-i18n="chip_theme">Motyw</span>
+          <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" role="dialog" aria-label="Mobile menu">
+    <a href="index.html" data-i18n="nav_home">Start</a>
+    <a href="about.html" data-i18n="nav_about">O mnie</a>
+    <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+    <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+    <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+    <div class="mobile-controls">
+      <div class="chip mobile-preferences" title="User preferences / Preferencje użytkownika">
+        <span data-i18n="chip_prefs">Preferencje</span>
+        <div class="prefs-actions">
+          <button type="button" data-action="toggle-lang">PL</button>
+          <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container error-main">
+    <section class="error-shell">
+      <div class="card error-card">
+        <div class="card-header">
+          <div class="window-dots" aria-hidden="true">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          </div>
+          <span class="pill">terminal://error/404</span>
+        </div>
+
+        <div class="error-body">
+          <p class="error-prompt">&gt; request /unknown-path</p>
+          <h1 class="error-code">404</h1>
+          <p class="error-text" data-lang="pl">Błąd: strona, której szukasz, nie istnieje lub została przeniesiona.</p>
+          <p class="error-text" data-lang="en" style="display:none">Error: the page you requested does not exist or has been moved.</p>
+          <div class="error-actions">
+            <a class="btn primary" href="index.html">$ cd /home</a>
+            <a class="btn" href="projects.html">$ ls /projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-text">© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -167,12 +167,16 @@ a:hover{ text-decoration:underline; }
 
 .mobile-drawer{
   position:fixed; top:64px; right:16px; left:16px;
+  bottom:16px;
   background: var(--panel);
   border:1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding:12px;
   display:none;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling: touch;
   z-index:60;
 }
 .mobile-drawer.open{display:block; animation: pop .14s ease-out;}
@@ -403,6 +407,32 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   .grid-2{grid-template-columns:1fr;}
   .nav{display:none;}
   .hamburger{display:inline-flex; align-items:center; justify-content:center;}
+  .actions .chip{display:none;}
+  .mobile-controls{
+    margin-top:10px;
+    display:block;
+  }
+  .mobile-controls .chip{
+    width:100%;
+    justify-content:flex-start;
+    box-shadow:none;
+  }
+  .mobile-preferences{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:nowrap;
+  }
+  .mobile-preferences > span{
+    white-space:nowrap;
+  }
+  .prefs-actions{
+    margin-left:auto;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:nowrap;
+  }
 }
 
 @media (max-width: 768px){
@@ -539,4 +569,62 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 @media (prefers-reduced-motion: reduce){
   html::after{animation:none;}
   .cursor{animation:none;}
+}
+
+/* 404 page */
+.error-main{
+  min-height: calc(100vh - 140px);
+  display:flex;
+  align-items:center;
+}
+
+.error-shell{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  padding: 12px 0 18px;
+}
+
+.error-card{
+  width:min(820px, 100%);
+}
+
+.error-body{
+  padding: clamp(24px, 5vw, 52px) 22px;
+  text-align:center;
+}
+
+.error-prompt{
+  margin:0;
+  color:var(--accent);
+  letter-spacing:.3px;
+}
+
+.error-code{
+  margin:10px 0 8px;
+  font-size: clamp(90px, 24vw, 220px);
+  line-height:.9;
+  letter-spacing:4px;
+  color: color-mix(in oklab, var(--accent) 82%, white 18%);
+  text-shadow: 0 0 24px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+.error-text{
+  margin:0 auto;
+  max-width: 62ch;
+  color:var(--muted);
+}
+
+.error-actions{
+  margin-top:22px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+}
+
+@media (max-width: 768px){
+  .error-main{
+    min-height: calc(100vh - 120px);
+  }
 }

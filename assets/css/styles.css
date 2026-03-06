@@ -490,6 +490,80 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   pointer-events: auto;
 }
 
+.privacy-popup{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 90;
+  width: min(420px, calc(100vw - 24px));
+  padding: 14px;
+  border: 1px solid color-mix(in oklab, var(--accent-2) 30%, var(--border));
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--panel) 95%, transparent);
+  box-shadow: var(--shadow);
+  animation: pop .14s ease-out;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.privacy-popup.is-hidden{
+  opacity: 0;
+  transform: translateY(8px);
+}
+.privacy-popup-title{
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: .2px;
+}
+.privacy-popup-title::before{
+  content: "> ";
+  color: var(--accent-2);
+}
+.privacy-popup-text{
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--panel-2) 94%, transparent);
+  color: color-mix(in oklab, var(--text) 90%, var(--accent) 10%);
+  font-size: 12px;
+  line-height: 1.45;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.privacy-popup-text::before{
+  content: "$ ";
+  color: var(--accent);
+}
+.privacy-popup-actions{
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+.privacy-popup-actions .btn{
+  border-radius: 8px;
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
+  background: color-mix(in oklab, var(--panel-2) 94%, transparent);
+  font-size: 12px;
+  letter-spacing: .2px;
+}
+.privacy-popup-actions .btn::before{
+  content: "$";
+  color: var(--accent);
+  font-weight: 700;
+}
+.privacy-popup-actions .btn.primary{
+  border-color: color-mix(in oklab, var(--accent-2) 55%, var(--border));
+  background: color-mix(in oklab, var(--link-bg) 62%, var(--panel) 38%);
+}
+.privacy-popup-actions .btn:hover{
+  background: color-mix(in oklab, var(--panel) 85%, white 15%);
+  border-color: var(--accent-2);
+}
+.privacy-popup-actions .btn:focus-visible{
+  outline: 2px solid color-mix(in oklab, var(--accent-2) 55%, var(--focus));
+  outline-offset: 1px;
+}
+
 @media (min-width: 901px){
   .back-to-top{
     right: max(20px, calc((100vw - var(--maxw)) / 2 + 20px));
@@ -646,6 +720,17 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   .back-to-top{
     right: 12px;
     bottom: 12px;
+  }
+  .privacy-popup{
+    left: 12px;
+    bottom: 70px;
+    width: calc(100vw - 24px);
+  }
+  .privacy-popup-actions{
+    justify-content: stretch;
+  }
+  .privacy-popup-actions .btn{
+    flex: 1 1 auto;
   }
 }
 

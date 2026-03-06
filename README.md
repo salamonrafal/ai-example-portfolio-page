@@ -140,3 +140,10 @@ python -m http.server 8080
   - `about.html`
     - Poprawiono odstęp pierwszego bloku od menu:
       - zmieniono inline margin pierwszej karty profilu z `12px 0` na `0`, aby zachowywała się spójnie jak na `tools.html`.
+  - `assets/js/app.js` / `assets/css/styles.css`
+    - Dodano globalny przycisk `Przenieś do Góry` dostępny na wszystkich podstronach.
+    - Przycisk pojawia się dopiero po większym przewinięciu strony w dół.
+    - Dodano szybkie przewijanie do góry po kliknięciu (z obsługą `prefers-reduced-motion`).
+    - W wersji desktopowej pozycję przycisku dopasowano do prawej krawędzi głównego bloku treści (`--maxw`), zamiast do krawędzi okna.
+    - Dodano ikonę w stylu konsolowym przy etykiecie przycisku.
+    - Dostosowano efekt `hover` przycisku do stylu z top menu.

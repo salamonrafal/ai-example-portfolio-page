@@ -426,6 +426,76 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 
 .footer{border-top:1px solid var(--border); padding:20px; color:var(--muted); text-align:center;}
 
+.back-to-top{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--border));
+  background: color-mix(in oklab, var(--panel-2) 90%, transparent);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity .14s ease, transform .14s ease, border-color .14s ease, background .14s ease;
+}
+.back-to-top-icon{
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--border));
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--panel) 85%, transparent);
+}
+.back-to-top-icon::before{
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  width: 1px;
+  height: 7px;
+  background: var(--accent);
+}
+.back-to-top-icon::after{
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  width: 5px;
+  height: 5px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+  transform: rotate(45deg);
+}
+.back-to-top:hover{
+  border-color: var(--border);
+  background: color-mix(in oklab, var(--panel) 90%, white 10%);
+}
+.back-to-top:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.back-to-top.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (min-width: 901px){
+  .back-to-top{
+    right: max(20px, calc((100vw - var(--maxw)) / 2 + 20px));
+  }
+}
+
 /* Responsive */
 @media (max-width: 900px){
   .hero-grid{grid-template-columns:1fr;}
@@ -572,6 +642,10 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   }
   .profile-summary ul{
     padding-left:16px;
+  }
+  .back-to-top{
+    right: 12px;
+    bottom: 12px;
   }
 }
 

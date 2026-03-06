@@ -1,0 +1,29 @@
+name: Auto Deploy
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: SSH Deployment
+              uses: saranraj3195/sparkout-deployment@v2
+              with:
+                DEPLOY_KEY: ${{ secrets.DEPLOY_SALAMON_SERVER_SSH_KEY }}
+                USERNAME: ${{ secrets.DEPLOY_SALAMON_SERVER_USERNAME }}
+                SERVER_IP: ${{ secrets.DEPLOY_SALAMON_SERVER_HOST }}
+                SERVER_PORT: ${{ secrets.DEPLOY_SALAMON_SERVER_PORT }}
+                SERVER_DESTINATION: ${{ secrets.DEPLOY_SALAMON_SERVER_DESTINATION }}
+                ARGS: "--progress --delete -avzPh --exclude='.git/' --exclude='.github/'"
+                FOLDER: ""
+              env:
+                DEPLOY_KEY: ${{ secrets.DEPLOY_SALAMON_SERVER_SSH_KEY }}
+                USERNAME: ${{ secrets.DEPLOY_SALAMON_SERVER_USERNAME }}
+                SERVER_IP: ${{ secrets.DEPLOY_SALAMON_SERVER_HOST }}
+                SERVER_PORT: ${{ secrets.DEPLOY_SALAMON_SERVER_PORT }}
+                SERVER_DESTINATION: ${{ secrets.DEPLOY_SALAMON_SERVER_DESTINATION }}
+                ARGS: "--progress --delete -avzPh --exclude='.git/' --exclude='.github/'"
+                FOLDER: ""

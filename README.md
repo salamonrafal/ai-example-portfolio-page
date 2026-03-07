@@ -196,3 +196,6 @@ python -m http.server 8080
     - Rozdzielono stylowanie komend i rezultatów:
       - komendy (`.cmd`) otrzymały osobny kolor,
       - rezultaty (`.out`) otrzymały bardziej konsolowy wygląd (przygaszony kolor, łamanie długich linii, subtelna poświata tekstu).
+  - `about.html` / `assets/css/styles.css`
+    - W sekcji `summary` zmniejszono zdjęcie profilowe dla widoku tabletowego (`<=900px`) do stałego rozmiaru `220x220`.
+    - Naprawiono układ w zakresie `900px-769px`: zdjęcie profilowe jest teraz wyśrodkowane (tak jak na pozostałych urządzeniach mobilnych), a nie przy lewej krawędzi.

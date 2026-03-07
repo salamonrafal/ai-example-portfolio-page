@@ -18,6 +18,8 @@
   --focus: rgba(0,212,255,.45);
   --maxw: 1100px;
   --font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --topbar-height: 68px;
+  --topbar-gap: 20px;
 }
 
 [data-theme="light"]{
@@ -49,6 +51,7 @@ html{
 
 body{
   margin:0;
+  padding-top:calc(var(--topbar-height) + var(--topbar-gap));
   overscroll-behavior-y: auto;
   font-family:var(--font);
   background: transparent;
@@ -92,7 +95,11 @@ a:hover{ text-decoration:underline; }
 
 /* Topbar */
 .topbar{
-  position:sticky; top:0; z-index:50;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:50;
   backdrop-filter: blur(12px);
   background: color-mix(in oklab, var(--bg) 74%, transparent);
   border-bottom:1px solid var(--border);
@@ -668,6 +675,7 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 }
 
 @media (max-width: 768px){
+  :root{--topbar-gap:10px;}
   .hero{padding:0;}
   .topbar-inner{
     flex-wrap:nowrap;
@@ -717,6 +725,7 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 }
 
 @media (max-width: 480px){
+  :root{--topbar-height:56px; --topbar-gap:8px;}
   .container{padding:20px 12px 12px;}
   .hero{padding:0;}
   .topbar-inner{
@@ -797,6 +806,7 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 }
 
 @media (max-width: 360px){
+  :root{--topbar-height:52px; --topbar-gap:6px;}
   .topbar-inner{padding:8px 10px;}
   .brand .title strong{
     font-size:14px;

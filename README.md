@@ -172,3 +172,13 @@ python -m http.server 8080
 - Wszystkie strony (`index/about/projects/tools/contact/404`) + `assets/js/app.js` + `assets/css/styles.css`
   - Podzielono podpis zawodowy w topbarze na dwie linie (`Senior PHP Developer` / `Fullstack Developer`).
   - Dodano wyrównanie podpisu (`justify`) i korekty szerokości/układu, aby prawa krawędź podpisu kończyła się równo z główną nazwą.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-07)
+  - `assets/css/styles.css`
+    - Poprawiono zachowanie topbara, aby tło górnego menu rozciągało się do końca ekranu na wszystkich urządzeniach.
+    - Uporządkowano reguły responsywne menu:
+      - dla `<=768px` sekcja `Preferencje` pozostaje w menu mobilnym,
+      - dla `>768px` `Preferencje` są wyświetlane w topbarze (styl desktopowy).
+    - Naprawiono problemy z przewijaniem:
+      - usunięto poziome przesuwanie strony na mobile (`overflow-x: hidden`),
+      - przywrócono pionowe przewijanie strony (`overflow-y: auto`).

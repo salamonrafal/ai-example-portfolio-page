@@ -526,7 +526,12 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
 
 @media (max-width: 900px){
   .profile-combo{flex-direction:column;}
-  .profile-img--sm{width: 100%; height: auto; max-width: 320px;}
+  .profile-media{
+    width:100%;
+    display:flex;
+    justify-content:center;
+  }
+  .profile-img--sm{width: 220px; height: 220px; max-width: 220px;}
 }
 
 .footer{border-top:1px solid var(--border); padding:20px; color:var(--muted); text-align:center;}

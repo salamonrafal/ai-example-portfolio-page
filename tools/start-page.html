@@ -1,0 +1,1393 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Strona startowa Rafała Salamona w stylu konsoli z szybkim wyszukiwaniem Google." />
+  <meta name="theme-color" content="#090d12" />
+  <title>Start | Rafał Salamon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg-0: #070a0e;
+      --bg-1: #0e141c;
+      --panel: rgba(10, 17, 24, 0.78);
+      --border: rgba(69, 255, 145, 0.35);
+      --accent: #3dff9c;
+      --accent-2: #39d2ff;
+      --text: #e8f3ee;
+      --muted: #9bb5aa;
+      --danger: #ff6f6f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 24px 12px;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 0%, rgba(61, 255, 156, 0.08), transparent 62%),
+        radial-gradient(1000px 700px at 80% 100%, rgba(57, 210, 255, 0.08), transparent 58%),
+        linear-gradient(165deg, var(--bg-0), var(--bg-1));
+      font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+    }
+
+    .terminal {
+      width: min(780px, 100%);
+      margin-top: auto;
+      margin-bottom: auto;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .terminal-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(6, 11, 16, 0.9);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.red { background: var(--danger); }
+    .dot.yellow { background: #ffc463; }
+    .dot.green { background: #55e890; }
+
+    .terminal-title {
+      margin-left: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .terminal-content {
+      padding: clamp(24px, 4vw, 38px);
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 56px;
+      height: 56px;
+      filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.3));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.05;
+      font-size: clamp(0.72rem, 1.7vw, 0.82rem);
+    }
+
+    .prompt {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+      color: var(--accent);
+      opacity: 0.95;
+      font-size: 0.95rem;
+    }
+
+    .search {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      max-width: 620px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(5, 10, 15, 0.85);
+    }
+
+    .search input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .search input:focus {
+      box-shadow: 0 0 0 3px rgba(57, 210, 255, 0.2);
+    }
+
+    .search button {
+      border: 0;
+      border-left: 1px solid rgba(61, 255, 156, 0.35);
+      padding: 12px 16px;
+      font: inherit;
+      color: var(--accent);
+      background: rgba(6, 12, 18, 0.95);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .search button:hover {
+      background: rgba(10, 18, 26, 0.98);
+      color: #b8ffd8;
+    }
+
+    .favorites {
+      width: 100%;
+      max-width: 620px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(5, 10, 15, 0.45);
+      text-align: left;
+    }
+
+    .favorites-title {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .favorites-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .favorites-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .add-favorite {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(5, 10, 15, 0.85);
+      color: var(--accent);
+      font: inherit;
+      font-size: 1.05rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .add-favorite:hover {
+      border-color: var(--accent-2);
+      color: #fff;
+    }
+
+    .delete-selected {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(5, 10, 15, 0.85);
+      color: var(--danger);
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .delete-selected:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .delete-selected:not(:disabled):hover {
+      border-color: var(--danger);
+      color: #fff;
+    }
+
+    .delete-selected.active {
+      border-color: var(--danger);
+      color: #fff;
+      background: rgba(110, 18, 18, 0.35);
+    }
+
+    .favorites-form {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr auto;
+      gap: 8px;
+    }
+
+    .favorites-form input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(5, 10, 15, 0.85);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    .favorites-form button {
+      border: 1px solid rgba(61, 255, 156, 0.35);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+      color: var(--accent);
+      background: rgba(6, 12, 18, 0.95);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .favorites-form button:hover {
+      background: rgba(10, 18, 26, 0.98);
+      color: #b8ffd8;
+    }
+
+    .favorites-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .favorite-item {
+      margin: 0;
+      position: relative;
+    }
+
+    .favorite-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      flex: 0 0 28px;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #f3f8f5;
+      background: var(--badge-color, #2d8cff);
+      overflow: hidden;
+      text-transform: none;
+    }
+
+    .favorite-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .favorite-link {
+      width: 88px;
+      min-height: 74px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 10px 8px;
+      background: rgba(6, 12, 18, 0.65);
+    }
+
+    .favorite-link:hover {
+      color: var(--accent);
+      border-color: var(--accent-2);
+    }
+
+    .favorite-name {
+      max-width: 100%;
+      font-size: 0.72rem;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-transform: none;
+    }
+
+    .pref-lowercase-names .favorite-name {
+      text-transform: lowercase;
+    }
+
+    .favorite-select {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      margin: 0;
+      width: 14px;
+      height: 14px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .favorite-select[hidden] {
+      display: none;
+    }
+
+    .favorites-empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .delete-confirm {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 111, 111, 0.45);
+      background: rgba(110, 18, 18, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .delete-confirm[hidden] {
+      display: none;
+    }
+
+    .delete-confirm-text {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #ffc7c7;
+    }
+
+    .confirm-delete {
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      color: #fff;
+      background: #b22828;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .confirm-delete:hover {
+      background: #d23434;
+    }
+
+    .modal[hidden] {
+      display: none;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .modal-card {
+      width: min(520px, 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      background: #0a1118;
+      padding: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-head {
+      margin: -14px -14px 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      background: rgba(20, 28, 36, 0.9);
+    }
+
+    .modal-title {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .modal-info {
+      margin: 0 0 10px;
+      padding: 10px;
+      border: 1px solid rgba(61, 255, 156, 0.22);
+      border-radius: 10px;
+      background: rgba(6, 12, 18, 0.72);
+      text-align: left;
+    }
+
+    .modal-info p {
+      margin: 0 0 6px;
+      color: #b8ffd8;
+      font-size: 0.8rem;
+    }
+
+    .modal-rules {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 3px;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .modal-close {
+      border: 1px solid rgba(61, 255, 156, 0.35);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      color: var(--accent);
+      background: rgba(6, 12, 18, 0.95);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      background: rgba(10, 18, 26, 0.98);
+      color: #b8ffd8;
+    }
+
+    .prefs-fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(61, 255, 156, 0.35);
+      border-radius: 999px;
+      background: rgba(8, 14, 20, 0.95);
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .prefs-fab:hover {
+      color: #b8ffd8;
+      border-color: var(--accent-2);
+    }
+
+    .prefs-modal[hidden] {
+      display: none;
+    }
+
+    .prefs-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1300;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .prefs-card {
+      width: min(520px, 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      background: #0a1118;
+      padding: 14px;
+      text-align: left;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .prefs-head {
+      margin: -14px -14px 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      background: rgba(20, 28, 36, 0.9);
+    }
+
+    .prefs-title {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .theme-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .theme-option {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 8px;
+      background: rgba(6, 12, 18, 0.7);
+      cursor: pointer;
+    }
+
+    .theme-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .theme-name {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .theme-option input {
+      margin: 0 0 0 auto;
+      accent-color: var(--accent);
+    }
+
+    .theme-preview {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      object-fit: cover;
+      display: block;
+      background: #121820;
+    }
+
+    .prefs-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background: rgba(6, 12, 18, 0.7);
+    }
+
+    .prefs-row label {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .prefs-row input {
+      accent-color: var(--accent);
+    }
+
+    .prefs-section {
+      margin-bottom: 14px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      background: rgba(6, 12, 18, 0.55);
+    }
+
+    .prefs-section-title {
+      margin: 0 0 10px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .prefs-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .prefs-close {
+      border: 1px solid rgba(61, 255, 156, 0.35);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      color: var(--accent);
+      background: rgba(6, 12, 18, 0.95);
+      cursor: pointer;
+    }
+
+    .prefs-close:hover {
+      background: rgba(10, 18, 26, 0.98);
+      color: #b8ffd8;
+    }
+
+    body[data-theme="windows"] {
+      --bg-0: #061125;
+      --bg-1: #10203b;
+      --panel: rgba(8, 20, 40, 0.82);
+      --border: rgba(68, 176, 255, 0.4);
+      --accent: #44b0ff;
+      --accent-2: #8dd6ff;
+      --text: #eaf4ff;
+      --muted: #a7bfd6;
+      --danger: #ff7b7b;
+    }
+
+    body[data-theme="windows"] .terminal {
+      border-radius: 3px;
+      border-color: rgba(68, 176, 255, 0.55);
+    }
+
+    body[data-theme="windows"] .terminal-bar {
+      gap: 0;
+      justify-content: center;
+      background: linear-gradient(180deg, #1f5c9f, #184a80);
+      border-bottom-color: rgba(141, 214, 255, 0.35);
+      position: relative;
+    }
+
+    body[data-theme="windows"] .dot {
+      display: none;
+    }
+
+    body[data-theme="windows"] .terminal-title {
+      margin-left: 0;
+      color: #e6f3ff;
+      letter-spacing: 0.01em;
+    }
+
+    body[data-theme="windows"] .terminal-bar::after {
+      content: "—   □   ✕";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #cde6ff;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      opacity: 0.9;
+    }
+
+    body[data-theme="windows"] .modal-card,
+    body[data-theme="windows"] .prefs-card {
+      border-radius: 3px;
+      border-color: rgba(141, 214, 255, 0.35);
+      background: #0d1f37;
+    }
+
+    body[data-theme="windows"] .modal-head,
+    body[data-theme="windows"] .prefs-head {
+      background: linear-gradient(180deg, #1f5c9f, #184a80);
+      border-bottom-color: rgba(141, 214, 255, 0.35);
+    }
+
+    body[data-theme="windows"] .modal-title,
+    body[data-theme="windows"] .prefs-title {
+      color: #e6f3ff;
+    }
+
+    body[data-theme="windows"] .prefs-section {
+      border-color: rgba(141, 214, 255, 0.28);
+      background: rgba(17, 43, 74, 0.55);
+    }
+
+    body[data-theme="linux"] {
+      --bg-0: #070a0e;
+      --bg-1: #0e141c;
+      --panel: rgba(10, 17, 24, 0.78);
+      --border: rgba(69, 255, 145, 0.35);
+      --accent: #3dff9c;
+      --accent-2: #39d2ff;
+      --text: #e8f3ee;
+      --muted: #9bb5aa;
+      --danger: #ff6f6f;
+    }
+
+    body[data-theme="linux"] .terminal {
+      border-radius: 8px;
+    }
+
+    body[data-theme="linux"] .terminal-bar {
+      background: linear-gradient(180deg, #202a33, #151d25);
+    }
+
+    body[data-theme="linux"] .dot {
+      width: 9px;
+      height: 9px;
+      opacity: 0.9;
+    }
+
+    body[data-theme="linux"] .modal-card,
+    body[data-theme="linux"] .prefs-card {
+      border-radius: 10px;
+      background: #101820;
+    }
+
+    body[data-theme="linux"] .modal-head,
+    body[data-theme="linux"] .prefs-head {
+      background: linear-gradient(180deg, #202a33, #151d25);
+      border-bottom-color: rgba(61, 255, 156, 0.16);
+    }
+
+    body[data-theme="linux"] .prefs-section {
+      border-color: rgba(61, 255, 156, 0.2);
+    }
+
+    body[data-theme="macos"] {
+      --bg-0: #161b20;
+      --bg-1: #252a31;
+      --panel: rgba(24, 29, 35, 0.82);
+      --border: rgba(255, 177, 88, 0.38);
+      --accent: #ffb158;
+      --accent-2: #ffd18f;
+      --text: #f6eee5;
+      --muted: #c3b8ad;
+      --danger: #ff7f8b;
+    }
+
+    body[data-theme="macos"] .terminal {
+      border-radius: 14px;
+      border-color: rgba(255, 209, 143, 0.32);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    body[data-theme="macos"] .terminal-bar {
+      background: linear-gradient(180deg, #3a4047, #2f343b);
+      justify-content: flex-start;
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+
+    body[data-theme="macos"] .dot {
+      width: 11px;
+      height: 11px;
+      opacity: 0.95;
+    }
+
+    body[data-theme="macos"] .terminal-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-left: 0;
+      color: #efe4d8;
+      font-size: 0.8rem;
+      pointer-events: none;
+    }
+
+    body[data-theme="macos"] .modal-card,
+    body[data-theme="macos"] .prefs-card {
+      border-radius: 14px;
+      border-color: rgba(255, 209, 143, 0.32);
+      background: #242b32;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    body[data-theme="macos"] .modal-head,
+    body[data-theme="macos"] .prefs-head {
+      background: linear-gradient(180deg, #3a4047, #2f343b);
+      border-bottom-color: rgba(255, 209, 143, 0.2);
+    }
+
+    body[data-theme="macos"] .modal-title,
+    body[data-theme="macos"] .prefs-title {
+      text-align: center;
+      color: #efe4d8;
+    }
+
+    body[data-theme="macos"] .prefs-section {
+      border-color: rgba(255, 209, 143, 0.24);
+      background: rgba(49, 56, 65, 0.55);
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #b8ffd8;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 620px) {
+      .search {
+        flex-direction: column;
+      }
+
+      .search button {
+        width: 100%;
+      }
+
+      .favorites-form {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-list {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body data-theme="linux" class="pref-lowercase-names">
+  <main class="terminal" role="main" aria-label="Strona startowa">
+    <div class="terminal-bar" aria-hidden="true">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="terminal-title">~/home/start-page</span>
+    </div>
+
+    <section class="terminal-content">
+      <div class="brand">
+        <img src="../assets/img/logo.svg" alt="Logo Rafał Salamon" />
+        <div class="brand-text">
+          <h1>Rafał Salamon</h1>
+          <p class="subtitle">Senior PHP Developer</p>
+          <p class="subtitle">Fullstack Developer</p>
+        </div>
+      </div>
+
+      <div class="prompt">$ search --engine google</div>
+
+      <form class="search" action="https://www.google.com/search" method="get" role="search">
+        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Wyszukaj w Google</label>
+        <input id="q" name="q" type="search" placeholder="Wpisz zapytanie i naciśnij Enter" autocomplete="off" autofocus />
+        <button type="submit">Szukaj</button>
+      </form>
+
+      <section class="favorites" aria-label="Ulubione linki">
+        <div class="favorites-header">
+          <h2 class="favorites-title">$ favorites --list</h2>
+          <div class="favorites-actions">
+            <button type="button" class="add-favorite" id="open-favorites-modal" aria-label="Dodaj ulubiony link">+</button>
+            <button type="button" class="delete-selected" id="delete-selected-favorites" aria-label="Usuń zaznaczone linki" disabled>🗑</button>
+          </div>
+        </div>
+        <ul class="favorites-list" id="favorites-list"></ul>
+        <p class="favorites-empty" id="favorites-empty">Brak zapisanych linków.</p>
+        <div class="delete-confirm" id="delete-confirm" hidden>
+          <p class="delete-confirm-text" id="delete-confirm-text">Usunąć zaznaczone elementy?</p>
+          <button type="button" class="confirm-delete" id="confirm-delete-favorites">Potwierdź usunięcie</button>
+        </div>
+      </section>
+
+      <p class="hint">Podpowiedź: ustaw tę stronę jako stronę startową przeglądarki.</p>
+    </section>
+  </main>
+  <footer class="footer">© Rafał Salamon • <a href="https://www.salamonrafal.pl/" target="_blank" rel="noopener noreferrer">www.salamonrafal.pl</a></footer>
+  <div class="modal" id="favorites-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Dodaj ulubiony link">
+      <div class="modal-head">
+        <h3 class="modal-title">$ favorites --add</h3>
+      </div>
+      <div class="modal-info">
+        <p>Formularz dodaje skrót do ulubionych na Twojej stronie startowej.</p>
+        <ul class="modal-rules">
+          <li>[1] Najpierw wpisz pełny adres strony (URL).</li>
+          <li>[2] Nazwa może zostać uzupełniona automatycznie.</li>
+          <li>[3] Linki zapisują się lokalnie w tej przeglądarce.</li>
+        </ul>
+      </div>
+      <form class="favorites-form" id="favorites-form">
+        <label for="favorite-url" class="sr-only" style="position:absolute;left:-9999px;">Adres URL</label>
+        <input id="favorite-url" name="url" type="url" placeholder="https://example.com" required />
+        <label for="favorite-name" class="sr-only" style="position:absolute;left:-9999px;">Nazwa linku</label>
+        <input id="favorite-name" name="name" type="text" placeholder="Nazwa" maxlength="40" required />
+        <button type="submit">Dodaj</button>
+      </form>
+      <div class="modal-actions">
+        <button type="button" class="modal-close" id="close-favorites-modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="prefs-fab" id="open-prefs" aria-label="Otwórz motywy i preferencje">🖌</button>
+  <div class="prefs-modal" id="prefs-modal" hidden>
+    <div class="prefs-card" role="dialog" aria-modal="true" aria-label="Motywy i preferencje">
+      <div class="prefs-head">
+        <h3 class="prefs-title">$ preferences --theme</h3>
+      </div>
+      <div class="prefs-section">
+        <h4 class="prefs-section-title">Motyw</h4>
+        <div class="theme-list">
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Konsola Windows</span>
+              <input type="radio" name="theme" value="windows" />
+            </div>
+            <img class="theme-preview" alt="Podgląd motywu Windows" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23061125'/><stop offset='1' stop-color='%2310203b'/></linearGradient></defs><rect width='240' height='150' rx='10' fill='url(%23g)'/><rect x='12' y='14' width='216' height='20' rx='3' fill='%232060a7'/><rect x='12' y='40' width='216' height='96' rx='3' fill='%230d1f37'/><rect x='20' y='52' width='120' height='8' rx='4' fill='%2344b0ff'/><rect x='20' y='68' width='94' height='6' rx='3' fill='%238dd6ff'/><rect x='20' y='82' width='82' height='6' rx='3' fill='%238dd6ff'/></svg>" />
+          </label>
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Konsola Linux</span>
+              <input type="radio" name="theme" value="linux" />
+            </div>
+            <img class="theme-preview" alt="Podgląd motywu Linux" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23070a0e'/><stop offset='1' stop-color='%230e141c'/></linearGradient></defs><rect width='240' height='150' rx='10' fill='url(%23g)'/><rect x='12' y='14' width='216' height='20' rx='6' fill='%231c252f'/><circle cx='24' cy='24' r='4' fill='%23ff6f6f'/><circle cx='38' cy='24' r='4' fill='%23ffc463'/><circle cx='52' cy='24' r='4' fill='%2355e890'/><rect x='12' y='40' width='216' height='96' rx='6' fill='%23101820'/><rect x='20' y='52' width='130' height='8' rx='4' fill='%233dff9c'/><rect x='20' y='68' width='88' height='6' rx='3' fill='%2339d2ff'/><rect x='20' y='82' width='74' height='6' rx='3' fill='%2339d2ff'/></svg>" />
+          </label>
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Konsola macOS</span>
+              <input type="radio" name="theme" value="macos" />
+            </div>
+            <img class="theme-preview" alt="Podgląd motywu macOS" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23161b20'/><stop offset='1' stop-color='%23252a31'/></linearGradient></defs><rect width='240' height='150' rx='12' fill='url(%23g)'/><rect x='12' y='14' width='216' height='22' rx='10' fill='%23343a42'/><circle cx='26' cy='25' r='4.5' fill='%23ff7f8b'/><circle cx='40' cy='25' r='4.5' fill='%23ffc463'/><circle cx='54' cy='25' r='4.5' fill='%2355e890'/><rect x='12' y='40' width='216' height='96' rx='10' fill='%23242b32'/><rect x='20' y='52' width='116' height='8' rx='4' fill='%23ffb158'/><rect x='20' y='68' width='92' height='6' rx='3' fill='%23ffd18f'/><rect x='20' y='82' width='80' height='6' rx='3' fill='%23ffd18f'/></svg>" />
+          </label>
+        </div>
+      </div>
+      <div class="prefs-section">
+        <h4 class="prefs-section-title">Preferencje</h4>
+        <div class="prefs-row">
+          <label for="pref-lowercase">Nazwy linków małymi literami</label>
+          <input id="pref-lowercase" type="checkbox" checked />
+        </div>
+      </div>
+      <div class="prefs-actions">
+        <button type="button" class="prefs-close" id="close-prefs">Zamknij</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var STORAGE_KEY = "startPageFavorites";
+      var PREFS_KEY = "startPagePreferences";
+      var form = document.getElementById("favorites-form");
+      var list = document.getElementById("favorites-list");
+      var empty = document.getElementById("favorites-empty");
+      var nameInput = document.getElementById("favorite-name");
+      var urlInput = document.getElementById("favorite-url");
+      var modal = document.getElementById("favorites-modal");
+      var openModalButton = document.getElementById("open-favorites-modal");
+      var closeModalButton = document.getElementById("close-favorites-modal");
+      var deleteSelectedButton = document.getElementById("delete-selected-favorites");
+      var deleteConfirm = document.getElementById("delete-confirm");
+      var deleteConfirmText = document.getElementById("delete-confirm-text");
+      var confirmDeleteButton = document.getElementById("confirm-delete-favorites");
+      var prefsModal = document.getElementById("prefs-modal");
+      var openPrefsButton = document.getElementById("open-prefs");
+      var closePrefsButton = document.getElementById("close-prefs");
+      var lowercaseToggle = document.getElementById("pref-lowercase");
+      var themeInputs = document.querySelectorAll('input[name="theme"]');
+      var selected = new Set();
+      var deleteMode = false;
+
+      function readPrefs() {
+        try {
+          var raw = localStorage.getItem(PREFS_KEY);
+          if (!raw) return null;
+          var parsed = JSON.parse(raw);
+          return parsed && typeof parsed === "object" ? parsed : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function writePrefs(prefs) {
+        localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+      }
+
+      function applyTheme(theme) {
+        var allowed = ["windows", "linux", "macos"];
+        var selectedTheme = allowed.indexOf(theme) >= 0 ? theme : "linux";
+        document.body.setAttribute("data-theme", selectedTheme);
+      }
+
+      function applyPreferences(prefs) {
+        var theme = prefs && prefs.theme ? prefs.theme : "linux";
+        var lowercase = !prefs || prefs.lowercaseNames !== false;
+        applyTheme(theme);
+        document.body.classList.toggle("pref-lowercase-names", lowercase);
+        lowercaseToggle.checked = lowercase;
+        themeInputs.forEach(function (input) {
+          input.checked = input.value === theme;
+        });
+      }
+
+      function saveCurrentPreferences() {
+        var checkedTheme = "linux";
+        themeInputs.forEach(function (input) {
+          if (input.checked) checkedTheme = input.value;
+        });
+
+        var prefs = {
+          theme: checkedTheme,
+          lowercaseNames: lowercaseToggle.checked
+        };
+
+        writePrefs(prefs);
+        applyPreferences(prefs);
+      }
+
+      function openModal() {
+        modal.hidden = false;
+        urlInput.focus();
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+      }
+
+      function openPrefs() {
+        prefsModal.hidden = false;
+      }
+
+      function closePrefs() {
+        prefsModal.hidden = true;
+      }
+
+      function updateDeleteConfirmUI() {
+        deleteConfirm.hidden = !(deleteMode && selected.size > 0);
+        if (selected.size > 0) {
+          deleteConfirmText.textContent = "Usunąć zaznaczone elementy (" + selected.size + ")?";
+        }
+      }
+
+      function readFavorites() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          var parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function writeFavorites(items) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      }
+
+      function normalizeUrl(url) {
+        var value = url.trim();
+        if (!/^https?:\/\//i.test(value)) {
+          value = "https://" + value;
+        }
+        return value;
+      }
+
+      function randomColor() {
+        var hue = Math.floor(Math.random() * 360);
+        return "hsl(" + hue + " 62% 42%)";
+      }
+
+      function getNameFromUrl(url) {
+        try {
+          var parsed = new URL(normalizeUrl(url));
+          var host = parsed.hostname.replace(/^www\./i, "");
+          var firstLabel = host.split(".")[0] || host;
+          return firstLabel
+            .replace(/[-_]+/g, " ")
+            .replace(/\b\w/g, function (char) { return char.toUpperCase(); });
+        } catch (e) {
+          return "";
+        }
+      }
+
+      function getInitials(name) {
+        var clean = (name || "").replace(/\s+/g, "").replace(/[^a-zA-Z0-9]/g, "");
+        if (!clean) return "NA";
+        var first = clean.charAt(0).toUpperCase();
+        var second = clean.charAt(1) ? clean.charAt(1).toLowerCase() : "";
+        return (first + second).slice(0, 2);
+      }
+
+      function getFaviconUrl(url) {
+        try {
+          var parsed = new URL(normalizeUrl(url));
+          return "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(parsed.hostname) + "&sz=64";
+        } catch (e) {
+          return "";
+        }
+      }
+
+      function loadImage(url) {
+        return new Promise(function (resolve) {
+          if (!url) {
+            resolve(null);
+            return;
+          }
+
+          var settled = false;
+          var img = new Image();
+          img.crossOrigin = "anonymous";
+          img.referrerPolicy = "no-referrer";
+
+          var timer = setTimeout(function () {
+            if (settled) return;
+            settled = true;
+            resolve(null);
+          }, 1800);
+
+          img.onload = function () {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
+            resolve(img);
+          };
+
+          img.onerror = function () {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
+            resolve(null);
+          };
+
+          img.src = url;
+        });
+      }
+
+      function getDominantColorFromImage(img) {
+        try {
+          var canvas = document.createElement("canvas");
+          var size = 24;
+          canvas.width = size;
+          canvas.height = size;
+          var ctx = canvas.getContext("2d");
+          if (!ctx) return null;
+
+          ctx.drawImage(img, 0, 0, size, size);
+          var data = ctx.getImageData(0, 0, size, size).data;
+          var r = 0;
+          var g = 0;
+          var b = 0;
+          var count = 0;
+
+          for (var i = 0; i < data.length; i += 4) {
+            var alpha = data[i + 3];
+            if (alpha < 110) continue;
+            r += data[i];
+            g += data[i + 1];
+            b += data[i + 2];
+            count += 1;
+          }
+
+          if (!count) return null;
+          return "rgb(" + Math.round(r / count) + ", " + Math.round(g / count) + ", " + Math.round(b / count) + ")";
+        } catch (e) {
+          return null;
+        }
+      }
+
+      async function getFavoriteVisual(url, name) {
+        var iconUrl = getFaviconUrl(url);
+        var icon = await loadImage(iconUrl);
+        var color = icon ? getDominantColorFromImage(icon) : null;
+        if (!color) color = randomColor();
+
+        return {
+          iconUrl: icon ? iconUrl : "",
+          color: color,
+          initials: getInitials(name)
+        };
+      }
+
+      function render() {
+        var items = readFavorites();
+        list.innerHTML = "";
+        empty.style.display = items.length ? "none" : "block";
+        selected.forEach(function (index) {
+          if (index < 0 || index >= items.length) selected.delete(index);
+        });
+        deleteSelectedButton.disabled = !items.length;
+        deleteSelectedButton.classList.toggle("active", deleteMode);
+        updateDeleteConfirmUI();
+
+        items.forEach(function (item, index) {
+          var li = document.createElement("li");
+          li.className = "favorite-item";
+
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "favorite-select";
+          checkbox.checked = selected.has(index);
+          checkbox.hidden = !deleteMode;
+          checkbox.setAttribute("aria-label", "Zaznacz link do usunięcia");
+          checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+              selected.add(index);
+            } else {
+              selected.delete(index);
+            }
+            updateDeleteConfirmUI();
+          });
+
+          var badge = document.createElement("span");
+          badge.className = "favorite-badge";
+          badge.style.setProperty("--badge-color", item.color || randomColor());
+          var initials = item.initials || getInitials(item.name || "");
+
+          if (item.iconUrl) {
+            var icon = document.createElement("img");
+            icon.src = item.iconUrl;
+            icon.alt = "";
+            icon.addEventListener("error", function () {
+              badge.textContent = initials;
+            });
+            badge.appendChild(icon);
+          } else {
+            badge.textContent = initials;
+          }
+
+          var link = document.createElement("a");
+          link.className = "favorite-link";
+          link.href = item.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.title = item.url;
+
+          var name = document.createElement("span");
+          name.className = "favorite-name";
+          name.textContent = item.name;
+
+          li.appendChild(checkbox);
+          link.appendChild(badge);
+          link.appendChild(name);
+          li.appendChild(link);
+          list.appendChild(li);
+        });
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        var name = nameInput.value.trim();
+        var url = normalizeUrl(urlInput.value);
+        if (!name) {
+          name = getNameFromUrl(url);
+          nameInput.value = name;
+        }
+        if (!name || !url) return;
+
+        var items = readFavorites();
+        var visual = await getFavoriteVisual(url, name);
+        items.push({
+          name: name,
+          url: url,
+          iconUrl: visual.iconUrl,
+          color: visual.color,
+          initials: visual.initials
+        });
+        writeFavorites(items);
+        deleteMode = false;
+        selected.clear();
+        form.reset();
+        closeModal();
+        render();
+      });
+
+      urlInput.addEventListener("change", function () {
+        if (nameInput.value.trim()) return;
+        nameInput.value = getNameFromUrl(urlInput.value);
+      });
+
+      openModalButton.addEventListener("click", openModal);
+      closeModalButton.addEventListener("click", closeModal);
+      openPrefsButton.addEventListener("click", openPrefs);
+      closePrefsButton.addEventListener("click", closePrefs);
+      themeInputs.forEach(function (input) {
+        input.addEventListener("change", saveCurrentPreferences);
+      });
+      lowercaseToggle.addEventListener("change", saveCurrentPreferences);
+      deleteSelectedButton.addEventListener("click", function () {
+        deleteMode = !deleteMode;
+        if (!deleteMode) {
+          selected.clear();
+        }
+        render();
+      });
+      prefsModal.addEventListener("click", function (event) {
+        if (event.target === prefsModal) closePrefs();
+      });
+      confirmDeleteButton.addEventListener("click", function () {
+        if (!selected.size) return;
+        var items = readFavorites();
+        var kept = items.filter(function (_, index) {
+          return !selected.has(index);
+        });
+        writeFavorites(kept);
+        selected.clear();
+        deleteMode = false;
+        render();
+      });
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !modal.hidden) closeModal();
+        if (event.key === "Escape" && !prefsModal.hidden) closePrefs();
+      });
+
+      applyPreferences(readPrefs());
+      render();
+    })();
+  </script>
+</body>
+</html>

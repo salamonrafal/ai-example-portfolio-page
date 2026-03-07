@@ -199,3 +199,39 @@ python -m http.server 8080
   - `about.html` / `assets/css/styles.css`
     - W sekcji `summary` zmniejszono zdjęcie profilowe dla widoku tabletowego (`<=900px`) do stałego rozmiaru `220x220`.
     - Naprawiono układ w zakresie `900px-769px`: zdjęcie profilowe jest teraz wyśrodkowane (tak jak na pozostałych urządzeniach mobilnych), a nie przy lewej krawędzi.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-07)
+  - `tools/start-page.html`
+    - Dodano nową stronę startową w stylu konsoli (`tools/start-page.html`) z logo, nazwą, podtytułami i wyszukiwarką Google.
+    - Dopracowano układ nagłówka marki:
+      - wyrównanie i centrowanie logo względem tytułu/podtytułów,
+      - korekty odstępów i wyrównania podtytułów.
+    - Rozbudowano sekcję `favorites`:
+      - dodawanie linków przez popup (`+`),
+      - auto-uzupełnianie nazwy na podstawie URL,
+      - zapis i odczyt linków w `localStorage`,
+      - widok kafelków obok siebie (logo + mniejsza nazwa pod spodem),
+      - usunięto obramowania kafelków.
+    - Dodano logikę ikon i kolorów dla linków:
+      - próba pobrania favicony domeny,
+      - wyznaczanie koloru wiodącego na podstawie ikony,
+      - fallback: losowy kolor i monogram z 2 liter (pierwsza wielka).
+    - Rozszerzono usuwanie linków:
+      - przycisk kosza obok `+`,
+      - tryb zaznaczania elementów (checkboxy pojawiają się po kliknięciu kosza),
+      - drugi klik kosza czyści zaznaczenie i ukrywa checkboxy,
+      - dolny pasek potwierdzenia usuwania widoczny po zaznaczeniu elementów.
+    - Ujednolicono styl konsolowy przycisków:
+      - `Szukaj`, `Dodaj`, `Zamknij`,
+      - dopasowano pionowe wyrównanie przycisków `+` i kosza.
+    - Dodano panel preferencji z ikoną pędzla w prawym dolnym rogu:
+      - popup `Motywy i preferencje`,
+      - 3 motywy: `Konsola Windows`, `Konsola Linux`, `Konsola macOS`,
+      - motywy zapisują się w `localStorage`.
+    - Rozszerzono motywy o styl „okien systemowych”:
+      - zmiana wyglądu głównego terminala i popupów per system (kolory, rogi, paski okna, kontrolki).
+    - W popupie preferencji dodano:
+      - układ motywów obok siebie,
+      - miniatury (podgląd) dla każdego motywu,
+      - wyraźny podział na sekcje `Motyw` i `Preferencje`.
+    - Dodano stopkę z prawami autorskimi i linkiem do `https://www.salamonrafal.pl/`, następnie przeniesiono ją na dół strony (poza `main`).

@@ -43,15 +43,18 @@ html{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 body{
   margin:0;
-  overscroll-behavior: none;
+  overscroll-behavior-y: auto;
   font-family:var(--font);
   background: transparent;
   color:var(--text);
   overflow-x:hidden;
+  overflow-y:auto;
 }
 
 /* subtle grid */
@@ -266,6 +269,7 @@ a:hover{ text-decoration:underline; }
 .mobile-drawer.open{display:block; animation: pop .14s ease-out;}
 @keyframes pop{from{transform:translateY(-8px); opacity:.0;}to{transform:translateY(0); opacity:1;}}
 .mobile-drawer a{display:block; padding:12px 12px; border-radius:12px; border:1px solid var(--border); margin:8px 0; color:var(--text); background: color-mix(in oklab, var(--panel-2) 90%, transparent);} 
+.mobile-controls{display:none;}
 
 /* Main */
 .hero{padding:0;}
@@ -661,32 +665,6 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   .grid-2{grid-template-columns:1fr;}
   .nav{display:none;}
   .hamburger{display:inline-flex; align-items:center; justify-content:center;}
-  .actions .chip{display:none;}
-  .mobile-controls{
-    margin-top:10px;
-    display:block;
-  }
-  .mobile-controls .chip{
-    width:100%;
-    justify-content:flex-start;
-    box-shadow:none;
-  }
-  .mobile-preferences{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    flex-wrap:nowrap;
-  }
-  .mobile-preferences > span{
-    white-space:nowrap;
-  }
-  .prefs-actions{
-    margin-left:auto;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    flex-wrap:nowrap;
-  }
 }
 
 @media (max-width: 768px){

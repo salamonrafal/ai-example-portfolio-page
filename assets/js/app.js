@@ -11,7 +11,10 @@ const i18n = {
     chip_theme: "Motyw",
     chip_color: "Kolor",
     chip_prefs: "Preferencje",
-    home_title: "Senior PHP Developer / Fullstack Developer",
+    prefs_lang_hint: "Przełącza język strony",
+    prefs_theme_hint: "Przełącza motyw jasny/ciemny",
+    prefs_color_hint: "Zmienia kolor akcentu interfejsu",
+    home_title: "Senior PHP Developer\nFullstack Developer",
     home_tip: "Wskazówka: użyj przełączników w prawym górnym rogu lub skrótu",
     home_links_about: "O mnie",
     home_links_projects: "Projekty",
@@ -80,7 +83,10 @@ const i18n = {
     chip_theme: "Theme",
     chip_color: "Color",
     chip_prefs: "Preferences",
-    home_title: "Senior PHP Developer / Fullstack Developer",
+    prefs_lang_hint: "Switches the page language",
+    prefs_theme_hint: "Toggles light and dark theme",
+    prefs_color_hint: "Changes the interface accent color",
+    home_title: "Senior PHP Developer\nFullstack Developer",
     home_tip: "Tip: use the switches in the top-right corner or shortcuts",
     home_links_about: "About",
     home_links_projects: "Projects",
@@ -225,7 +231,16 @@ function applyI18n(lang){
   });
   qsa('[data-i18n-tooltip]').forEach(el=>{
     const key = el.getAttribute('data-i18n-tooltip');
-    if(t[key] !== undefined) el.setAttribute('data-tooltip', t[key]);
+    if(t[key] !== undefined){
+      el.setAttribute('data-tooltip', t[key]);
+      const isTopPrefsControl = !!el.closest('.preferences-chip');
+      if(isTopPrefsControl){
+        el.removeAttribute('title');
+      }else{
+        // Native tooltip fallback outside topbar preferences.
+        el.setAttribute('title', t[key]);
+      }
+    }
   });
   qsa('[data-i18n-placeholder]').forEach(el=>{
     const key = el.getAttribute('data-i18n-placeholder');
@@ -348,13 +363,16 @@ function setupActions(){
       if(copied){
         const lang = getLang();
         copyBtn.setAttribute('data-tooltip', i18n[lang].contact_copied);
+        copyBtn.setAttribute('title', i18n[lang].contact_copied);
         setTimeout(()=>{
           const hint = i18n[getLang()].contact_copy_hint;
           copyBtn.setAttribute('data-tooltip', hint);
+          copyBtn.setAttribute('title', hint);
         }, 1200);
       }else{
         const lang = getLang();
         copyBtn.setAttribute('data-tooltip', i18n[lang].contact_copy_hint);
+        copyBtn.setAttribute('title', i18n[lang].contact_copy_hint);
       }
     });
   }

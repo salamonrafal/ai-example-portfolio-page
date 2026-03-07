@@ -153,3 +153,22 @@ python -m http.server 8080
     - Dodano tłumaczenia PL/EN dla treści i przycisków popupu.
     - Nadano tekstowi popupu styl konsolowy (prompty `>` i `$`, terminalowe tło i obramowanie).
     - Nadano przyciskom popupu styl konsolowy (terminalowy prefiks `$`, dopasowane kolory, `hover` i `focus`).
+
+## 2026-03-07
+
+- Wszystkie strony (`index/about/projects/tools/contact/404`)
+  - W top menu scalono kontrolki języka, motywu i koloru w jeden blok `Preferencje`.
+  - Przeniesiono etykietę `Preferencje` nad przyciski i poprawiono wyrównanie względem kontrolek.
+  - Dostosowano wygląd bloku `Preferencje` do bardziej konsolowego stylu (ostrzejsze krawędzie, terminalowy nagłówek, panelowe przyciski).
+  - Wprowadzono custom tooltipy dla elementów `Preferencje` (język, motyw, kolor) oraz ujednolicono pozycję tooltipów pod kontrolkami.
+  - Wyłączono systemowe tooltipy w topbarowym bloku `Preferencje` (pozostawiono tylko tooltipy customowe).
+- `assets/js/app.js`
+  - Rozszerzono i18n o opisy tooltipów `prefs_lang_hint`, `prefs_theme_hint`, `prefs_color_hint` (PL/EN).
+  - Dodano logikę aktualizacji `data-tooltip` dla nowych kontrolek oraz warunek pomijający `title` w `.preferences-chip`.
+- `assets/css/styles.css`
+  - Dodano i dopracowano style dla: `.preferences-chip`, `.prefs-heading`, `.prefs-actions`, `.prefs-color-wrap`.
+  - Dodano wspólny mechanizm tooltipa CSS dla kontrolek w `Preferencje`.
+  - Ustawiono tooltipy `Preferencje` na pozycję dolną względem przycisków.
+- Wszystkie strony (`index/about/projects/tools/contact/404`) + `assets/js/app.js` + `assets/css/styles.css`
+  - Podzielono podpis zawodowy w topbarze na dwie linie (`Senior PHP Developer` / `Fullstack Developer`).
+  - Dodano wyrównanie podpisu (`justify`) i korekty szerokości/układu, aby prawa krawędź podpisu kończyła się równo z główną nazwą.

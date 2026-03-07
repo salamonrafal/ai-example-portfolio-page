@@ -46,7 +46,8 @@
         <img src="assets/img/logo.svg" alt="RS logo" />
         <div class="title">
           <strong>Rafał Salamon</strong>
-          <span data-i18n="home_title">Senior PHP Developer / Fullstack Developer</span>
+          <span data-i18n="home_title">Senior PHP Developer
+Fullstack Developer</span>
         </div>
       </a>
 
@@ -60,14 +61,13 @@
 
       <div class="actions">
         <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
-        <div class="chip" title="Language / Język">
-          <span data-i18n="chip_lang">Język</span>
-          <button type="button" data-action="toggle-lang">PL</button>
-        </div>
-        <div class="chip" title="Theme / Motyw">
-          <span data-i18n="chip_theme">Motyw</span>
-          <button type="button" data-action="toggle-theme">🌙</button>
-          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        <div class="chip preferences-chip">
+          <span class="prefs-heading" data-i18n="chip_prefs">Preferencje</span>
+          <div class="prefs-actions">
+            <button type="button" data-action="toggle-lang" data-i18n-tooltip="prefs_lang_hint" data-tooltip="Przełącza język strony">PL</button>
+            <button type="button" data-action="toggle-theme" data-i18n-tooltip="prefs_theme_hint" data-tooltip="Przełącza motyw jasny/ciemny">🌙</button>
+            <span class="prefs-color-wrap" data-i18n-tooltip="prefs_color_hint" data-tooltip="Zmienia kolor akcentu interfejsu"><input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" /></span>
+          </div>
         </div>
       </div>
     </div>

@@ -300,11 +300,13 @@ async function typeTerminal(root, lines, renderId){
     row.appendChild(p);
     row.appendChild(text);
     root.appendChild(row);
+    root.scrollTop = root.scrollHeight;
 
     const str = line.v;
     for(let i=0;i<str.length;i++){
       if(renderId !== terminalRenderId) return;
       text.textContent += str[i];
+      root.scrollTop = root.scrollHeight;
       await sleep(12 + Math.random()*18);
     }
     if(renderId !== terminalRenderId) return;
@@ -314,6 +316,7 @@ async function typeTerminal(root, lines, renderId){
   const c = document.createElement('span');
   c.className='cursor';
   root.appendChild(c);
+  root.scrollTop = root.scrollHeight;
 }
 
 function setupNav(){

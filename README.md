@@ -188,3 +188,11 @@ python -m http.server 8080
     - Dodano zmienne układu `--topbar-height` i `--topbar-gap` dla kontrolowania odstępu od menu.
     - Ustawiono odstęp pod menu na desktopie na około `20px`.
     - Zmniejszono odstęp pod menu na urządzeniach mobilnych (`<=768px`, `<=480px`, `<=360px`) dla bardziej proporcjonalnego układu.
+  - `index.html` / `assets/css/styles.css` / `assets/js/app.js`
+    - W sekcji konsoli na stronie głównej poprawiono zachowanie na mobile (`<=768px`):
+      - ustawiono stałą wysokość bloku terminala (`260px`),
+      - dodano przewijanie wewnętrzne (`overflow-y: auto`) zamiast rozszerzania sekcji.
+    - Dodano auto-scroll animacji terminala do ostatniej linii podczas wpisywania tekstu.
+    - Rozdzielono stylowanie komend i rezultatów:
+      - komendy (`.cmd`) otrzymały osobny kolor,
+      - rezultaty (`.out`) otrzymały bardziej konsolowy wygląd (przygaszony kolor, łamanie długich linii, subtelna poświata tekstu).

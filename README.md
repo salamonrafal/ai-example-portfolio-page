@@ -182,3 +182,9 @@ python -m http.server 8080
     - Naprawiono problemy z przewijaniem:
       - usunięto poziome przesuwanie strony na mobile (`overflow-x: hidden`),
       - przywrócono pionowe przewijanie strony (`overflow-y: auto`).
+  - `assets/css/styles.css`
+    - Ustawiono górne menu jako stale widoczne podczas przewijania strony (`position: fixed`).
+    - Dodano kompensację wysokości menu przez `padding-top` w `body`, aby treść nie chowała się pod topbarem.
+    - Dodano zmienne układu `--topbar-height` i `--topbar-gap` dla kontrolowania odstępu od menu.
+    - Ustawiono odstęp pod menu na desktopie na około `20px`.
+    - Zmniejszono odstęp pod menu na urządzeniach mobilnych (`<=768px`, `<=480px`, `<=360px`) dla bardziej proporcjonalnego układu.

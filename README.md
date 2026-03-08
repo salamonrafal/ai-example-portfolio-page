@@ -235,3 +235,48 @@ python -m http.server 8080
       - miniatury (podgląd) dla każdego motywu,
       - wyraźny podział na sekcje `Motyw` i `Preferencje`.
     - Dodano stopkę z prawami autorskimi i linkiem do `https://www.salamonrafal.pl/`, następnie przeniesiono ją na dół strony (poza `main`).
+
+## 2026-03-08
+
+- `tools/start-page.html`
+  - W popupie preferencji dodano wybór tła strony:
+    - `Default`,
+    - `Obrazek 1` (`tools/assets/background_1.png`),
+    - `Obrazek 2` (`tools/assets/background_2.png`),
+    - `Obrazek 3` (`tools/assets/background_3.png`).
+  - Rozszerzono logikę preferencji o zapis/odczyt tła w `localStorage`.
+  - Poprawiono popup preferencji na urządzeniach mobilnych:
+    - dodano przewijanie,
+    - zmniejszono elementy i odstępy,
+    - dopasowano wysokość i pozycjonowanie.
+  - Rozszerzono szerokość popupu preferencji do szerokości głównego okna terminala.
+  - Zmniejszono elementy list `Motyw` i `Tło`, aby ograniczyć przewijanie.
+  - Dodano rozpoznawanie wpisu w polu wyszukiwania:
+    - URL -> bezpośrednie przejście na stronę,
+    - tekst -> wyszukiwanie.
+  - Dodano autosugestie ostatnich wpisów z historią w `localStorage`.
+  - Zastąpiono natywny `datalist` własną listą sugestii:
+    - lista wyrównana do pola wyszukiwania,
+    - wyświetlana jako overlay (bez przesuwania układu),
+    - pokazywana dopiero po rozpoczęciu wpisywania.
+  - Ujednolicono wizualnie pole wyszukiwania i listę podpowiedzi:
+    - usuwanie dolnych zaokrągleń pola przy otwartej liście,
+    - minimalistyczny scrollbar,
+    - podświetlanie dopasowanego fragmentu wpisu.
+  - Dodano typy sugestii (`strona`, `tekst`) i prezentację typu przy każdym elemencie listy.
+  - Dodano przycisk `▼` po prawej stronie pola:
+    - pokazuje 10 ostatnich haseł pogrupowanych: `Top strony` (5) i `Top teksty` (5).
+  - Dodano przełącznik silnika po lewej stronie pola:
+    - tryb wyszukiwarki,
+    - tryb ChatGPT.
+  - Dodano przekierowanie tekstowych zapytań do ChatGPT w trybie AI (`https://chatgpt.com/?q=...`), z zachowaniem bezpośredniego wejścia dla URL.
+  - Dodano dynamiczną zmianę etykiety przycisku:
+    - `Szukaj` dla zapytań tekstowych,
+    - `Przejdź` dla URL.
+  - Dodano dynamiczną zmianę prompta:
+    - `$ search --engine google` / `$ search --engine chat-gpt` zależnie od trybu.
+  - Zmieniono ikonę trybu wyszukiwarki na wersję bardziej konsolową (`>_`).
+  - Dodano lokalny plik ikony OpenAI:
+    - `tools/assets/openai.svg`,
+    - usunięto zależność od zewnętrznego URL.
+  - Dopracowano wyświetlanie ikony AI i kolorystykę pod styl konsolowy.

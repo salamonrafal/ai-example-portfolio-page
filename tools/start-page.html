@@ -34,6 +34,10 @@
         radial-gradient(1200px 800px at 20% 0%, rgba(61, 255, 156, 0.08), transparent 62%),
         radial-gradient(1000px 700px at 80% 100%, rgba(57, 210, 255, 0.08), transparent 58%),
         linear-gradient(165deg, var(--bg-0), var(--bg-1));
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
       font-family: Consolas, "Cascadia Code", "Courier New", monospace;
     }
 
@@ -173,6 +177,204 @@
     .search button:hover {
       background: rgba(10, 18, 26, 0.98);
       color: #b8ffd8;
+    }
+
+    .search-engine-toggle {
+      border: 0;
+      border-right: 1px solid rgba(61, 255, 156, 0.35);
+      width: 42px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(6, 12, 18, 0.95);
+      color: var(--accent);
+      font: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      flex: 0 0 42px;
+      position: relative;
+    }
+
+    .search-engine-toggle:hover {
+      background: rgba(10, 18, 26, 0.98);
+      color: #b8ffd8;
+    }
+
+    .search-engine-icon-search {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      line-height: 1;
+      font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .search-engine-icon-openai {
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      display: none;
+      object-fit: contain;
+      color: inherit;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .search-engine-toggle.ai .search-engine-icon-search {
+      display: none;
+    }
+
+    .search-engine-toggle.ai .search-engine-icon-openai {
+      display: block;
+    }
+
+    .search-history-toggle {
+      border: 0;
+      border-left: 1px solid rgba(61, 255, 156, 0.35);
+      width: 40px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(6, 12, 18, 0.95);
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .search-history-toggle:hover {
+      background: rgba(10, 18, 26, 0.98);
+      color: #b8ffd8;
+    }
+
+    .search-wrap.suggestions-open .search-history-toggle {
+      color: var(--accent);
+    }
+
+    .search-wrap {
+      width: 100%;
+      max-width: 620px;
+      position: relative;
+    }
+
+    .search-wrap.suggestions-open .search {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 6px;
+      list-style: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 0;
+      border-radius: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background: rgba(5, 10, 15, 0.95);
+      text-align: left;
+      z-index: 40;
+      max-height: 220px;
+      overflow-y: auto;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(61, 255, 156, 0.45) transparent;
+    }
+
+    .search-suggestions::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .search-suggestions::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .search-suggestions::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(61, 255, 156, 0.6), rgba(57, 210, 255, 0.5));
+      border-radius: 999px;
+      border: 2px solid rgba(5, 10, 15, 0.95);
+    }
+
+    .search-suggestions::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, rgba(61, 255, 156, 0.8), rgba(57, 210, 255, 0.75));
+    }
+
+    .search-suggestions[hidden] {
+      display: none;
+    }
+
+    .search-suggestion-item {
+      margin: 0;
+    }
+
+    .search-suggestion-group {
+      margin: 4px 0 2px;
+      padding: 4px 8px 2px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .search-suggestion-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .search-suggestion-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .search-suggestion-value {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .search-suggestion-type {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 0.68rem;
+      line-height: 1.4;
+      color: var(--muted);
+      text-transform: lowercase;
+    }
+
+    .search-suggestion-highlight {
+      color: #0b1220;
+      background: rgba(61, 255, 156, 0.9);
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+
+    .search-suggestion-btn:hover {
+      background: rgba(12, 20, 29, 0.95);
+      color: var(--accent);
     }
 
     .favorites {
@@ -546,16 +748,20 @@
       place-items: center;
       padding: 20px;
       background: rgba(0, 0, 0, 0.55);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .prefs-card {
-      width: min(520px, 100%);
+      width: min(780px, 100%);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 12px;
       background: #0a1118;
       padding: 14px;
       text-align: left;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      max-height: calc(100dvh - 40px);
+      overflow-y: auto;
     }
 
     .prefs-head {
@@ -576,17 +782,17 @@
     .theme-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
     .theme-option {
       display: grid;
       grid-template-rows: auto auto;
-      gap: 8px;
+      gap: 6px;
       border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 8px;
-      padding: 8px;
+      padding: 6px;
       background: rgba(6, 12, 18, 0.7);
       cursor: pointer;
     }
@@ -599,7 +805,7 @@
     }
 
     .theme-name {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--muted);
     }
 
@@ -610,12 +816,18 @@
 
     .theme-preview {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 16 / 7;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.15);
       object-fit: cover;
       display: block;
       background: #121820;
+    }
+
+    .background-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
     }
 
     .prefs-row {
@@ -853,6 +1065,31 @@
       background: rgba(49, 56, 65, 0.55);
     }
 
+    body[data-background="default"] {
+      background-image:
+        radial-gradient(1200px 800px at 20% 0%, rgba(61, 255, 156, 0.08), transparent 62%),
+        radial-gradient(1000px 700px at 80% 100%, rgba(57, 210, 255, 0.08), transparent 58%),
+        linear-gradient(165deg, var(--bg-0), var(--bg-1));
+    }
+
+    body[data-background="image1"] {
+      background-image:
+        linear-gradient(rgba(4, 10, 16, 0.45), rgba(4, 10, 16, 0.6)),
+        url("assets/background_1.png");
+    }
+
+    body[data-background="image2"] {
+      background-image:
+        linear-gradient(rgba(4, 10, 16, 0.45), rgba(4, 10, 16, 0.6)),
+        url("assets/background_2.png");
+    }
+
+    body[data-background="image3"] {
+      background-image:
+        linear-gradient(rgba(4, 10, 16, 0.45), rgba(4, 10, 16, 0.6)),
+        url("assets/background_3.png");
+    }
+
     .hint {
       margin: 0;
       color: var(--muted);
@@ -877,6 +1114,35 @@
     }
 
     @media (max-width: 620px) {
+      .prefs-modal {
+        place-items: start center;
+        padding: 12px;
+      }
+
+      .prefs-card {
+        padding: 10px;
+        max-height: calc(100dvh - 24px);
+      }
+
+      .prefs-head {
+        margin: -10px -10px 8px;
+        padding: 8px 10px;
+      }
+
+      .prefs-title {
+        font-size: 0.82rem;
+      }
+
+      .prefs-section {
+        margin-bottom: 10px;
+        padding: 8px;
+      }
+
+      .prefs-section-title {
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+      }
+
       .search {
         flex-direction: column;
       }
@@ -891,6 +1157,43 @@
 
       .theme-list {
         grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .background-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .theme-option {
+        gap: 6px;
+        padding: 6px;
+      }
+
+      .theme-name {
+        font-size: 0.72rem;
+      }
+
+      .theme-preview {
+        aspect-ratio: 16 / 9;
+      }
+
+      .prefs-row {
+        margin-bottom: 10px;
+        padding: 6px 8px;
+      }
+
+      .prefs-row label {
+        font-size: 0.76rem;
+      }
+
+      .prefs-actions {
+        margin-top: 2px;
+      }
+
+      .prefs-close {
+        padding: 7px 9px;
+        font-size: 0.8rem;
       }
 
       .brand {
@@ -919,13 +1222,21 @@
         </div>
       </div>
 
-      <div class="prompt">$ search --engine google</div>
+      <div class="prompt" id="search-prompt">$ search --engine google</div>
 
-      <form class="search" action="https://www.google.com/search" method="get" role="search">
-        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Wyszukaj w Google</label>
-        <input id="q" name="q" type="search" placeholder="Wpisz zapytanie i naciśnij Enter" autocomplete="off" autofocus />
-        <button type="submit">Szukaj</button>
-      </form>
+      <div class="search-wrap">
+        <form class="search" action="https://www.google.com/search" method="get" role="search">
+          <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Wyszukaj w Google</label>
+          <button type="button" class="search-engine-toggle" id="search-engine-toggle" aria-label="Przełącz wyszukiwarkę">
+            <span class="search-engine-icon-search" aria-hidden="true">&gt;_</span>
+            <img class="search-engine-icon-openai" src="assets/openai.svg" width="22" height="22" alt="" aria-hidden="true" />
+          </button>
+          <input id="q" name="q" type="search" placeholder="Wpisz zapytanie i naciśnij Enter" autocomplete="off" autofocus />
+          <button type="button" class="search-history-toggle" id="search-history-toggle" aria-label="Pokaż ostatnie wyszukiwania">▼</button>
+          <button type="submit" id="search-submit">Szukaj</button>
+        </form>
+        <ul class="search-suggestions" id="search-suggestions" hidden></ul>
+      </div>
 
       <section class="favorites" aria-label="Ulubione linki">
         <div class="favorites-header">
@@ -1005,6 +1316,39 @@
         </div>
       </div>
       <div class="prefs-section">
+        <h4 class="prefs-section-title">Tło strony</h4>
+        <div class="background-list">
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Default</span>
+              <input type="radio" name="background" value="default" />
+            </div>
+            <img class="theme-preview" alt="Podgląd domyślnego tła" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23070a0e'/><stop offset='1' stop-color='%230e141c'/></linearGradient></defs><rect width='240' height='150' rx='10' fill='url(%23g)'/><circle cx='62' cy='42' r='34' fill='rgba(61,255,156,0.16)'/><circle cx='186' cy='102' r='38' fill='rgba(57,210,255,0.14)'/></svg>" />
+          </label>
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Obrazek 1</span>
+              <input type="radio" name="background" value="image1" />
+            </div>
+            <img class="theme-preview" alt="Podgląd tła Obrazek 1" src="assets/background_1.png" />
+          </label>
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Obrazek 2</span>
+              <input type="radio" name="background" value="image2" />
+            </div>
+            <img class="theme-preview" alt="Podgląd tła Obrazek 2" src="assets/background_2.png" />
+          </label>
+          <label class="theme-option">
+            <div class="theme-top">
+              <span class="theme-name">Obrazek 3</span>
+              <input type="radio" name="background" value="image3" />
+            </div>
+            <img class="theme-preview" alt="Podgląd tła Obrazek 3" src="assets/background_3.png" />
+          </label>
+        </div>
+      </div>
+      <div class="prefs-section">
         <h4 class="prefs-section-title">Preferencje</h4>
         <div class="prefs-row">
           <label for="pref-lowercase">Nazwy linków małymi literami</label>
@@ -1020,6 +1364,17 @@
     (function () {
       var STORAGE_KEY = "startPageFavorites";
       var PREFS_KEY = "startPagePreferences";
+      var RECENT_SEARCHES_KEY = "startPageRecentSearches";
+      var RECENT_SEARCH_LIMIT = 30;
+      var GROUP_LIMIT_PER_TYPE = 5;
+      var searchForm = document.querySelector('form.search');
+      var searchWrap = document.querySelector(".search-wrap");
+      var searchPrompt = document.getElementById("search-prompt");
+      var searchInput = document.getElementById("q");
+      var searchEngineToggle = document.getElementById("search-engine-toggle");
+      var searchHistoryToggle = document.getElementById("search-history-toggle");
+      var searchSubmitButton = document.getElementById("search-submit");
+      var searchSuggestions = document.getElementById("search-suggestions");
       var form = document.getElementById("favorites-form");
       var list = document.getElementById("favorites-list");
       var empty = document.getElementById("favorites-empty");
@@ -1037,6 +1392,8 @@
       var closePrefsButton = document.getElementById("close-prefs");
       var lowercaseToggle = document.getElementById("pref-lowercase");
       var themeInputs = document.querySelectorAll('input[name="theme"]');
+      var backgroundInputs = document.querySelectorAll('input[name="background"]');
+      var currentSearchEngine = "google";
       var selected = new Set();
       var deleteMode = false;
 
@@ -1061,14 +1418,27 @@
         document.body.setAttribute("data-theme", selectedTheme);
       }
 
+      function applyBackground(background) {
+        var allowed = ["default", "image1", "image2", "image3"];
+        var selectedBackground = allowed.indexOf(background) >= 0 ? background : "default";
+        document.body.setAttribute("data-background", selectedBackground);
+      }
+
       function applyPreferences(prefs) {
         var theme = prefs && prefs.theme ? prefs.theme : "linux";
+        var background = prefs && prefs.background ? prefs.background : "default";
+        var searchEngine = prefs && prefs.searchEngine ? prefs.searchEngine : "google";
         var lowercase = !prefs || prefs.lowercaseNames !== false;
         applyTheme(theme);
+        applyBackground(background);
+        setSearchEngine(searchEngine);
         document.body.classList.toggle("pref-lowercase-names", lowercase);
         lowercaseToggle.checked = lowercase;
         themeInputs.forEach(function (input) {
           input.checked = input.value === theme;
+        });
+        backgroundInputs.forEach(function (input) {
+          input.checked = input.value === background;
         });
       }
 
@@ -1077,9 +1447,15 @@
         themeInputs.forEach(function (input) {
           if (input.checked) checkedTheme = input.value;
         });
+        var checkedBackground = "default";
+        backgroundInputs.forEach(function (input) {
+          if (input.checked) checkedBackground = input.value;
+        });
 
         var prefs = {
           theme: checkedTheme,
+          background: checkedBackground,
+          searchEngine: currentSearchEngine,
           lowercaseNames: lowercaseToggle.checked
         };
 
@@ -1132,6 +1508,219 @@
           value = "https://" + value;
         }
         return value;
+      }
+
+      function readRecentSearches() {
+        try {
+          var raw = localStorage.getItem(RECENT_SEARCHES_KEY);
+          if (!raw) return [];
+          var parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return [];
+          return parsed
+            .map(function (entry) {
+              if (typeof entry === "string") {
+                var legacyValue = entry.trim();
+                if (!legacyValue) return null;
+                return {
+                  value: legacyValue,
+                  type: isLikelyUrl(legacyValue) ? "strona" : "tekst"
+                };
+              }
+              if (!entry || typeof entry !== "object") return null;
+              var value = typeof entry.value === "string" ? entry.value.trim() : "";
+              if (!value) return null;
+              var type = entry.type === "strona" || entry.type === "tekst"
+                ? entry.type
+                : (isLikelyUrl(value) ? "strona" : "tekst");
+              return { value: value, type: type };
+            })
+            .filter(Boolean);
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function writeRecentSearches(values) {
+        localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(values));
+      }
+
+      function setSuggestionsOpen(isOpen) {
+        searchSuggestions.hidden = !isOpen;
+        searchWrap.classList.toggle("suggestions-open", isOpen);
+      }
+
+      function setSearchEngine(engine) {
+        currentSearchEngine = engine === "chatgpt" ? "chatgpt" : "google";
+        if (currentSearchEngine === "chatgpt") {
+          searchEngineToggle.classList.add("ai");
+          searchEngineToggle.setAttribute("aria-label", "Silnik: ChatGPT");
+          searchEngineToggle.title = "Silnik: ChatGPT";
+          searchPrompt.textContent = "$ search --engine chat-gpt";
+        } else {
+          searchEngineToggle.classList.remove("ai");
+          searchEngineToggle.setAttribute("aria-label", "Silnik: Wyszukiwarka");
+          searchEngineToggle.title = "Silnik: Wyszukiwarka";
+          searchPrompt.textContent = "$ search --engine google";
+        }
+      }
+
+      function updateSearchSubmitLabel(value) {
+        searchSubmitButton.textContent = isLikelyUrl(value) ? "Przejdź" : "Szukaj";
+      }
+
+      function appendHighlightedText(container, text, query) {
+        var source = String(text || "");
+        var needle = String(query || "").trim();
+        if (!needle) {
+          container.textContent = source;
+          return;
+        }
+
+        var sourceLower = source.toLowerCase();
+        var needleLower = needle.toLowerCase();
+        var fromIndex = 0;
+
+        while (fromIndex < source.length) {
+          var matchIndex = sourceLower.indexOf(needleLower, fromIndex);
+          if (matchIndex < 0) {
+            container.appendChild(document.createTextNode(source.slice(fromIndex)));
+            break;
+          }
+
+          if (matchIndex > fromIndex) {
+            container.appendChild(document.createTextNode(source.slice(fromIndex, matchIndex)));
+          }
+
+          var mark = document.createElement("mark");
+          mark.className = "search-suggestion-highlight";
+          mark.textContent = source.slice(matchIndex, matchIndex + needle.length);
+          container.appendChild(mark);
+
+          fromIndex = matchIndex + needle.length;
+        }
+      }
+
+      function renderRecentSearches(filterValue) {
+        var query = (filterValue || "").trim().toLowerCase();
+        if (!query) {
+          setSuggestionsOpen(false);
+          searchSuggestions.innerHTML = "";
+          return;
+        }
+        var values = readRecentSearches().filter(function (entry) {
+          return entry.value.toLowerCase().indexOf(query) >= 0;
+        });
+        searchSuggestions.innerHTML = "";
+        if (!values.length) {
+          setSuggestionsOpen(false);
+          return;
+        }
+        values.forEach(function (entry) {
+          appendSuggestionItem(entry, query);
+        });
+        setSuggestionsOpen(true);
+      }
+
+      function appendSuggestionItem(entry, query) {
+        var item = document.createElement("li");
+        item.className = "search-suggestion-item";
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "search-suggestion-btn";
+
+        var content = document.createElement("span");
+        content.className = "search-suggestion-content";
+
+        var valueText = document.createElement("span");
+        valueText.className = "search-suggestion-value";
+        appendHighlightedText(valueText, entry.value, query || "");
+
+        var typeText = document.createElement("span");
+        typeText.className = "search-suggestion-type";
+        typeText.textContent = entry.type;
+
+        content.appendChild(valueText);
+        content.appendChild(typeText);
+        button.appendChild(content);
+
+        button.addEventListener("click", function () {
+          searchInput.value = entry.value;
+          updateSearchSubmitLabel(entry.value);
+          setSuggestionsOpen(false);
+          searchInput.focus();
+        });
+
+        item.appendChild(button);
+        searchSuggestions.appendChild(item);
+      }
+
+      function appendSuggestionGroup(title, entries) {
+        if (!entries.length) return;
+        var header = document.createElement("li");
+        header.className = "search-suggestion-group";
+        header.textContent = title;
+        searchSuggestions.appendChild(header);
+        entries.forEach(function (entry) {
+          appendSuggestionItem(entry, "");
+        });
+      }
+
+      function renderGroupedRecentSearches() {
+        var entries = readRecentSearches();
+        var pages = [];
+        var texts = [];
+
+        entries.forEach(function (entry) {
+          if (entry.type === "strona" && pages.length < GROUP_LIMIT_PER_TYPE) {
+            pages.push(entry);
+            return;
+          }
+          if (entry.type === "tekst" && texts.length < GROUP_LIMIT_PER_TYPE) {
+            texts.push(entry);
+          }
+        });
+
+        searchSuggestions.innerHTML = "";
+        appendSuggestionGroup("Top strony", pages);
+        appendSuggestionGroup("Top teksty", texts);
+
+        if (!pages.length && !texts.length) {
+          setSuggestionsOpen(false);
+          return;
+        }
+
+        setSuggestionsOpen(true);
+      }
+
+      function rememberSearchValue(value) {
+        var trimmed = (value || "").trim();
+        if (!trimmed) return;
+        var type = isLikelyUrl(trimmed) ? "strona" : "tekst";
+
+        var values = readRecentSearches().filter(function (item) {
+          return item.value.toLowerCase() !== trimmed.toLowerCase();
+        });
+        values.unshift({
+          value: trimmed,
+          type: type
+        });
+        if (values.length > RECENT_SEARCH_LIMIT) {
+          values = values.slice(0, RECENT_SEARCH_LIMIT);
+        }
+        writeRecentSearches(values);
+        renderRecentSearches(searchInput.value);
+      }
+
+      function isLikelyUrl(value) {
+        if (!value) return false;
+        var trimmed = value.trim();
+        if (!trimmed || /\s/.test(trimmed)) return false;
+
+        if (/^https?:\/\//i.test(trimmed)) return true;
+        if (/^localhost(?::\d+)?(\/.*)?$/i.test(trimmed)) return true;
+        if (/^\d{1,3}(\.\d{1,3}){3}(?::\d+)?(\/.*)?$/.test(trimmed)) return true;
+
+        return /^[a-z0-9-]+(\.[a-z0-9-]+)+(?::\d+)?(\/.*)?$/i.test(trimmed);
       }
 
       function randomColor() {
@@ -1316,6 +1905,47 @@
         });
       }
 
+      searchForm.addEventListener("submit", function (event) {
+        var value = searchInput.value.trim();
+        updateSearchSubmitLabel(value);
+        rememberSearchValue(value);
+        setSuggestionsOpen(false);
+        if (!isLikelyUrl(value)) return;
+        event.preventDefault();
+        window.location.href = normalizeUrl(value);
+      });
+      searchEngineToggle.addEventListener("click", function () {
+        setSearchEngine(currentSearchEngine === "google" ? "chatgpt" : "google");
+        saveCurrentPreferences();
+      });
+      searchForm.addEventListener("submit", function (event) {
+        var value = searchInput.value.trim();
+        if (!value || isLikelyUrl(value)) return;
+        if (currentSearchEngine !== "chatgpt") return;
+        event.preventDefault();
+        window.location.href = "https://chatgpt.com/?q=" + encodeURIComponent(value);
+      });
+      searchInput.addEventListener("focus", function () {
+        setSuggestionsOpen(false);
+      });
+      searchInput.addEventListener("input", function () {
+        updateSearchSubmitLabel(searchInput.value);
+        renderRecentSearches(searchInput.value);
+      });
+      searchHistoryToggle.addEventListener("click", function () {
+        if (!searchSuggestions.hidden) {
+          setSuggestionsOpen(false);
+          return;
+        }
+        renderGroupedRecentSearches();
+      });
+      document.addEventListener("click", function (event) {
+        if (event.target === searchInput) return;
+        if (event.target === searchHistoryToggle) return;
+        if (searchSuggestions.contains(event.target)) return;
+        setSuggestionsOpen(false);
+      });
+
       form.addEventListener("submit", async function (event) {
         event.preventDefault();
         var name = nameInput.value.trim();
@@ -1355,6 +1985,9 @@
       themeInputs.forEach(function (input) {
         input.addEventListener("change", saveCurrentPreferences);
       });
+      backgroundInputs.forEach(function (input) {
+        input.addEventListener("change", saveCurrentPreferences);
+      });
       lowercaseToggle.addEventListener("change", saveCurrentPreferences);
       deleteSelectedButton.addEventListener("click", function () {
         deleteMode = !deleteMode;
@@ -1386,6 +2019,8 @@
       });
 
       applyPreferences(readPrefs());
+      updateSearchSubmitLabel(searchInput.value);
+      renderRecentSearches("");
       render();
     })();
   </script>

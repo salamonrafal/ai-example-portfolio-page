@@ -1113,6 +1113,112 @@
       text-decoration: underline;
     }
 
+    .guide-overlay[hidden] {
+      display: none;
+    }
+
+    .guide-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1400;
+      display: block;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .guide-card {
+      position: fixed;
+      width: min(520px, calc(100vw - 24px));
+      border: 1px solid rgba(61, 255, 156, 0.35);
+      border-radius: 12px;
+      background: #0a1118;
+      padding: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+      text-align: left;
+    }
+
+    .guide-top {
+      margin: -14px -14px 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      background: rgba(20, 28, 36, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .guide-step {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .guide-title {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .guide-text {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.5;
+      font-size: 0.88rem;
+    }
+
+    .guide-actions {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .guide-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .guide-btn {
+      border: 1px solid rgba(61, 255, 156, 0.35);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      background: rgba(6, 12, 18, 0.95);
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .guide-btn:hover {
+      color: #b8ffd8;
+      background: rgba(10, 18, 26, 0.98);
+    }
+
+    .guide-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .guide-btn.skip {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: var(--muted);
+    }
+
+    .guide-target {
+      outline: 2px solid rgba(61, 255, 156, 0.95);
+      outline-offset: 4px;
+      border-radius: inherit;
+      box-shadow: 0 0 0 10px rgba(61, 255, 156, 0.28), 0 0 36px rgba(61, 255, 156, 0.5);
+      filter: brightness(1.38) saturate(1.14) contrast(1.08);
+      pointer-events: none;
+    }
+
     @media (max-width: 620px) {
       .prefs-modal {
         place-items: start center;
@@ -1199,6 +1305,23 @@
       .brand {
         flex-direction: column;
         gap: 10px;
+      }
+
+      .guide-overlay {
+        padding: 12px;
+      }
+
+      .guide-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .guide-nav {
+        width: 100%;
+      }
+
+      .guide-nav .guide-btn {
+        flex: 1;
       }
     }
   </style>
@@ -1360,15 +1483,33 @@
       </div>
     </div>
   </div>
+  <div class="guide-overlay" id="start-guide" hidden>
+    <div class="guide-card" role="dialog" aria-modal="true" aria-labelledby="guide-title" aria-describedby="guide-text">
+      <div class="guide-top">
+        <p class="guide-step" id="guide-step">Krok 1 / 6</p>
+        <button type="button" class="guide-btn skip" id="guide-skip">Pomiń</button>
+      </div>
+      <h3 class="guide-title" id="guide-title">Przewodnik</h3>
+      <p class="guide-text" id="guide-text"></p>
+      <div class="guide-actions">
+        <div class="guide-nav">
+          <button type="button" class="guide-btn" id="guide-prev">Wstecz</button>
+          <button type="button" class="guide-btn" id="guide-next">Dalej</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     (function () {
       var STORAGE_KEY = "startPageFavorites";
       var PREFS_KEY = "startPagePreferences";
       var RECENT_SEARCHES_KEY = "startPageRecentSearches";
+      var GUIDE_DONE_KEY = "startPageGuideDone";
       var RECENT_SEARCH_LIMIT = 30;
       var GROUP_LIMIT_PER_TYPE = 5;
       var searchForm = document.querySelector('form.search');
       var searchWrap = document.querySelector(".search-wrap");
+      var favoritesSection = document.querySelector(".favorites");
       var searchPrompt = document.getElementById("search-prompt");
       var searchInput = document.getElementById("q");
       var searchEngineToggle = document.getElementById("search-engine-toggle");
@@ -1393,9 +1534,163 @@
       var lowercaseToggle = document.getElementById("pref-lowercase");
       var themeInputs = document.querySelectorAll('input[name="theme"]');
       var backgroundInputs = document.querySelectorAll('input[name="background"]');
+      var guideOverlay = document.getElementById("start-guide");
+      var guideCard = guideOverlay ? guideOverlay.querySelector(".guide-card") : null;
+      var guideStep = document.getElementById("guide-step");
+      var guideTitle = document.getElementById("guide-title");
+      var guideText = document.getElementById("guide-text");
+      var guideSkip = document.getElementById("guide-skip");
+      var guidePrev = document.getElementById("guide-prev");
+      var guideNext = document.getElementById("guide-next");
       var currentSearchEngine = "google";
       var selected = new Set();
       var deleteMode = false;
+      var guideIndex = 0;
+      var activeGuideTarget = null;
+      var activeGuideTargetPrevPosition = "";
+      var activeGuideTargetPrevZIndex = "";
+
+      var guideSteps = [
+        {
+          target: searchWrap,
+          title: "Szybkie wyszukiwanie",
+          text: "Tutaj wpiszesz zapytanie i naciśniesz Enter. Jeśli wpiszesz adres strony (np. github.com), przycisk zmieni się na 'Przejdź' i otworzy stronę bez szukania.",
+          shouldScroll: true
+        },
+        {
+          target: searchEngineToggle,
+          title: "Silnik i historia",
+          text: "Lewy przycisk przełącza silnik Google/ChatGPT, a strzałka obok pola pokazuje zapisane wyszukania. Podpowiedzi są filtrowane podczas pisania.",
+          shouldScroll: true
+        },
+        {
+          target: searchHistoryToggle,
+          title: "Strzałka w dół (historia)",
+          text: "Strzałka ▼ pokazuje historię wyszukiwań. Gdy pole jest puste, zobaczysz grupy 'Top strony' i 'Top teksty' (do 5 pozycji na grupę). Gdy wpisujesz tekst, lista filtruje tylko pasujące wpisy. Kliknięcie strzałki ponownie lub kliknięcie poza listą zamyka podpowiedzi.",
+          shouldScroll: true
+        },
+        {
+          target: favoritesSection,
+          title: "Ulubione skróty",
+          text: "Sekcja 'favorites' trzyma Twoje skróty. '+' dodaje nową stronę, kosz uruchamia tryb zaznaczania i usuwania. Wszystko zapisuje się lokalnie w przeglądarce.",
+          shouldScroll: true
+        },
+        {
+          target: openPrefsButton,
+          title: "Personalizacja",
+          text: "Przycisk z pędzlem otwiera preferencje: motyw konsoli, tło strony i sposób wyświetlania nazw linków.",
+          shouldScroll: false
+        },
+        {
+          target: null,
+          title: "Gotowe",
+          text: "To wszystkie funkcje strony startowej. Po zakończeniu lub pominięciu ten przewodnik nie pojawi się ponownie.",
+          shouldScroll: false
+        }
+      ];
+
+      function setGuideTarget(element, shouldScroll) {
+        if (activeGuideTarget) {
+          activeGuideTarget.classList.remove("guide-target");
+          activeGuideTarget.style.position = activeGuideTargetPrevPosition;
+          activeGuideTarget.style.zIndex = activeGuideTargetPrevZIndex;
+        }
+        activeGuideTarget = element || null;
+        if (activeGuideTarget) {
+          activeGuideTarget.classList.add("guide-target");
+          activeGuideTargetPrevPosition = activeGuideTarget.style.position;
+          activeGuideTargetPrevZIndex = activeGuideTarget.style.zIndex;
+
+          var activeGuideTargetComputedStyle = window.getComputedStyle(activeGuideTarget);
+          if (activeGuideTargetComputedStyle.position === "static") {
+            activeGuideTarget.style.position = "relative";
+          }
+          activeGuideTarget.style.zIndex = "1450";
+
+          if (shouldScroll !== false) {
+            var rect = activeGuideTarget.getBoundingClientRect();
+            var isFixed = activeGuideTargetComputedStyle.position === "fixed";
+            var isVisibleInViewport =
+              rect.top >= 24 &&
+              rect.left >= 24 &&
+              rect.bottom <= window.innerHeight - 24 &&
+              rect.right <= window.innerWidth - 24;
+
+            if (!isFixed && !isVisibleInViewport) {
+              activeGuideTarget.scrollIntoView({ behavior: "auto", block: "center", inline: "nearest" });
+            }
+          }
+        }
+        positionGuideCard(activeGuideTarget);
+      }
+
+      function positionGuideCard(target) {
+        if (!guideCard || guideOverlay.hidden) return;
+
+        var padding = 12;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var cardRect = guideCard.getBoundingClientRect();
+        var cardWidth = cardRect.width;
+        var cardHeight = cardRect.height;
+
+        var left = viewportWidth - cardWidth - padding;
+        var top = padding;
+
+        if (target) {
+          var targetRect = target.getBoundingClientRect();
+          var targetCenterX = targetRect.left + (targetRect.width / 2);
+          var targetCenterY = targetRect.top + (targetRect.height / 2);
+
+          if (targetCenterX > viewportWidth / 2) {
+            left = Math.max(padding, targetRect.left - cardWidth - padding);
+          } else {
+            left = Math.min(viewportWidth - cardWidth - padding, targetRect.right + padding);
+          }
+
+          if (targetCenterY > viewportHeight / 2) {
+            top = Math.max(padding, targetRect.top - cardHeight - padding);
+          } else {
+            top = Math.min(viewportHeight - cardHeight - padding, targetRect.bottom + padding);
+          }
+        } else {
+          left = (viewportWidth - cardWidth) / 2;
+          top = (viewportHeight - cardHeight) / 2;
+        }
+
+        left = Math.max(padding, Math.min(left, viewportWidth - cardWidth - padding));
+        top = Math.max(padding, Math.min(top, viewportHeight - cardHeight - padding));
+        guideCard.style.left = left + "px";
+        guideCard.style.top = top + "px";
+      }
+
+      function closeGuide(markDone) {
+        if (markDone) {
+          localStorage.setItem(GUIDE_DONE_KEY, "1");
+        }
+        guideOverlay.hidden = true;
+        setGuideTarget(null);
+      }
+
+      function renderGuideStep() {
+        var stepData = guideSteps[guideIndex];
+        var totalSteps = guideSteps.length;
+
+        guideStep.textContent = "Krok " + (guideIndex + 1) + " / " + totalSteps;
+        guideTitle.textContent = stepData.title;
+        guideText.textContent = stepData.text;
+        guidePrev.disabled = guideIndex === 0;
+        guideNext.textContent = guideIndex === totalSteps - 1 ? "Zakończ" : "Dalej";
+        setGuideTarget(stepData.target, stepData.shouldScroll);
+      }
+
+      function startGuideIfNeeded() {
+        if (localStorage.getItem(GUIDE_DONE_KEY) === "1") return;
+        guideIndex = 0;
+        guideOverlay.hidden = false;
+        renderGuideStep();
+        positionGuideCard(activeGuideTarget);
+      }
 
       function readPrefs() {
         try {
@@ -2016,12 +2311,33 @@
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !modal.hidden) closeModal();
         if (event.key === "Escape" && !prefsModal.hidden) closePrefs();
+        if (event.key === "Escape" && !guideOverlay.hidden) closeGuide(true);
+      });
+      guideSkip.addEventListener("click", function () {
+        closeGuide(true);
+      });
+      guidePrev.addEventListener("click", function () {
+        if (guideIndex <= 0) return;
+        guideIndex -= 1;
+        renderGuideStep();
+      });
+      guideNext.addEventListener("click", function () {
+        if (guideIndex >= guideSteps.length - 1) {
+          closeGuide(true);
+          return;
+        }
+        guideIndex += 1;
+        renderGuideStep();
+      });
+      window.addEventListener("resize", function () {
+        positionGuideCard(activeGuideTarget);
       });
 
       applyPreferences(readPrefs());
       updateSearchSubmitLabel(searchInput.value);
       renderRecentSearches("");
       render();
+      startGuideIfNeeded();
     })();
   </script>
 </body>

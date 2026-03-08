@@ -280,3 +280,23 @@ python -m http.server 8080
     - `tools/assets/openai.svg`,
     - usunięto zależność od zewnętrznego URL.
   - Dopracowano wyświetlanie ikony AI i kolorystykę pod styl konsolowy.
+  - Dodano przewodnik onboardingowy dla nowych użytkowników:
+    - krok po kroku opis głównych funkcji strony startowej,
+    - nawigacja `Wstecz` / `Dalej` / `Zakończ`,
+    - przycisk `Pomiń`,
+    - jednorazowe wyświetlanie z zapisem stanu w `localStorage` (`startPageGuideDone`).
+  - Rozszerzono onboarding o osobny krok dla przycisku `▼` (historia wyszukiwań):
+    - opis funkcji i zasad działania listy podpowiedzi,
+    - wyjaśnienie trybu grup (`Top strony` / `Top teksty`) i filtrowania podczas wpisywania.
+  - Dopracowano pozycjonowanie okienka przewodnika:
+    - popup ustawia się dynamicznie względem wskazywanego elementu,
+    - krok końcowy (`Gotowe`) jest wycentrowany i bez podświetlenia elementu.
+  - Poprawiono stabilność UI podczas kroków przewodnika:
+    - ograniczono automatyczne przewijanie strony (bez niepotrzebnego „ruchu”),
+    - naprawiono wskazywanie przycisku preferencji (ikona pędzla) w kroku personalizacji.
+  - Poprawiono widoczność aktywnie wskazywanego elementu:
+    - rozjaśniono obszar podpowiedzi i zaznaczenia,
+    - zmniejszono poziom zaciemnienia tła overlay.
+  - Zablokowano interakcję z elementem wskazywanym przez przewodnik:
+    - element podświetlony (`.guide-target`) nie jest klikalny (`pointer-events: none`),
+    - przycisk pędzla pozostaje nieaktywny pod warstwą onboardingową.

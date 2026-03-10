@@ -358,7 +358,7 @@ python -m http.server 8080
 - Dodatkowe zmiany (uzupełnienie, 2026-03-10)
   - `evaluation.html`
     - Dodano nową podstronę prezentującą timeline ewolucji portfolio na podstawie `_data/evaluation-page-data.txt`.
-    - Wykorzystano screenshoty iteracji (`_data/it1.png` - `_data/it5.png`) i dodano pełny topbar oraz footer zgodny z resztą serwisu.
+    - Wykorzystano screenshoty iteracji (`assets/img/it1.png` - `assets/img/it5.png`) i dodano pełny topbar oraz footer zgodny z resztą serwisu.
     - Scalono opis i timeline w jeden spójny blok oraz dopracowano układ kart iteracji.
     - Przeniesiono nagłówki i tagi iteracji do części tekstowej wpisów timeline.
     - Dodano etykiety iteracji przy osi czasu, łączniki między kropką a kartą oraz interakcje `hover` między blokiem, kropką i etykietą.

@@ -354,3 +354,26 @@ python -m http.server 8080
     - usunięto obramowanie i kapsułę przycisku, pozostawiając samą ikonę,
     - dodano rozwijanie etykiety po krótszym przytrzymaniu kursora,
     - uproszczono i powiększono ikonę strzałki, aby była czytelniejsza.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-10)
+  - `evaluation.html`
+    - Dodano nową podstronę prezentującą timeline ewolucji portfolio na podstawie `_data/evaluation-page-data.txt`.
+    - Wykorzystano screenshoty iteracji (`_data/it1.png` - `_data/it5.png`) i dodano pełny topbar oraz footer zgodny z resztą serwisu.
+    - Scalono opis i timeline w jeden spójny blok oraz dopracowano układ kart iteracji.
+    - Przeniesiono nagłówki i tagi iteracji do części tekstowej wpisów timeline.
+    - Dodano etykiety iteracji przy osi czasu, łączniki między kropką a kartą oraz interakcje `hover` między blokiem, kropką i etykietą.
+    - Dodano otwieranie większej wersji screenshotu po kliknięciu w obrazek.
+    - Dopracowano responsywność timeline:
+      - poprawiono układ dla `<=900px`, `<=768px` i `<=480px`,
+      - utrzymano obrazek po prawej stronie na średnich szerokościach,
+      - poprawiono mobilne wyrównanie osi, kropki, łączników i tytułów,
+      - na mobile ukryto osobną etykietę iteracji i dodano ją jako prefiks tytułu.
+    - Uzupełniono metadane SEO dla strony `evaluation.html`.
+  - Wszystkie strony (`index/about/projects/tools/contact/404/evaluation`)
+    - Dodano w stopce link `Zobacz ewolucję strony` prowadzący do `evaluation.html`, umieszczony pod główną linią copyright.
+  - `assets/css/styles.css`
+    - Dodano kompletny zestaw stylów dla timeline, kart iteracji, osi czasu, podglądu obrazka i linku w stopce.
+  - `assets/js/app.js`
+    - Dodano logikę modala do podglądu większej wersji screenshotów na stronie `evaluation.html`.
+  - `sitemap.xml`
+    - Dodano wpis dla `https://www.salamonrafal.pl/evaluation.html`.

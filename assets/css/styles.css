@@ -105,7 +105,16 @@ a:hover{ text-decoration:underline; }
   border-bottom:1px solid var(--border);
 }
 .topbar-inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 20px; max-width:var(--maxw); margin:0 auto;}
-.brand{display:flex; align-items:center; gap:12px;}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.brand:hover,
+.brand:focus-visible{
+  text-decoration:none;
+}
 .brand img{width:42px; height:42px;}
 .brand .title{display:flex; flex-direction:column; align-items:stretch; line-height:1.1; min-width:0;}
 .brand .title strong{
@@ -134,13 +143,21 @@ a:hover{ text-decoration:underline; }
   color:var(--text);
   background:transparent;
   white-space:nowrap;
+  text-decoration:none;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
 .nav a.active{
   border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
   background: color-mix(in oklab, var(--panel) 86%, var(--accent) 14%);
   box-shadow: 0 0 0 3px rgba(57,255,20,.08);
 }
-.nav a:hover{border-color:var(--border); background: color-mix(in oklab, var(--panel) 90%, white 10%); text-decoration:none;}
+.nav a:hover,
+.nav a:focus-visible{
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+  background: color-mix(in oklab, var(--panel) 82%, var(--accent) 18%);
+  box-shadow: 0 0 0 3px rgba(57,255,20,.06);
+  text-decoration:none;
+}
 
 .actions{display:flex; align-items:center; gap:10px;}
 .chip{
@@ -162,39 +179,20 @@ a:hover{ text-decoration:underline; }
 }
 .chip button:hover{border-color:color-mix(in oklab, var(--accent-2) 55%, var(--border));}
 .preferences-chip{
-  flex-direction:column;
-  align-items:flex-start;
-  gap:6px;
-  border-radius:8px;
-  padding:8px 10px;
-  border-color: color-mix(in oklab, var(--accent) 38%, var(--border));
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--panel-2) 92%, var(--accent) 8%),
-    color-mix(in oklab, var(--panel) 96%, transparent)
-  );
-  box-shadow:
-    inset 0 0 0 1px color-mix(in oklab, var(--accent) 24%, transparent),
-    var(--shadow);
-}
-.prefs-heading{
-  font-size:10px;
-  color:color-mix(in oklab, var(--accent) 78%, var(--text) 22%);
-  line-height:1.2;
-  margin-left:1px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.prefs-heading::before{
-  content: "$ ";
-  opacity:.85;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  border-radius:999px;
+  padding:6px 8px;
+  border-color:transparent;
+  background:transparent;
+  box-shadow:none;
 }
 .prefs-actions{
   display:inline-flex;
   align-items:center;
   gap:6px;
   flex-wrap:nowrap;
-  margin-left:0;
 }
 .preferences-chip .prefs-actions button{
   border-radius:8px;
@@ -240,7 +238,7 @@ a:hover{ text-decoration:underline; }
   width:32px;
   height:32px;
   padding:0;
-  border:1px solid var(--border);
+  border:none;
   border-radius:999px;
   background:transparent;
   cursor:pointer;
@@ -334,21 +332,71 @@ a:hover{ text-decoration:underline; }
 
 .kbd{border:1px solid var(--border); border-bottom-width:2px; background: color-mix(in oklab, var(--panel-2) 92%, transparent); padding:2px 8px; border-radius:10px; color:var(--text);}
 
-.quick-links{display:flex; flex-wrap:wrap; gap:12px; padding:16px;}
+.quick-links{
+  display:flex;
+  flex-wrap:wrap;
+  column-gap:1px;
+  row-gap:0;
+  margin:16px 0 0;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+}
 .big-link{
   flex:1 1 190px;
-  border:1px solid color-mix(in oklab, var(--accent) 45%, var(--border));
-  border-radius:16px;
-  padding:14px 14px;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--link-bg) 65%, var(--panel) 35%), var(--panel));
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border:0;
+  border-radius:0;
+  padding:14px 14px 14px 10px;
+  background: var(--panel);
   color:var(--text);
   text-decoration:none;
   position:relative;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.big-link-icon{
+  flex:0 0 20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;
+  height:20px;
+  margin-top:0;
+  color:var(--accent);
+}
+.big-link-icon svg{
+  width:20px;
+  height:20px;
+  display:block;
+}
+.big-link-icon rect,
+.big-link-icon circle,
+.big-link-icon path{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.big-link-copy{
+  display:block;
+  min-width:0;
 }
 .big-link strong{display:block; margin-bottom:4px;}
-.big-link span{color:var(--muted); font-size:12px;}
-.big-link:hover{box-shadow: 0 14px 34px rgba(0,0,0,.25);}
-.big-link::after{content: '↗'; position:absolute; top:12px; right:14px; color:var(--accent-2);}
+.big-link-copy > span{color:var(--muted); font-size:12px;}
+.big-link:hover,
+.big-link:focus-visible{
+  border-color: color-mix(in oklab, var(--accent) 60%, var(--border));
+  background: color-mix(in oklab, var(--panel) 88%, var(--accent) 12%);
+  box-shadow: 0 0 0 3px rgba(57,255,20,.06);
+  text-decoration:none;
+}
+.big-link:hover .big-link-icon,
+.big-link:focus-visible .big-link-icon{
+}
 
 .section{padding:0;}
 .section.section-compact{padding:0;}
@@ -773,7 +821,10 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   .mobile-drawer{top:106px; left:12px; right:12px;}
   .card-header{padding:12px;}
   .pill{font-size:11px; padding:5px 8px;}
-  .quick-links{padding:12px;}
+  .quick-links{
+    margin:12px 0 0;
+    border-radius:0;
+  }
   .button-group{
     width:100%;
     min-width:0;

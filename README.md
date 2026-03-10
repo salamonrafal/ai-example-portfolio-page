@@ -289,6 +289,40 @@ python -m http.server 8080
     - opis funkcji i zasad działania listy podpowiedzi,
     - wyjaśnienie trybu grup (`Top strony` / `Top teksty`) i filtrowania podczas wpisywania.
   - Dopracowano pozycjonowanie okienka przewodnika:
+
+## 2026-03-10
+
+- Wszystkie strony (`index/about/projects/tools/contact/404`)
+  - Uproszczono top menu:
+    - usunięto podkreślenia z linków nawigacji,
+    - dopracowano efekt `hover` linków menu,
+    - wyłączono podświetlenie i podkreślenie bloku logo/nazwy strony,
+    - uproszczono desktopowy blok `Preferencje`:
+      - usunięto nagłówek `Preferencje`,
+      - wyrównano kontrolki pionowo do reszty przycisków,
+      - usunięto obramowanie, tło i cień kontenera,
+      - usunięto obramowanie kontrolki wyboru koloru.
+- `index.html` / `assets/css/styles.css`
+  - Przebudowano sekcję `Szybki skrót` na stronie głównej:
+    - zmieniono efekt `hover` kafelków i usunięto podkreślenia,
+    - dopracowano układ listy linków na desktopie i mobile (szerokość, marginesy, odstępy),
+    - usunięto zbędne obramowania i gradientowe tła kafelków,
+    - dodano lokalne ikony dopasowane do typu linku,
+    - zintegrowano kolor ikon z aktualnym kolorem akcentu wybranym przez użytkownika,
+    - dopracowano wyrównanie ikon oraz odstępy względem tekstu.
+- `assets/img`
+  - Dodano lokalne pliki ikon SVG używane w sekcji `Szybki skrót`:
+    - `icon-about.svg`,
+    - `icon-projects.svg`,
+    - `icon-tools.svg`,
+    - `icon-contact.svg`,
+    - `icon-github.svg`,
+    - `icon-linkedin.svg`,
+    - `icon-mail.svg`.
+- `404.html`
+  - Zaktualizowano metadane strony błędu:
+    - ustawiono `meta robots` na `noindex,nofollow,noarchive`,
+    - usunięto `canonical`, aby strona 404 nie była indeksowana.
     - popup ustawia się dynamicznie względem wskazywanego elementu,
     - krok końcowy (`Gotowe`) jest wycentrowany i bez podświetlenia elementu.
   - Poprawiono stabilność UI podczas kroków przewodnika:

@@ -71,7 +71,7 @@ const i18n = {
     privacy_decline: "Odrzuć",
     back_to_top: "Przenieś do Góry",
 
-    footer: "© Rafał Salamon • Zbudowane w HTML/CSS/JS (bez frameworków)"
+    footer: "Tworzę rzeczy, które są czytelne, solidne i praktyczne."
   },
   en: {
     nav_home: "Home",
@@ -143,7 +143,7 @@ const i18n = {
     privacy_decline: "Decline",
     back_to_top: "Back to Top",
 
-    footer: "© Rafal Salamon • Built with HTML/CSS/JS (no frameworks)"
+    footer: "I build things that are clear, robust, and practical."
   }
 };
 
@@ -258,8 +258,6 @@ function applyI18n(lang){
     langBtn.textContent = lang === 'pl' ? 'PL' : 'EN';
   });
 
-  const footer = qs('footer .footer-text');
-  if(footer) footer.textContent = t.footer;
 }
 
 function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
@@ -427,7 +425,7 @@ function setupBackToTop(){
   btn.type = 'button';
   btn.className = 'back-to-top';
   btn.setAttribute('data-i18n-aria', 'back_to_top');
-  btn.innerHTML = '<span class="back-to-top-icon" aria-hidden="true"></span><span data-i18n="back_to_top"></span>';
+  btn.innerHTML = '<span class="back-to-top-icon" aria-hidden="true"></span><span class="back-to-top-label" data-i18n="back_to_top"></span>';
   document.body.appendChild(btn);
 
   const toggleVisibility = ()=>{

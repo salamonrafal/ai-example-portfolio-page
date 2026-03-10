@@ -334,3 +334,23 @@ python -m http.server 8080
   - Zablokowano interakcję z elementem wskazywanym przez przewodnik:
     - element podświetlony (`.guide-target`) nie jest klikalny (`pointer-events: none`),
     - przycisk pędzla pozostaje nieaktywny pod warstwą onboardingową.
+
+- Wszystkie strony (`index/about/projects/tools/contact/404`) / `assets/css/styles.css` / `assets/js/app.js`
+  - Przebudowano stopkę:
+    - imię i nazwisko zamieniono na link do `https://www.salamonrafal.pl/`,
+    - usunięto informację o technologiach użytych do budowy strony i zastąpiono ją krótką sentencją (PL/EN),
+    - dodano ikony `GitHub`, `LinkedIn` i `E-mail`,
+    - wyśrodkowano treść stopki,
+    - przypięto blok ikon do prawej krawędzi na desktopie,
+    - zwiększono rozmiar ikon,
+    - powiązano kolor ikon z aktualnym kolorem akcentu użytkownika,
+    - usunięto podkreślenia i animację przesuwania na `hover`,
+    - ustawiono jednolite tło stopki w stylu topbara,
+    - dodano układ `sticky footer`, dzięki któremu przy krótkiej treści stopka pozostaje przy dolnej krawędzi okna.
+- `assets/js/app.js` / `assets/css/styles.css`
+  - Dopracowano globalny przycisk `Przenieś do Góry`:
+    - odsunięto go od dolnej krawędzi, aby nie zasłaniał ikon stopki,
+    - przypięto go na stałe do prawej krawędzi okna,
+    - usunięto obramowanie i kapsułę przycisku, pozostawiając samą ikonę,
+    - dodano rozwijanie etykiety po krótszym przytrzymaniu kursora,
+    - uproszczono i powiększono ikonę strzałki, aby była czytelniejsza.

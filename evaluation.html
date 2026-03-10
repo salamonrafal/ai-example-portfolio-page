@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0D63QZ7HP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z0D63QZ7HP');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Timeline zmian portfolio Rafała Salamona: kolejne iteracje wyglądu i funkcjonalności strony wraz z opisem ewolucji." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="author" content="Rafał Salamon" />
+  <meta name="theme-color" content="#0b0f12" />
+
+  <link rel="canonical" href="https://www.salamonrafal.pl/evaluation.html" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rafał Salamon Portfolio" />
+  <meta property="og:title" content="Ewolucja strony | Rafał Salamon - Portfolio" />
+  <meta property="og:description" content="Zobacz, jak portfolio ewoluowało w kolejnych iteracjach: od pierwszej wersji po dopracowany układ końcowy." />
+  <meta property="og:url" content="https://www.salamonrafal.pl/evaluation.html" />
+  <meta property="og:image" content="https://www.salamonrafal.pl/_data/it5.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ewolucja strony | Rafał Salamon - Portfolio" />
+  <meta name="twitter:description" content="Timeline iteracji portfolio Rafała Salamona wraz ze screenshotami i opisem zmian." />
+  <meta name="twitter:image" content="https://www.salamonrafal.pl/_data/it5.png" />
+
+  <title>Ewolucja strony | Rafał Salamon - Portfolio</title>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Ewolucja strony - Rafał Salamon","url":"https://www.salamonrafal.pl/evaluation.html","description":"Timeline zmian i iteracji strony portfolio Rafała Salamona."}</script>
+</head>
+
+<body data-page-title="Ewolucja strony | Rafał Salamon - Portfolio">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img src="assets/img/logo.svg" alt="RS logo" />
+        <div class="title">
+          <strong>Rafał Salamon</strong>
+          <span data-i18n="home_title">Senior PHP Developer
+Fullstack Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav_home">Start</a>
+        <a href="about.html" data-i18n="nav_about">O mnie</a>
+        <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+        <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+      </nav>
+
+      <div class="actions">
+        <button class="hamburger" data-action="toggle-menu" aria-label="Menu">☰</button>
+        <div class="chip preferences-chip">
+          <div class="prefs-actions">
+            <button type="button" data-action="toggle-lang" data-i18n-tooltip="prefs_lang_hint" data-tooltip="Przełącza język strony">PL</button>
+            <button type="button" data-action="toggle-theme" data-i18n-tooltip="prefs_theme_hint" data-tooltip="Przełącza motyw jasny/ciemny">🌙</button>
+            <span class="prefs-color-wrap" data-i18n-tooltip="prefs_color_hint" data-tooltip="Zmienia kolor akcentu interfejsu"><input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" /></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" role="dialog" aria-label="Mobile menu">
+    <a href="index.html" data-i18n="nav_home">Start</a>
+    <a href="about.html" data-i18n="nav_about">O mnie</a>
+    <a href="projects.html" data-i18n="nav_projects">Moje projekty</a>
+    <a href="tools.html" data-i18n="nav_tools">Moje narzędzia</a>
+    <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+    <div class="mobile-controls">
+      <div class="chip mobile-preferences" title="User preferences / Preferencje użytkownika">
+        <span data-i18n="chip_prefs">Preferencje</span>
+        <div class="prefs-actions">
+          <button type="button" data-action="toggle-lang">PL</button>
+          <button type="button" data-action="toggle-theme">🌙</button>
+          <input class="color-input" type="color" data-action="accent-color" value="#39ff14" aria-label="Accent color" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="section">
+      <div class="card">
+        <div class="card-header">
+          <span class="pill">timeline://portfolio</span>
+          <span class="pill">$ git log --oneline --follow portfolio</span>
+        </div>
+        <div class="list">
+          <div data-lang="pl">
+            <h1 class="timeline-title">Jak ewoluowała ta strona</h1>
+            <p class="timeline-intro">Poniżej znajduje się przegląd kolejnych iteracji portfolio. Każdy etap pokazuje, co zostało zmienione oraz jak wyglądała strona po danej aktualizacji.</p>
+          </div>
+          <div data-lang="en" style="display:none">
+            <h1 class="timeline-title">How this website evolved</h1>
+            <p class="timeline-intro">Below is a timeline of the portfolio iterations. Each stage shows what changed and how the website looked after that update.</p>
+          </div>
+        </div>
+        <div class="list">
+          <div class="timeline-list">
+        <article class="timeline-entry" data-iteration="Iteracja 1">
+          <span class="timeline-step-label">Iteracja 1</span>
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <div class="card timeline-card">
+            <div class="timeline-body">
+              <div class="timeline-copy">
+                <h2 class="timeline-title" data-iteration="Iteracja 1">Terminal-style portfolio z obsługą wielu języków i formularzem kontaktowym</h2>
+                <div class="timeline-meta">
+                  <span class="tag">HTML</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Responsive</span>
+                </div>
+                <div data-lang="pl">
+                  <p>Pierwsza iteracja zbudowała podstawę całego portfolio: terminalowy klimat interfejsu, strukturę stron `index`, `contact`, `projects`, `about` i `tools`, przełączanie języka oraz motywu, a także formularz kontaktowy i mobilny drawer nawigacyjny.</p>
+                </div>
+                <div data-lang="en" style="display:none">
+                  <p>The first iteration established the foundation of the whole portfolio: a terminal-inspired UI, the `index`, `contact`, `projects`, `about`, and `tools` pages, language and theme toggles, plus a contact form and mobile navigation drawer.</p>
+                </div>
+              </div>
+              <div class="timeline-preview">
+                <figure class="timeline-figure">
+                  <button class="timeline-image-frame" type="button" data-action="open-image-preview" data-image-src="_data/it1.png" data-image-alt="Portfolio iteration 1 preview" aria-label="Open larger preview of iteration 1">
+                    <img src="_data/it1.png" alt="Portfolio iteration 1 preview" loading="lazy" />
+                  </button>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry" data-iteration="Iteracja 2">
+          <span class="timeline-step-label">Iteracja 2</span>
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <div class="card timeline-card">
+            <div class="timeline-body">
+              <div class="timeline-copy">
+                <h2 class="timeline-title" data-iteration="Iteracja 2">Kolor akcentu i lepsze preferencje mobilne</h2>
+                <div class="timeline-meta">
+                  <span class="tag">UX</span>
+                  <span class="tag">Personalizacja</span>
+                </div>
+                <div data-lang="pl">
+                  <p>Druga iteracja dodała możliwość sterowania kolorem akcentu i poprawiła działanie preferencji na urządzeniach mobilnych. Dzięki temu strona stała się bardziej personalizowalna i wygodniejsza w codziennym użyciu na mniejszych ekranach.</p>
+                </div>
+                <div data-lang="en" style="display:none">
+                  <p>The second iteration added accent-color customization and improved preference controls on mobile. That made the website more personal and easier to use on smaller screens.</p>
+                </div>
+              </div>
+              <div class="timeline-preview">
+                <figure class="timeline-figure">
+                  <button class="timeline-image-frame" type="button" data-action="open-image-preview" data-image-src="_data/it2.png" data-image-alt="Portfolio iteration 2 preview" aria-label="Open larger preview of iteration 2">
+                    <img src="_data/it2.png" alt="Portfolio iteration 2 preview" loading="lazy" />
+                  </button>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry" data-iteration="Iteracja 3">
+          <span class="timeline-step-label">Iteracja 3</span>
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <div class="card timeline-card">
+            <div class="timeline-body">
+              <div class="timeline-copy">
+                <h2 class="timeline-title" data-iteration="Iteracja 3">Refaktoryzacja kontrolek użytkownika i spójniejszy layout</h2>
+                <div class="timeline-meta">
+                  <span class="tag">Refactor</span>
+                  <span class="tag">Layout</span>
+                </div>
+                <div data-lang="pl">
+                  <p>Trzecia iteracja uporządkowała sposób prezentacji preferencji użytkownika oraz wyrównała layout między podstronami. Efektem było bardziej przewidywalne UI i mniejsza liczba różnic pomiędzy sekcjami serwisu.</p>
+                </div>
+                <div data-lang="en" style="display:none">
+                  <p>The third iteration refactored the user-preference controls and aligned layout patterns across pages. The result was a more predictable UI and better consistency between sections.</p>
+                </div>
+              </div>
+              <div class="timeline-preview">
+                <figure class="timeline-figure">
+                  <button class="timeline-image-frame" type="button" data-action="open-image-preview" data-image-src="_data/it3.png" data-image-alt="Portfolio iteration 3 preview" aria-label="Open larger preview of iteration 3">
+                    <img src="_data/it3.png" alt="Portfolio iteration 3 preview" loading="lazy" />
+                  </button>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry" data-iteration="Iteracja 4">
+          <span class="timeline-step-label">Iteracja 4</span>
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <div class="card timeline-card">
+            <div class="timeline-body">
+              <div class="timeline-copy">
+                <h2 class="timeline-title" data-iteration="Iteracja 4">Przebudowana nawigacja, lepsze metadane 404 i ikony SVG</h2>
+                <div class="timeline-meta">
+                  <span class="tag">Navigation</span>
+                  <span class="tag">SEO</span>
+                  <span class="tag">SVG</span>
+                </div>
+                <div data-lang="pl">
+                  <p>Czwarta iteracja skupiła się na strukturze nawigacji i jakości warstwy prezentacyjnej. Doszły ikony SVG poprawiające czytelność, a strona 404 została dopracowana także od strony metadanych.</p>
+                </div>
+                <div data-lang="en" style="display:none">
+                  <p>The fourth iteration focused on navigation structure and presentation quality. SVG icons were added for better clarity, and the 404 page metadata was improved as well.</p>
+                </div>
+              </div>
+              <div class="timeline-preview">
+                <figure class="timeline-figure">
+                  <button class="timeline-image-frame" type="button" data-action="open-image-preview" data-image-src="_data/it4.png" data-image-alt="Portfolio iteration 4 preview" aria-label="Open larger preview of iteration 4">
+                    <img src="_data/it4.png" alt="Portfolio iteration 4 preview" loading="lazy" />
+                  </button>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry" data-iteration="Iteracja 5">
+          <span class="timeline-step-label">Iteracja 5</span>
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <div class="card timeline-card">
+            <div class="timeline-body">
+              <div class="timeline-copy">
+                <h2 class="timeline-title" data-iteration="Iteracja 5">Nowy footer, lepsza ekspozycja sociali i sticky layout</h2>
+                <div class="timeline-meta">
+                  <span class="tag">Footer</span>
+                  <span class="tag">Social Links</span>
+                  <span class="tag">Sticky Layout</span>
+                </div>
+                <div data-lang="pl">
+                  <p>Piąta iteracja dopracowała footer w całym serwisie: uprościła treść, poprawiła widoczność linków społecznościowych i domknęła układ sticky footerem. To etap, w którym strona zyskała bardziej kompletny i stabilny wygląd końcowy.</p>
+                </div>
+                <div data-lang="en" style="display:none">
+                  <p>The fifth iteration refined the footer across the whole site: simpler content, more visible social links, and a sticky footer layout. This is the stage where the portfolio gained a more complete and stable final presentation.</p>
+                </div>
+              </div>
+              <div class="timeline-preview">
+                <figure class="timeline-figure">
+                  <button class="timeline-image-frame" type="button" data-action="open-image-preview" data-image-src="_data/it5.png" data-image-alt="Portfolio iteration 5 preview" aria-label="Open larger preview of iteration 5">
+                    <img src="_data/it5.png" alt="Portfolio iteration 5 preview" loading="lazy" />
+                  </button>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-text">
+        <span>&copy;</span>
+        <a class="footer-home-link" href="https://www.salamonrafal.pl/">Rafał Salamon</a>
+        <span>•</span>
+        <span data-i18n="footer">Tworzę rzeczy, które są czytelne, solidne i praktyczne.</span>
+        <span class="footer-break" aria-hidden="true"></span>
+        <a class="footer-sub-link" href="evaluation.html">Zobacz ewolucję strony</a>
+      </div>
+      <div class="footer-icons" aria-label="Social links">
+        <a class="footer-icon-link" href="https://github.com/salamonrafal" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 5C9.9 5 5 9.9 5 16c0 4.9 3.2 9 7.6 10.4.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.7.9 2 1.4.9.2 1.8.2 2.6-.1.1-.7.4-1.3.8-1.7-2.5-.3-5.1-1.2-5.1-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5.1 5.4.5.5.9 1.3.9 2.5v3.7c0 .3.2.7.8.6A11 11 0 0 0 27 16c0-6.1-4.9-11-11-11Z" stroke-width="1.7" stroke-linejoin="round"/></svg></span></a>
+        <a class="footer-icon-link" href="https://www.linkedin.com/in/rafalsalamon/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="11" width="5" height="16" stroke-width="2"/><circle cx="7.5" cy="6.5" r="2.5" stroke-width="2"/><path d="M15 11v16M15 17c0-3.3 2.2-6 5.6-6 3.1 0 5.4 2.1 5.4 6.6V27h-5v-8.2c0-1.8-.7-3-2.4-3-1.9 0-3 1.4-3 3.4V27h-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="footer-icon-link" href="mailto:rafal.salamon@salamonrafal.pl" aria-label="E-mail" title="E-mail"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 9h22v14H5z" stroke-width="2"/><path d="M6 10l10 8 10-8M6 23l7-6M26 23l-7-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

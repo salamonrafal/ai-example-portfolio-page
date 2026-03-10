@@ -397,6 +397,72 @@ function setupActions(){
   }
 }
 
+function setupImagePreview(){
+  const triggers = qsa('[data-action="open-image-preview"]');
+  if(!triggers.length) return;
+
+  const modal = document.createElement('div');
+  modal.className = 'image-preview-modal';
+  modal.setAttribute('hidden', '');
+  modal.setAttribute('aria-hidden', 'true');
+  modal.innerHTML = `
+    <div class="image-preview-dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button type="button" class="image-preview-close" data-action="close-image-preview" aria-label="Close preview">×</button>
+      <figure class="image-preview-frame">
+        <img src="" alt="" />
+      </figure>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const dialog = qs('.image-preview-dialog', modal);
+  const image = qs('.image-preview-frame img', modal);
+  const closeBtn = qs('[data-action="close-image-preview"]', modal);
+  let lastTrigger = null;
+
+  const closePreview = ()=>{
+    modal.setAttribute('hidden', '');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if(lastTrigger) lastTrigger.focus();
+  };
+
+  const openPreview = (trigger)=>{
+    const src = trigger.getAttribute('data-image-src');
+    const alt = trigger.getAttribute('data-image-alt') || '';
+    if(!src) return;
+    lastTrigger = trigger;
+    image.src = src;
+    image.alt = alt;
+    modal.removeAttribute('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  };
+
+  triggers.forEach(trigger=>{
+    trigger.addEventListener('click', ()=> openPreview(trigger));
+  });
+
+  if(closeBtn){
+    closeBtn.addEventListener('click', closePreview);
+  }
+
+  modal.addEventListener('click', (e)=>{
+    if(e.target === modal) closePreview();
+  });
+
+  dialog.addEventListener('click', (e)=>{
+    e.stopPropagation();
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && !modal.hasAttribute('hidden')){
+      closePreview();
+    }
+  });
+}
+
 function fastScrollToTop(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     window.scrollTo(0, 0);
@@ -482,6 +548,7 @@ function init(){
   const lang = getLang();
   applyI18n(lang);
   setupActions();
+  setupImagePreview();
   setupPrivacyNotice();
 }
 

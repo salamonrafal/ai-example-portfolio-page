@@ -377,3 +377,38 @@ python -m http.server 8080
     - Dodano logikę modala do podglądu większej wersji screenshotów na stronie `evaluation.html`.
   - `sitemap.xml`
     - Dodano wpis dla `https://www.salamonrafal.pl/evaluation.html`.
+
+## 2026-03-11
+
+- Wszystkie strony (`index/about/projects/tools/contact/404/evaluation`) / `assets/css/styles.css`
+  - Uproszczono linki nawigacyjne w topbarze:
+    - usunięto obramowania i efekt glow,
+    - zmniejszono zaokrąglenie,
+    - aktywny link otrzymał kolor wiodący i pogrubienie,
+    - aktywny stan oznaczono poziomą linią w kolorze wiodącym zamiast tła.
+  - Uproszczono przyciski sterujące w topbarze:
+    - usunięto obramowania przycisków `lang/theme` oraz `hamburgera`,
+    - zmniejszono zaokrąglenie przycisków.
+- `evaluation.html`
+  - W nagłówku głównego bloku timeline przywrócono tekst `$ git log --oneline --follow portfolio`.
+  - Dodano ukrywanie tego tekstu na ekranach mobilnych (`<=768px`), aby nie nachodził na lewą etykietę.
+- `assets/css/styles.css`
+  - Dodano ikonę lupy jako nakładkę na screenshotach iteracji:
+    - wyśrodkowaną na obrazku,
+    - półprzezroczystą w stanie domyślnym,
+    - reagującą na `hover` kolorem aktualnego akcentu użytkownika.
+  - Rozbudowano style modala podglądu screenshotów:
+    - dodano boczną nawigację `poprzedni / następny`,
+    - dodano górny tytuł wewnątrz ramki obrazka,
+    - dodano dolny blok opisu iteracji z możliwością `Pokaż/Ukryj`,
+    - zintegrowano przycisk `Pokaż/Ukryj` z górną krawędzią panelu opisu,
+    - dodano przycisk `full screen`,
+    - w trybie pełnoekranowym przenoszone są strzałki nawigacji do wnętrza bloku,
+    - dopracowano warstwy (`z-index`) i pozycje przycisków `X`, `full screen` oraz zakładki opisu.
+- `assets/js/app.js`
+  - Rozszerzono modal screenshotów na `evaluation.html`:
+    - dodano przechodzenie między iteracjami przyciskami i klawiszami `←` / `→`,
+    - dodano dynamiczny tytuł popupu i opis pobierany z aktywnej iteracji,
+    - dodano przełączanie widoczności opisu,
+    - dodano przełączanie trybu pełnoekranowego dla całego popupu,
+    - rozszerzono i18n o etykiety opisu i pełnego ekranu.

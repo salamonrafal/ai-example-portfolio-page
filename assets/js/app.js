@@ -70,6 +70,11 @@ const i18n = {
     privacy_accept: "Akceptuję",
     privacy_decline: "Odrzuć",
     back_to_top: "Przenieś do Góry",
+    preview_iteration_details: "Opis iteracji",
+    preview_show_details: "Pokaż opis",
+    preview_hide_details: "Ukryj opis",
+    preview_enter_fullscreen: "Pełny ekran",
+    preview_exit_fullscreen: "Zamknij pełny ekran",
 
     footer: "Tworzę rzeczy, które są czytelne, solidne i praktyczne."
   },
@@ -142,6 +147,11 @@ const i18n = {
     privacy_accept: "Accept",
     privacy_decline: "Decline",
     back_to_top: "Back to Top",
+    preview_iteration_details: "Iteration details",
+    preview_show_details: "Show details",
+    preview_hide_details: "Hide details",
+    preview_enter_fullscreen: "Full screen",
+    preview_exit_fullscreen: "Exit full screen",
 
     footer: "I build things that are clear, robust, and practical."
   }
@@ -407,10 +417,25 @@ function setupImagePreview(){
   modal.setAttribute('aria-hidden', 'true');
   modal.innerHTML = `
     <div class="image-preview-dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button type="button" class="image-preview-nav image-preview-prev" data-action="preview-prev" aria-label="Previous image">‹</button>
+      <button type="button" class="image-preview-fullscreen" data-action="toggle-preview-fullscreen" aria-label="Full screen">⛶</button>
       <button type="button" class="image-preview-close" data-action="close-image-preview" aria-label="Close preview">×</button>
       <figure class="image-preview-frame">
+        <h2 class="image-preview-title"></h2>
         <img src="" alt="" />
+        <section class="image-preview-meta">
+          <div class="image-preview-meta-bar">
+            <span class="image-preview-meta-label"></span>
+            <button type="button" class="image-preview-meta-toggle" data-action="toggle-preview-caption"></button>
+          </div>
+          <div class="image-preview-caption">
+            <div class="image-preview-caption-step"></div>
+            <h3 class="image-preview-caption-title"></h3>
+            <p class="image-preview-caption-text"></p>
+          </div>
+        </section>
       </figure>
+      <button type="button" class="image-preview-nav image-preview-next" data-action="preview-next" aria-label="Next image">›</button>
     </div>
   `;
   document.body.appendChild(modal);
@@ -418,12 +443,79 @@ function setupImagePreview(){
   const dialog = qs('.image-preview-dialog', modal);
   const image = qs('.image-preview-frame img', modal);
   const closeBtn = qs('[data-action="close-image-preview"]', modal);
+  const fullscreenBtn = qs('[data-action="toggle-preview-fullscreen"]', modal);
+  const prevBtn = qs('[data-action="preview-prev"]', modal);
+  const nextBtn = qs('[data-action="preview-next"]', modal);
+  const previewTitle = qs('.image-preview-title', modal);
+  const meta = qs('.image-preview-meta', modal);
+  const metaLabel = qs('.image-preview-meta-label', modal);
+  const metaToggle = qs('[data-action="toggle-preview-caption"]', modal);
+  const captionStep = qs('.image-preview-caption-step', modal);
+  const captionTitle = qs('.image-preview-caption-title', modal);
+  const captionText = qs('.image-preview-caption-text', modal);
   let lastTrigger = null;
+  let currentIndex = -1;
+  let captionCollapsed = false;
+
+  const getPreviewText = (key)=>{
+    const lang = getLang();
+    return (i18n[lang] && i18n[lang][key]) || i18n.pl[key] || '';
+  };
+
+  const syncCaptionToggle = ()=>{
+    if(!metaToggle) return;
+    metaToggle.textContent = getPreviewText(captionCollapsed ? 'preview_show_details' : 'preview_hide_details');
+    metaToggle.setAttribute('aria-expanded', captionCollapsed ? 'false' : 'true');
+    dialog.classList.toggle('caption-collapsed', captionCollapsed);
+  };
+
+  const syncFullscreenToggle = ()=>{
+    if(!fullscreenBtn) return;
+    const isFullscreen = dialog.classList.contains('is-fullscreen');
+    fullscreenBtn.textContent = isFullscreen ? '🗗' : '⛶';
+    fullscreenBtn.setAttribute('aria-label', getPreviewText(isFullscreen ? 'preview_exit_fullscreen' : 'preview_enter_fullscreen'));
+    fullscreenBtn.setAttribute('title', getPreviewText(isFullscreen ? 'preview_exit_fullscreen' : 'preview_enter_fullscreen'));
+  };
+
+  const syncCaptionContent = (trigger)=>{
+    if(!trigger || !meta || !captionStep || !captionTitle || !captionText || !previewTitle) return;
+    const entry = trigger.closest('.timeline-entry');
+    if(!entry) return;
+    const lang = getLang();
+    const fallbackLang = lang === 'pl' ? 'en' : 'pl';
+    const titleEl = qs('.timeline-title', entry);
+    const stepEl = qs('.timeline-step-label', entry);
+    const textScope = qs(`[data-lang="${lang}"]`, entry) || qs(`[data-lang="${fallbackLang}"]`, entry);
+    const textEl = textScope ? qs('p', textScope) : null;
+
+    const stepText = stepEl ? stepEl.textContent.trim() : '';
+    const titleText = titleEl ? titleEl.textContent.trim() : '';
+    metaLabel.textContent = stepText;
+    captionStep.textContent = '';
+    previewTitle.textContent = titleText;
+    captionTitle.textContent = '';
+    captionText.textContent = textEl ? textEl.textContent.trim() : '';
+  };
+
+  const syncNav = ()=>{
+    const hasPrev = currentIndex > 0;
+    const hasNext = currentIndex >= 0 && currentIndex < triggers.length - 1;
+    if(prevBtn){
+      prevBtn.disabled = !hasPrev;
+      prevBtn.setAttribute('aria-hidden', hasPrev ? 'false' : 'true');
+    }
+    if(nextBtn){
+      nextBtn.disabled = !hasNext;
+      nextBtn.setAttribute('aria-hidden', hasNext ? 'false' : 'true');
+    }
+  };
 
   const closePreview = ()=>{
     modal.setAttribute('hidden', '');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    dialog.classList.remove('is-fullscreen');
+    syncFullscreenToggle();
     if(lastTrigger) lastTrigger.focus();
   };
 
@@ -432,12 +524,24 @@ function setupImagePreview(){
     const alt = trigger.getAttribute('data-image-alt') || '';
     if(!src) return;
     lastTrigger = trigger;
+    currentIndex = triggers.indexOf(trigger);
     image.src = src;
     image.alt = alt;
+    syncCaptionContent(trigger);
+    syncNav();
+    syncCaptionToggle();
+    syncFullscreenToggle();
     modal.removeAttribute('hidden');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
+  };
+
+  const openAdjacent = (direction)=>{
+    const nextIndex = currentIndex + direction;
+    const nextTrigger = triggers[nextIndex];
+    if(!nextTrigger) return;
+    openPreview(nextTrigger);
   };
 
   triggers.forEach(trigger=>{
@@ -446,6 +550,25 @@ function setupImagePreview(){
 
   if(closeBtn){
     closeBtn.addEventListener('click', closePreview);
+  }
+  if(fullscreenBtn){
+    fullscreenBtn.addEventListener('click', ()=>{
+      dialog.classList.toggle('is-fullscreen');
+      syncFullscreenToggle();
+    });
+  }
+  if(prevBtn){
+    prevBtn.addEventListener('click', ()=> openAdjacent(-1));
+  }
+  if(nextBtn){
+    nextBtn.addEventListener('click', ()=> openAdjacent(1));
+  }
+  if(metaToggle && meta){
+    metaToggle.addEventListener('click', ()=>{
+      captionCollapsed = !captionCollapsed;
+      meta.classList.toggle('is-collapsed', captionCollapsed);
+      syncCaptionToggle();
+    });
   }
 
   modal.addEventListener('click', (e)=>{
@@ -457,8 +580,13 @@ function setupImagePreview(){
   });
 
   document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && !modal.hasAttribute('hidden')){
+    if(modal.hasAttribute('hidden')) return;
+    if(e.key === 'Escape'){
       closePreview();
+    }else if(e.key === 'ArrowLeft'){
+      openAdjacent(-1);
+    }else if(e.key === 'ArrowRight'){
+      openAdjacent(1);
     }
   });
 }

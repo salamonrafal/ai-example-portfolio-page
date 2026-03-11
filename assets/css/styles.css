@@ -795,6 +795,12 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   width:min(1120px, 100%);
 }
 
+@media (min-width: 901px){
+  .image-preview-dialog{
+    width:min(1120px, calc(100% - 144px));
+  }
+}
+
 .image-preview-title{
   margin:0;
   padding:14px 64px 14px 16px;

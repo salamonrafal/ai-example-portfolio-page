@@ -412,3 +412,6 @@ python -m http.server 8080
     - dodano przełączanie widoczności opisu,
     - dodano przełączanie trybu pełnoekranowego dla całego popupu,
     - rozszerzono i18n o etykiety opisu i pełnego ekranu.
+  - Dodatkowo poprawiono responsywność nawigacji modala po code review:
+    - dla ekranów `>=901px` zawężono szerokość dialogu podglądu tak, aby pozostawić miejsce na boczne strzałki,
+    - dzięki temu przyciski `poprzedni / następny` nie wypadają poza viewport na średnich szerokościach.

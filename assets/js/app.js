@@ -161,6 +161,13 @@ function qs(sel, root=document){ return root.querySelector(sel); }
 function qsa(sel, root=document){ return [...root.querySelectorAll(sel)]; }
 let terminalRenderId = 0;
 
+function syncTopbarHeight(){
+  const topbar = qs('.topbar');
+  if(!topbar) return;
+  const height = Math.ceil(topbar.getBoundingClientRect().height);
+  document.documentElement.style.setProperty('--topbar-height', `${height}px`);
+}
+
 function getLang(){
   const stored = localStorage.getItem('lang');
   if(stored) return stored;
@@ -679,6 +686,7 @@ function setupPrivacyNotice(){
 }
 
 function init(){
+  syncTopbarHeight();
   setupNav();
   setupBackToTop();
   setTheme(getTheme());
@@ -688,6 +696,13 @@ function init(){
   setupActions();
   setupImagePreview();
   setupPrivacyNotice();
+  syncTopbarHeight();
+
+  window.addEventListener('resize', syncTopbarHeight);
+  window.addEventListener('orientationchange', syncTopbarHeight);
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', syncTopbarHeight);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);

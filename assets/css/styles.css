@@ -950,7 +950,7 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   border:1px solid color-mix(in oklab, var(--accent-2) 35%, var(--border));
   border-bottom:0;
   border-radius:14px 14px 0 0;
-  background: color-mix(in oklab, var(--panel) 97%, transparent);
+  background: linear-gradient(180deg, rgba(3, 7, 12, .14), color-mix(in oklab, var(--panel) 97%, transparent));
   color:var(--text);
   font:inherit;
   font-size:12px;
@@ -1041,6 +1041,10 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
     left:8px;
   }
   .image-preview-next{
+    right:8px;
+  }
+  .image-preview-close{
+    top:8px;
     right:8px;
   }
   .image-preview-fullscreen{
@@ -1554,6 +1558,16 @@ input:focus, textarea:focus{outline:3px solid var(--focus); outline-offset:2px;}
   .chip button{padding:6px 8px;}
   .color-input{width:28px; height:28px;}
   .mobile-drawer{top:100px; left:10px; right:10px;}
+}
+
+@media (max-width: 700px){
+  .timeline-image-frame{
+    cursor:default;
+  }
+
+  .timeline-image-frame::after{
+    display:none;
+  }
 }
 
 /* Reduced motion */

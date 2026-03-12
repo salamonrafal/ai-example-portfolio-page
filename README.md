@@ -451,3 +451,19 @@ python -m http.server 8080
     - Dopisano źródłowy wpis dla `Iteracji 6` z plikiem `it6.png` i opisem ostatniego etapu rozwoju strony.
   - `assets/img/it6.png`
     - Skopiowano właściwy screenshot iteracji 6 z katalogu `_data`, aby wpis w `evaluation.html` używał poprawnego obrazka.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-12)
+  - `evaluation.html` / `assets/css/styles.css`
+    - Dopracowano elementy osi czasu:
+      - dodano pionowy separator między opisem a obrazkiem,
+      - zwiększono odstęp obrazka od separatora,
+      - ujednolicono długość separatora niezależnie od wysokości podglądu,
+      - wyśrodkowano obrazek pionowo względem tekstu, gdy opis jest wyższy.
+  - `assets/css/styles.css`
+    - Dopracowano popup screenshotów na `evaluation.html`:
+      - ujednolicono półprzezroczyste tło bloku opisu i zakładki `Pokaż/Ukryj` w jasnym motywie,
+      - dopasowano obramowania i pozycję zakładki opisu w jasnym oraz ciemnym motywie,
+      - wyśrodkowano ikony strzałek w przyciskach nawigacji,
+      - ujednolicono tło tytułu popupu ze stylem bloku opisu.
+  - `assets/js/app.js`
+    - Zmieniono markup przycisków `poprzedni / następny` w popupie screenshotów, aby strzałki miały osobny element i mogły być precyzyjnie wyśrodkowane.

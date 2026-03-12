@@ -431,3 +431,15 @@ python -m http.server 8080
     - ukryto ikonę lupy na miniaturach.
   - Wyrównano na tablecie przycisk `full screen` do przycisku `X` w popupie screenshotu.
   - Ujednolicono tło przycisku `Pokaż/Ukryj` z półprzezroczystym tłem bloku opisu iteracji w popupie.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-12)
+  - `assets/css/styles.css`
+    - Zmieniono globalny stack typografii serwisu:
+      - `Helvetica` ustawiono jako główną czcionkę interfejsu,
+      - dodano fallback: `Helvetica Neue`, `Arial`, `sans-serif`.
+    - Dodano klasę `.shortcut-keys`, aby grupa skrótów w podpowiedzi na stronie głównej nie łamała się między klawiszami.
+  - `index.html`
+    - W sekcji `Szybki skrót` na stronie głównej przeniesiono klawisze `L / T` na początek podpowiedzi.
+    - Uproszczono treść hintu, aby lepiej pasowała do układu po przełączeniu języka.
+  - `assets/js/app.js`
+    - Zaktualizowano tłumaczenia podpowiedzi `home_tip` (PL/EN) dla nowego układu skrótów na stronie głównej.

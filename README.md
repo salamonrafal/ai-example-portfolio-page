@@ -443,3 +443,11 @@ python -m http.server 8080
     - Uproszczono treść hintu, aby lepiej pasowała do układu po przełączeniu języka.
   - `assets/js/app.js`
     - Zaktualizowano tłumaczenia podpowiedzi `home_tip` (PL/EN) dla nowego układu skrótów na stronie głównej.
+  - `evaluation.html`
+    - Dodano `Iterację 6` do osi czasu ewolucji portfolio.
+    - Uzupełniono tytuł i opis iteracji w wersjach PL/EN.
+    - Zaktualizowano metadane `og:image` oraz `twitter:image`, aby wskazywały na `assets/img/it6.png`.
+  - `_data/evaluation-page-data.txt`
+    - Dopisano źródłowy wpis dla `Iteracji 6` z plikiem `it6.png` i opisem ostatniego etapu rozwoju strony.
+  - `assets/img/it6.png`
+    - Skopiowano właściwy screenshot iteracji 6 z katalogu `_data`, aby wpis w `evaluation.html` używał poprawnego obrazka.

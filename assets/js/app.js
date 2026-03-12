@@ -418,7 +418,7 @@ function setupImagePreview(){
   modal.setAttribute('aria-hidden', 'true');
   modal.innerHTML = `
     <div class="image-preview-dialog" role="dialog" aria-modal="true" aria-label="Image preview">
-      <button type="button" class="image-preview-nav image-preview-prev" data-action="preview-prev" aria-label="Previous image">‹</button>
+      <button type="button" class="image-preview-nav image-preview-prev" data-action="preview-prev" aria-label="Previous image"><span class="image-preview-nav-icon" aria-hidden="true">‹</span></button>
       <button type="button" class="image-preview-fullscreen" data-action="toggle-preview-fullscreen" aria-label="Full screen">⛶</button>
       <button type="button" class="image-preview-close" data-action="close-image-preview" aria-label="Close preview">×</button>
       <figure class="image-preview-frame">
@@ -436,7 +436,7 @@ function setupImagePreview(){
           </div>
         </section>
       </figure>
-      <button type="button" class="image-preview-nav image-preview-next" data-action="preview-next" aria-label="Next image">›</button>
+      <button type="button" class="image-preview-nav image-preview-next" data-action="preview-next" aria-label="Next image"><span class="image-preview-nav-icon" aria-hidden="true">›</span></button>
     </div>
   `;
   document.body.appendChild(modal);

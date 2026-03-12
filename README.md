@@ -467,3 +467,27 @@ python -m http.server 8080
       - ujednolicono tło tytułu popupu ze stylem bloku opisu.
   - `assets/js/app.js`
     - Zmieniono markup przycisków `poprzedni / następny` w popupie screenshotów, aby strzałki miały osobny element i mogły być precyzyjnie wyśrodkowane.
+
+- Dodatkowe zmiany (uzupełnienie, 2026-03-12)
+  - Wszystkie strony profilowe (`index/about/projects/tools/contact/evaluation/404`)
+    - Dopracowano mobilne menu w topbarze:
+      - drawer startuje od rzeczywistej wysokości topbara dzięki synchronizacji `--topbar-height` w JS,
+      - menu rozszerzono na pełną szerokość ekranu,
+      - usunięto wszystkie zaokrąglenia i całe obramowanie kontenera menu,
+      - usunięto górne obramowanie menu i skorygowano pozycję `top` do `calc(var(--topbar-height) - 1px)`.
+    - Uproszczono wygląd listy pozycji w menu mobilnym:
+      - elementy są rozciągnięte na pełną szerokość menu,
+      - usunięto boczne obramowania i zachowano podziały poziome,
+      - ujednolicono tło elementów z tłem głównego bloku menu,
+      - scalono wizualnie listę pozycji w jeden spójny blok bez zaokrągleń.
+    - Przeniesiono sekcję `Preferencje` na dół menu mobilnego razem z separatorem.
+    - Dopracowano sekcję `Preferencje`:
+      - usunięto jej obramowanie,
+      - wyrównano padding do elementów menu,
+      - ustawiono `margin-top: 0` i `padding-top: 0` dla `chip mobile-preferences`.
+    - Dodano i dopracowano separator między listą pozycji a sekcją `Preferencje`:
+      - separator nie dotyka bocznych krawędzi,
+      - końce separatora łagodnie zanikają,
+      - zwiększono odstępy wokół separatora, aby blok `Preferencje` był wyraźniej oddzielony od listy pozycji.
+  - `assets/js/app.js`
+    - Dodano funkcję synchronizującą rzeczywistą wysokość topbara z CSS przy starcie strony, zmianie rozmiaru, orientacji i `visualViewport`.

@@ -415,3 +415,19 @@ python -m http.server 8080
   - Dodatkowo poprawiono responsywność nawigacji modala po code review:
     - dla ekranów `>=901px` zawężono szerokość dialogu podglądu tak, aby pozostawić miejsce na boczne strzałki,
     - dzięki temu przyciski `poprzedni / następny` nie wypadają poza viewport na średnich szerokościach.
+
+## 2026-03-12
+
+- `evaluation.html`
+  - Dodano tłumaczenia PL/EN dla tytułów wszystkich iteracji w osi czasu.
+- `assets/js/app.js`
+  - Zablokowano otwieranie popupu screenshotów w `evaluation.html` na urządzeniach mobilnych, bez wpływu na działanie desktopowe.
+  - Poprawiono pobieranie danych do modala screenshotów:
+    - tytuł jest wybierany z aktywnej wersji językowej wpisu,
+    - opis iteracji jest ponownie poprawnie wyświetlany po rozdzieleniu tytułów na bloki PL/EN.
+- `assets/css/styles.css`
+  - Usunięto na mobile wizualną sugestię klikalności screenshotów iteracji:
+    - wyłączono kursor `pointer`,
+    - ukryto ikonę lupy na miniaturach.
+  - Wyrównano na tablecie przycisk `full screen` do przycisku `X` w popupie screenshotu.
+  - Ujednolicono tło przycisku `Pokaż/Ukryj` z półprzezroczystym tłem bloku opisu iteracji w popupie.

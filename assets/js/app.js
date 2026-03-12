@@ -410,6 +410,7 @@ function setupActions(){
 function setupImagePreview(){
   const triggers = qsa('[data-action="open-image-preview"]');
   if(!triggers.length) return;
+  const mobilePreviewQuery = window.matchMedia('(max-width: 700px)');
 
   const modal = document.createElement('div');
   modal.className = 'image-preview-modal';
@@ -483,9 +484,12 @@ function setupImagePreview(){
     if(!entry) return;
     const lang = getLang();
     const fallbackLang = lang === 'pl' ? 'en' : 'pl';
-    const titleEl = qs('.timeline-title', entry);
+    const titleScope = qsa(`[data-lang="${lang}"]`, entry).find((scope)=> qs('.timeline-title', scope))
+      || qsa(`[data-lang="${fallbackLang}"]`, entry).find((scope)=> qs('.timeline-title', scope));
+    const textScope = qsa(`[data-lang="${lang}"]`, entry).find((scope)=> qs('p', scope))
+      || qsa(`[data-lang="${fallbackLang}"]`, entry).find((scope)=> qs('p', scope));
+    const titleEl = titleScope ? qs('.timeline-title', titleScope) : qs('.timeline-title', entry);
     const stepEl = qs('.timeline-step-label', entry);
-    const textScope = qs(`[data-lang="${lang}"]`, entry) || qs(`[data-lang="${fallbackLang}"]`, entry);
     const textEl = textScope ? qs('p', textScope) : null;
 
     const stepText = stepEl ? stepEl.textContent.trim() : '';
@@ -545,7 +549,13 @@ function setupImagePreview(){
   };
 
   triggers.forEach(trigger=>{
-    trigger.addEventListener('click', ()=> openPreview(trigger));
+    trigger.addEventListener('click', (e)=>{
+      if(mobilePreviewQuery.matches){
+        e.preventDefault();
+        return;
+      }
+      openPreview(trigger);
+    });
   });
 
   if(closeBtn){

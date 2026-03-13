@@ -491,3 +491,14 @@ python -m http.server 8080
       - zwiększono odstępy wokół separatora, aby blok `Preferencje` był wyraźniej oddzielony od listy pozycji.
   - `assets/js/app.js`
     - Dodano funkcję synchronizującą rzeczywistą wysokość topbara z CSS przy starcie strony, zmianie rozmiaru, orientacji i `visualViewport`.
+
+## 2026-03-13
+
+- Wszystkie strony profilowe (`index/about/projects/tools/contact/evaluation/404`)
+  - Rozszerzono listę ikon w stopce o `Buy Me a Coffee`.
+  - Dodano link do profilu `https://buymeacoffee.com/salamonrafal`.
+  - Zachowano spójny styl ikon i istniejący układ stopki.
+- `contact.html`
+  - Dodano w bloku `Kontakt` nowy przycisk `Buy Me a Coffee`.
+  - Przycisk prowadzi do profilu `https://buymeacoffee.com/salamonrafal`.
+  - Zachowano istniejący styl przycisków kontaktowych.

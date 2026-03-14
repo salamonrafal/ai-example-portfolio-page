@@ -203,6 +203,16 @@ function hexToRgb(hex){
   };
 }
 
+function getContrastColor(rgb){
+  if(!rgb) return '#0d1520';
+  const toLinear = (channel)=>{
+    const value = channel / 255;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  };
+  const luminance = (0.2126 * toLinear(rgb.r)) + (0.7152 * toLinear(rgb.g)) + (0.0722 * toLinear(rgb.b));
+  return luminance > 0.45 ? '#0d1520' : '#f6f8fb';
+}
+
 function setTheme(theme){
   localStorage.setItem('theme', theme);
   document.documentElement.setAttribute('data-theme', theme);
@@ -214,8 +224,10 @@ function setTheme(theme){
 function setAccent(color){
   const accent = normalizeHexColor(color) || '#39ff14';
   const rgb = hexToRgb(accent);
+  const accentContrast = getContrastColor(rgb);
   localStorage.setItem('accent', accent);
   document.documentElement.style.setProperty('--accent', accent);
+  document.documentElement.style.setProperty('--accent-contrast', accentContrast);
   document.documentElement.style.setProperty('--link', accent);
   if(rgb){
     document.documentElement.style.setProperty('--link-bg', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, .12)`);

@@ -502,3 +502,39 @@ python -m http.server 8080
   - Dodano w bloku `Kontakt` nowy przycisk `Buy Me a Coffee`.
   - Przycisk prowadzi do profilu `https://buymeacoffee.com/salamonrafal`.
   - Zachowano istniejący styl przycisków kontaktowych.
+
+## 2026-03-14
+
+- `assets/css/styles.css`
+  - Przebudowano globalny styl `.btn`:
+    - ustawiono jednolite tło z aktualnego koloru akcentu,
+    - usunięto obramowania,
+    - dodano automatyczny kontrast tekstu zależny od jasności wybranego akcentu,
+    - ujednolicono wysokość, zmniejszono grubość przycisków i ustawiono `font-size: 14px` oraz pogrubienie tekstu.
+  - Dopracowano przyciski z ikonami:
+    - tło ikon wewnątrz `.btn` dziedziczy tło przycisku,
+    - usunięto obramowanie ikon,
+    - powiększono ikony w przyciskach.
+  - Dla grup przycisków dodano pionowy separator między elementami, który pozostaje widoczny w jasnych i ciemnych wariantach koloru akcentu.
+  - Dodano kontrastowe warianty koloru akcentu dla:
+    - aktywnego linku i nazwy strony w topbarze,
+    - zwykłych linków,
+    - ikon w footerze,
+    - ikon w bloku `Szybkie skróty` na stronie głównej.
+  - Dopracowano karty projektów:
+    - opisy ograniczono do maksymalnie 3 linii,
+    - przycisk `Repo` został ustawiony na stałej wysokości i wyrównany do prawej,
+    - dodano separator z zanikiem między opisem a sekcją akcji.
+  - Ujednolicono sekcję akcji formularza kontaktowego z globalnym stylem `.btn` przez wydzielenie osobnego układu `.form-actions`.
+- `assets/js/app.js`
+  - Dodano wyliczanie kontrastowego koloru tekstu dla przycisków na podstawie luminancji wybranego koloru akcentu.
+- `projects.html`
+  - Dodano ikony `↗` do wszystkich przycisków `Repo`.
+- `contact.html`
+  - Zmieniono układ akcji formularza z `project-actions` na `form-actions`, aby przyciski korzystały z globalnego stylu bez dodatków z kart projektów.
+- `evaluation.html`
+  - Dodano `Iterację 7` do osi czasu ewolucji portfolio.
+  - Uzupełniono tytuł i opis iteracji w wersjach PL/EN.
+  - Dodano podgląd screenshotu `assets/img/it7.png`.
+- `_data/evaluation-page-data.txt`
+  - Wykorzystano źródłowy wpis dla `Iteracji 7` jako podstawę do aktualizacji strony `evaluation.html`.

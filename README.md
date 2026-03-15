@@ -153,9 +153,6 @@ python -m http.server 8080
     - Dodano tłumaczenia PL/EN dla treści i przycisków popupu.
     - Nadano tekstowi popupu styl konsolowy (prompty `>` i `$`, terminalowe tło i obramowanie).
     - Nadano przyciskom popupu styl konsolowy (terminalowy prefiks `$`, dopasowane kolory, `hover` i `focus`).
-    - Poprawiono kontrast i widoczność etykiet przycisków popupu, w tym przycisku akceptacji w tonie akcji sukcesu.
-    - Dodano osobną zasadę widoczności dla prefiksu `$` w przycisku `Akceptuję`, aby był czytelny w ciemnym i jasnym motywie.
-    - Zwiększono czytelność treści popupu: większa typografia, lepszy line-height i bezpieczniejszy kontrast tekstu względem tła w obu motywach.
 
 ## 2026-03-07
 
@@ -541,3 +538,14 @@ python -m http.server 8080
   - Dodano podgląd screenshotu `assets/img/it7.png`.
 - `_data/evaluation-page-data.txt`
   - Wykorzystano źródłowy wpis dla `Iteracji 7` jako podstawę do aktualizacji strony `evaluation.html`.
+
+## 2026-03-15
+
+- `assets/css/styles.css`
+  - Dopracowano `Privacy popup` / cookie window na stronie profilowej:
+    - poprawiono widoczność tekstu przycisków,
+    - dopasowano przycisk `Akceptuję` do tonu przycisku sukcesu,
+    - dodano kontrastową widoczność prefiksu `$` w obu motywach.
+  - Zwiększono czytelność treści popupu:
+    - poprawiono typografię i odstępy,
+    - dopasowano kontrast tekstu i tła dla jasnego oraz ciemnego motywu.

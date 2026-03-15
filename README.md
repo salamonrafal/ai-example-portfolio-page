@@ -538,3 +538,14 @@ python -m http.server 8080
   - Dodano podgląd screenshotu `assets/img/it7.png`.
 - `_data/evaluation-page-data.txt`
   - Wykorzystano źródłowy wpis dla `Iteracji 7` jako podstawę do aktualizacji strony `evaluation.html`.
+
+## 2026-03-15
+
+- `assets/css/styles.css`
+  - Dopracowano `Privacy popup` / cookie window na stronie profilowej:
+    - poprawiono widoczność tekstu przycisków,
+    - dopasowano przycisk `Akceptuję` do tonu przycisku sukcesu,
+    - dodano kontrastową widoczność prefiksu `$` w obu motywach.
+  - Zwiększono czytelność treści popupu:
+    - poprawiono typografię i odstępy,
+    - dopasowano kontrast tekstu i tła dla jasnego oraz ciemnego motywu.

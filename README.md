@@ -153,6 +153,9 @@ python -m http.server 8080
     - Dodano tłumaczenia PL/EN dla treści i przycisków popupu.
     - Nadano tekstowi popupu styl konsolowy (prompty `>` i `$`, terminalowe tło i obramowanie).
     - Nadano przyciskom popupu styl konsolowy (terminalowy prefiks `$`, dopasowane kolory, `hover` i `focus`).
+    - Poprawiono kontrast i widoczność etykiet przycisków popupu, w tym przycisku akceptacji w tonie akcji sukcesu.
+    - Dodano osobną zasadę widoczności dla prefiksu `$` w przycisku `Akceptuję`, aby był czytelny w ciemnym i jasnym motywie.
+    - Zwiększono czytelność treści popupu: większa typografia, lepszy line-height i bezpieczniejszy kontrast tekstu względem tła w obu motywach.
 
 ## 2026-03-07
 

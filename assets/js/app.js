@@ -221,7 +221,9 @@ function getStoredPreference(name){
   const legacyValue = localStorage.getItem(name);
   if(legacyValue){
     setCookie(name, legacyValue);
-    localStorage.removeItem(name);
+    if(getCookie(name) === legacyValue){
+      localStorage.removeItem(name);
+    }
     return legacyValue;
   }
   return null;

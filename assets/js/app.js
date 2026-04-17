@@ -6,6 +6,7 @@ const i18n = {
     nav_about: "O mnie",
     nav_projects: "Moje projekty",
     nav_tools: "Moje narzędzia",
+    nav_blog: "Blog",
     nav_contact: "Kontakt",
     chip_lang: "Język",
     chip_theme: "Motyw",
@@ -19,6 +20,7 @@ const i18n = {
     home_links_about: "O mnie",
     home_links_projects: "Projekty",
     home_links_tools: "Narzędzia",
+    home_links_blog: "Blog",
     home_links_contact: "Kontakt",
     home_links_github: "GitHub",
     home_links_linkedin: "LinkedIn",
@@ -75,6 +77,7 @@ const i18n = {
     preview_hide_details: "Ukryj opis",
     preview_enter_fullscreen: "Pełny ekran",
     preview_exit_fullscreen: "Zamknij pełny ekran",
+    footer_evolution: "Zobacz ewolucję strony",
 
     footer: "Tworzę rzeczy, które są czytelne, solidne i praktyczne."
   },
@@ -83,6 +86,7 @@ const i18n = {
     nav_about: "About",
     nav_projects: "Projects",
     nav_tools: "Tools",
+    nav_blog: "Blog",
     nav_contact: "Contact",
     chip_lang: "Language",
     chip_theme: "Theme",
@@ -96,6 +100,7 @@ const i18n = {
     home_links_about: "About",
     home_links_projects: "Projects",
     home_links_tools: "Tools",
+    home_links_blog: "Blog",
     home_links_contact: "Contact",
     home_links_github: "GitHub",
     home_links_linkedin: "LinkedIn",
@@ -152,6 +157,7 @@ const i18n = {
     preview_hide_details: "Hide details",
     preview_enter_fullscreen: "Full screen",
     preview_exit_fullscreen: "Exit full screen",
+    footer_evolution: "See how the site evolved",
 
     footer: "I build things that are clear, robust, and practical."
   }
@@ -160,6 +166,80 @@ const i18n = {
 function qs(sel, root=document){ return root.querySelector(sel); }
 function qsa(sel, root=document){ return [...root.querySelectorAll(sel)]; }
 let terminalRenderId = 0;
+const preferenceCookieMaxAge = 60 * 60 * 24 * 365;
+const preferenceStorageKeys = ['lang', 'theme', 'accent'];
+const usesCookiePreferences = window.location.protocol !== 'file:';
+
+function getCookieDomain(){
+  const host = window.location.hostname.toLowerCase();
+  if(host === 'salamonrafal.pl' || host.endsWith('.salamonrafal.pl')){
+    return '.salamonrafal.pl';
+  }
+  return null;
+}
+
+function getCookie(name){
+  const prefix = `${encodeURIComponent(name)}=`;
+  const entry = document.cookie.split(';').map(part=>part.trim()).find(part=> part.startsWith(prefix));
+  if(!entry) return null;
+  return decodeURIComponent(entry.slice(prefix.length));
+}
+
+function setCookie(name, value, maxAge = preferenceCookieMaxAge){
+  const parts = [
+    `${encodeURIComponent(name)}=${encodeURIComponent(value)}`,
+    'Path=/',
+    `Max-Age=${maxAge}`,
+    'SameSite=Lax'
+  ];
+  const domain = getCookieDomain();
+  if(domain) parts.push(`Domain=${domain}`);
+  if(window.location.protocol === 'https:') parts.push('Secure');
+  document.cookie = parts.join('; ');
+}
+
+function persistPreference(name, value){
+  if(!usesCookiePreferences){
+    localStorage.setItem(name, value);
+    return;
+  }
+  setCookie(name, value);
+  if(getCookie(name) === value){
+    localStorage.removeItem(name);
+    return;
+  }
+  localStorage.setItem(name, value);
+}
+
+function getStoredPreference(name){
+  if(!usesCookiePreferences){
+    return localStorage.getItem(name);
+  }
+  const cookieValue = getCookie(name);
+  if(cookieValue) return cookieValue;
+
+  const legacyValue = localStorage.getItem(name);
+  if(legacyValue){
+    setCookie(name, legacyValue);
+    if(getCookie(name) === legacyValue){
+      localStorage.removeItem(name);
+    }
+    return legacyValue;
+  }
+  return null;
+}
+
+function migrateStoredPreferences(){
+  if(!usesCookiePreferences) return;
+  preferenceStorageKeys.forEach((key)=>{
+    const legacyValue = localStorage.getItem(key);
+    if(!legacyValue) return;
+    setCookie(key, legacyValue);
+    if(getCookie(key) === legacyValue){
+      localStorage.removeItem(key);
+    }
+  });
+}
 
 function syncTopbarHeight(){
   const topbar = qs('.topbar');
@@ -169,13 +249,13 @@ function syncTopbarHeight(){
 }
 
 function getLang(){
-  const stored = localStorage.getItem('lang');
+  const stored = getStoredPreference('lang');
   if(stored) return stored;
   const n = (navigator.language || 'pl').toLowerCase();
   return n.startsWith('pl') ? 'pl' : 'en';
 }
 
-function setLang(lang){ localStorage.setItem('lang', lang); applyI18n(lang); }
+function setLang(lang){ persistPreference('lang', lang); applyI18n(lang); }
 
 function applyLangVisibility(lang){
   qsa('[data-lang]').forEach(el=>{
@@ -184,8 +264,8 @@ function applyLangVisibility(lang){
   });
 }
 
-function getTheme(){ return localStorage.getItem('theme') || 'dark'; }
-function getAccent(){ return localStorage.getItem('accent') || '#39ff14'; }
+function getTheme(){ return getStoredPreference('theme') || 'dark'; }
+function getAccent(){ return getStoredPreference('accent') || '#39ff14'; }
 
 function normalizeHexColor(value){
   if(typeof value !== 'string') return null;
@@ -214,7 +294,7 @@ function getContrastColor(rgb){
 }
 
 function setTheme(theme){
-  localStorage.setItem('theme', theme);
+  persistPreference('theme', theme);
   document.documentElement.setAttribute('data-theme', theme);
   qsa('[data-action="toggle-theme"]').forEach(btn=>{
     btn.textContent = theme === 'dark' ? '🌙' : '☀️';
@@ -225,7 +305,7 @@ function setAccent(color){
   const accent = normalizeHexColor(color) || '#39ff14';
   const rgb = hexToRgb(accent);
   const accentContrast = getContrastColor(rgb);
-  localStorage.setItem('accent', accent);
+  persistPreference('accent', accent);
   document.documentElement.style.setProperty('--accent', accent);
   document.documentElement.style.setProperty('--accent-contrast', accentContrast);
   document.documentElement.style.setProperty('--link', accent);
@@ -698,6 +778,7 @@ function setupPrivacyNotice(){
 }
 
 function init(){
+  migrateStoredPreferences();
   syncTopbarHeight();
   setupNav();
   setupBackToTop();

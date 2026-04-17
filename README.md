@@ -549,3 +549,26 @@ python -m http.server 8080
   - Zwiększono czytelność treści popupu:
     - poprawiono typografię i odstępy,
     - dopasowano kontrast tekstu i tła dla jasnego oraz ciemnego motywu.
+
+## 2026-04-17
+
+- Wszystkie strony profilowe (`index/about/projects/tools/contact/evaluation/404`)
+  - Dodano nową pozycję `Blog` w top menu.
+  - Link prowadzi do `https://blog.salamonrafal.pl/`.
+  - Pozycję umieszczono między `Moje narzędzia` a `Kontakt`.
+  - Zmianę wprowadzono zarówno w nawigacji desktopowej, jak i w menu mobilnym.
+- `index.html`
+  - Dodano link `Blog` do sekcji `Szybki skrót`.
+  - Zachowano otwieranie w tym samym oknie.
+- `assets/js/app.js`
+  - Rozszerzono i18n o nowe klucze:
+    - `nav_blog`,
+    - `home_links_blog`,
+    - `footer_evolution`.
+  - Zmieniono sposób zapisu preferencji `lang`, `theme` i `accent`:
+    - na domenie `salamonrafal.pl` i jej subdomenach preferencje są zapisywane w cookies współdzielonych przez `www.salamonrafal.pl` i `blog.salamonrafal.pl`,
+    - dla uruchomienia lokalnego przez `file://` preferencje są zapisywane w `localStorage`,
+    - dla pozostałych hostów pozostawiono fallback do `localStorage`, jeśli zapis cookie nie będzie dostępny.
+  - Dodano migrację dotychczasowych wartości preferencji z `localStorage` do cookies tam, gdzie jest to możliwe.
+- Wszystkie strony profilowe (`index/about/projects/tools/contact/evaluation/404`)
+  - Podłączono tłumaczenie linku `Zobacz ewolucję strony` w stopce przez i18n.

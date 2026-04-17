@@ -169,6 +169,11 @@ let terminalRenderId = 0;
 const preferenceCookieMaxAge = 60 * 60 * 24 * 365;
 const preferenceStorageKeys = ['lang', 'theme', 'accent'];
 const usesCookiePreferences = window.location.protocol !== 'file:';
+const preferenceCookieNames = {
+  lang: 'user_language',
+  theme: 'user_theme',
+  accent: 'user_accent'
+};
 
 function getCookieDomain(){
   const host = window.location.hostname.toLowerCase();
@@ -198,13 +203,18 @@ function setCookie(name, value, maxAge = preferenceCookieMaxAge){
   document.cookie = parts.join('; ');
 }
 
+function getPreferenceCookieName(name){
+  return preferenceCookieNames[name] || name;
+}
+
 function persistPreference(name, value){
   if(!usesCookiePreferences){
     localStorage.setItem(name, value);
     return;
   }
-  setCookie(name, value);
-  if(getCookie(name) === value){
+  const cookieName = getPreferenceCookieName(name);
+  setCookie(cookieName, value);
+  if(getCookie(cookieName) === value){
     localStorage.removeItem(name);
     return;
   }
@@ -215,13 +225,14 @@ function getStoredPreference(name){
   if(!usesCookiePreferences){
     return localStorage.getItem(name);
   }
-  const cookieValue = getCookie(name);
+  const cookieName = getPreferenceCookieName(name);
+  const cookieValue = getCookie(cookieName);
   if(cookieValue) return cookieValue;
 
   const legacyValue = localStorage.getItem(name);
   if(legacyValue){
-    setCookie(name, legacyValue);
-    if(getCookie(name) === legacyValue){
+    setCookie(cookieName, legacyValue);
+    if(getCookie(cookieName) === legacyValue){
       localStorage.removeItem(name);
     }
     return legacyValue;
@@ -234,8 +245,9 @@ function migrateStoredPreferences(){
   preferenceStorageKeys.forEach((key)=>{
     const legacyValue = localStorage.getItem(key);
     if(!legacyValue) return;
-    setCookie(key, legacyValue);
-    if(getCookie(key) === legacyValue){
+    const cookieName = getPreferenceCookieName(key);
+    setCookie(cookieName, legacyValue);
+    if(getCookie(cookieName) === legacyValue){
       localStorage.removeItem(key);
     }
   });
